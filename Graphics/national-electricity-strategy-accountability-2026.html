@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>National Electricity Strategy · May 14 2026</title>
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --muted: #6B6055;
+      --rule: #C8BFB0;
+      --red: #872D2E;
+      --tan: #EDE5D5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 18px;
+      padding: 24px 0 44px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
+    }
+
+    .page-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .canvas {
+      position: relative;
+      width: 2160px;
+      height: 1728px;
+      aspect-ratio: 5 / 4;
+      background: var(--paper);
+      padding: 28px 44px 22px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .canvas--announce .announce-snapshot {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .canvas--compare .comparison {
+      flex: 1 1 auto;
+      min-height: min-content;
+    }
+
+    .canvas::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 2px solid var(--ink);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+
+    .headlines {
+      flex: 1;
+      min-width: 0;
+      padding-right: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 1880px;
+      font-size: 72px;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      font-weight: 760;
+      color: var(--ink);
+    }
+
+    .deck {
+      margin: 10px 0 0;
+      max-width: 1880px;
+      font-size: 42px;
+      line-height: 1.27;
+      font-weight: 520;
+      color: var(--ink);
+    }
+
+    .brand {
+      width: 88px;
+      height: 88px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      margin-right: 2px;
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .announce-snapshot {
+      flex-shrink: 0;
+      margin-top: 12px;
+      padding: 0;
+      border: 2px solid var(--ink);
+      background: var(--tan);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .ann-snap-head {
+      margin: 0;
+      padding: 10px 18px 11px;
+      background: var(--red);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .ann-band {
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+
+    .ann-snap-body {
+      padding: 16px 20px 18px 22px;
+      border-left: 8px solid var(--red);
+      background: linear-gradient(90deg, rgba(135, 45, 46, 0.06) 0%, rgba(244, 235, 227, 0) 52%);
+    }
+
+    .ann-lead {
+      margin: 0 0 12px;
+      font-size: 30px;
+      line-height: 1.34;
+      font-weight: 640;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .ann-lead-accent {
+      color: var(--red);
+      font-weight: 760;
+    }
+
+    .ann-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 28px;
+      line-height: 1.38;
+      font-weight: 520;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .ann-list li {
+      position: relative;
+      margin: 0 0 10px;
+      padding-left: 30px;
+    }
+
+    .ann-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.52em;
+      width: 14px;
+      height: 14px;
+      background: var(--red);
+    }
+
+    .ann-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* First sheet: featured row plus 2×2 icon cards, each with a standout stat */
+    .canvas--announce .announce-snapshot {
+      margin-top: 18px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .canvas--announce .ann-snap-head {
+      padding: 0 0 6px 0;
+      background: transparent;
+      border-bottom: none;
+      flex-shrink: 0;
+    }
+
+    .canvas--announce .ann-band {
+      color: var(--muted);
+      font-size: 24px;
+    }
+
+    .canvas--announce .ann-snap-body {
+      padding: 10px 0 0;
+      border-left: none;
+      background: none;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+      gap: 18px;
+    }
+
+    .canvas--announce .ann-consultation-alert {
+      flex-shrink: 0;
+      margin: 0;
+      padding: 20px 26px 22px 22px;
+      border: 2px solid var(--ink);
+      border-left: 8px solid var(--red);
+      background: linear-gradient(90deg, rgba(135, 45, 46, 0.11) 0%, rgba(244, 235, 227, 0.5) 48%);
+    }
+
+    .canvas--announce .ann-consultation-alert-text {
+      margin: 0;
+      font-size: 42px;
+      line-height: 1.28;
+      font-weight: 520;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .canvas--announce .ann-consultation-alert-text strong {
+      font-weight: 760;
+      color: var(--red);
+      font-size: 1.05em;
+    }
+
+    .canvas--announce .ann-point-card--featured {
+      flex-shrink: 0;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-text {
+      font-size: 37px;
+      line-height: 1.26;
+    }
+
+    .canvas--announce .ann-point-grid {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+      align-content: stretch;
+    }
+
+    .canvas--announce .ann-point-card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      border: 2px solid var(--ink);
+      background: rgba(237, 229, 213, 0.55);
+      min-height: 0;
+    }
+
+    .canvas--announce .ann-point-stat {
+      border-bottom: 2px solid rgba(26, 26, 26, 0.14);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      row-gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .canvas--announce .ann-point-stat-main {
+      flex-shrink: 0;
+      font-weight: 760;
+      letter-spacing: -0.05em;
+      color: var(--red);
+    }
+
+    .canvas--announce .ann-point-stat-sub {
+      margin: 0;
+      flex: 1 1 200px;
+      min-width: min(200px, 100%);
+      font-weight: 620;
+      letter-spacing: 0.01em;
+      color: var(--muted);
+    }
+
+    .canvas--announce .ann-point-body {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .canvas--announce .ann-point-icon {
+      flex-shrink: 0;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .canvas--announce .ann-point-text {
+      margin: 0;
+      font-weight: 520;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-card {
+      gap: 6px;
+      padding: 14px 18px 18px 18px;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-stat {
+      margin: 0 0 8px;
+      padding: 0 0 10px;
+      column-gap: 12px;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-stat-main {
+      font-size: 50px;
+      line-height: 0.92;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-stat-sub {
+      font-size: 27px;
+      line-height: 1.2;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-stat {
+      margin-bottom: 10px;
+      padding-bottom: 12px;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-stat-main {
+      font-size: 62px;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-stat-sub {
+      font-size: 29px;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-body {
+      gap: 14px;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-icon {
+      width: 74px;
+      height: 74px;
+    }
+
+    .canvas--announce:not(.canvas--headlines) .ann-point-text {
+      font-size: 35px;
+      line-height: 1.28;
+    }
+
+    .canvas--announce .ann-point-text .ann-lead-accent {
+      color: var(--red);
+      font-weight: 760;
+    }
+
+    /* Third sheet: headline stats only (no icons or body copy) */
+    .canvas--announce.canvas--headlines .ann-snap-body {
+      gap: 16px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-card {
+      justify-content: center;
+      padding: 14px 14px 16px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-northstar {
+      display: block;
+      margin: 0 0 8px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-stat {
+      margin: 0;
+      padding: 0;
+      border-bottom: none;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      column-gap: 0;
+      row-gap: 12px;
+      width: 100%;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-card--featured .ann-point-stat {
+      margin: 0;
+      padding: 0;
+      row-gap: 14px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-stat-main {
+      font-size: 88px;
+      line-height: 0.94;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-stat-sub {
+      font-size: 33px;
+      line-height: 1.22;
+      max-width: 860px;
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-card--featured .ann-point-stat-main {
+      font-size: 104px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-card--featured .ann-point-stat-sub {
+      font-size: 38px;
+      max-width: 1880px;
+      line-height: 1.22;
+    }
+
+    .comparison {
+      flex: 1 0 auto;
+      min-height: min-content;
+      display: grid;
+      grid-template-columns: minmax(200px, 0.19fr) 1fr 1fr;
+      margin-top: 10px;
+      align-content: start;
+    }
+
+    .cell {
+      padding: 16px 14px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cell:nth-child(3n + 2),
+    .cell:nth-child(3n + 3) {
+      border-left: 1px solid var(--rule);
+    }
+
+    .head-cell {
+      padding: 16px 14px 18px;
+      justify-content: center;
+      background: rgba(237, 229, 213, 0.32);
+      border-top-color: transparent;
+    }
+
+    .left-head {
+      border-top-color: transparent;
+      background: transparent;
+    }
+
+    .column-title {
+      margin: 0;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 760;
+      font-size: 44px;
+      color: var(--red);
+    }
+
+    .label-cell {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 14px 16px 10px;
+      background: rgba(237, 229, 213, 0.22);
+    }
+
+    .row-index {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      flex-shrink: 0;
+      min-width: 1.5em;
+    }
+
+    .label-icon {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .label {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 21px;
+      color: var(--ink);
+    }
+
+    .cell-one {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.36;
+      font-weight: 520;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+
+    .cell-one.credit-line {
+      font-weight: 540;
+    }
+
+    .closing-band {
+      margin-top: 18px;
+      padding: 28px 0 26px;
+      border-top: 2px solid var(--ink);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 0;
+      background: transparent;
+    }
+
+    .closing-rail {
+      width: 18px;
+      flex-shrink: 0;
+      background: var(--red);
+      margin-right: 24px;
+      border-radius: 1px;
+    }
+
+    .closing-stack {
+      flex: 1;
+      min-width: 0;
+      padding-right: 8px;
+    }
+
+    .closing-kicker {
+      margin: 0 0 16px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .closing-one {
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .closing-one-lead {
+      font-size: 52px;
+      font-weight: 760;
+      letter-spacing: -0.035em;
+      line-height: 1.16;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+
+    .closing-one-action {
+      font-size: 36px;
+      font-weight: 520;
+      letter-spacing: -0.015em;
+      line-height: 1.36;
+    }
+
+    .closing-one-action strong {
+      font-weight: 760;
+      color: var(--red);
+    }
+
+    .footer {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      flex-shrink: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.32;
+      letter-spacing: 0.02em;
+    }
+
+    .canvas--compare .footer,
+    .canvas--announce .footer {
+      margin-top: 0;
+    }
+
+    .export-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .download-button {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 22px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .download-button:hover { background: var(--ink); color: var(--paper); }
+    .download-button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .font-warning {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      z-index: 1000;
+      max-width: 560px;
+      padding: 18px 22px;
+      border: 2px solid var(--red);
+      background: var(--tan);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(26, 26, 26, 0.18);
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+    }
+
+    .font-warning[hidden] { display: none; }
+    .font-warning strong { display: block; margin-bottom: 4px; color: var(--red); font-size: 19px; }
+    .font-warning button {
+      margin-top: 12px;
+      padding: 8px 14px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      font-size: 17px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <div class="page-stack">
+    <main class="canvas canvas--announce" id="canvas-strategy-announce" aria-label="National Electricity Strategy, what Ottawa announced, May 14 2026">
+      <header class="header">
+        <div class="headlines">
+          <h1>National Electricity Strategy</h1>
+          <p class="deck">This draft strategy and consultation document focuses on jobs, security, practical fuels, and large-scale transmission. Many details remain open.</p>
+        </div>
+        <div class="brand" aria-label="Build Canada logo">
+          <img src="../Build Canada Logo.png" alt="Build Canada" />
+        </div>
+      </header>
+
+      <section class="announce-snapshot" aria-label="What Ottawa announced, five points">
+        <header class="ann-snap-head">
+          <p class="ann-band">What Ottawa announced</p>
+        </header>
+        <div class="ann-snap-body">
+          <article class="ann-point-card ann-point-card--featured">
+            <p class="ann-point-stat">
+              <span class="ann-point-stat-main">~2×</span>
+              <span class="ann-point-stat-sub">About double grid delivery by 2050, federal framing</span>
+            </p>
+            <div class="ann-point-body">
+              <img class="ann-point-icon" src="https://img.icons8.com/ios/100/2A2A2A/calendar.png" alt="" />
+              <p class="ann-point-text">Today's announcement: the Prime Minister opened a national conversation about roughly doubling how much electricity Canada can deliver by 2050, with a companion paper on growing the economy on cleaner power.</p>
+            </div>
+          </article>
+          <div class="ann-point-grid">
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">130K+ jobs</span>
+                <span class="ann-point-stat-sub">Labour for a doubled grid by 2050</span>
+              </p>
+              <div class="ann-point-body">
+                <img class="ann-point-icon" src="https://img.icons8.com/ios/100/2A2A2A/flow-chart.png" alt="" />
+                <p class="ann-point-text">Ottawa frames execution around four pillars: supply and storage at scale, stronger inter-regional links, trades and domestic grid manufacturing, and faster treatment of priority transmission.</p>
+              </div>
+            </article>
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">7 in 10</span>
+                <span class="ann-point-stat-sub">Expected households with lowered energy cost by 2050</span>
+              </p>
+              <div class="ann-point-body">
+                <img class="ann-point-icon" src="https://img.icons8.com/ios/100/2A2A2A/briefcase.png" alt="" />
+                <p class="ann-point-text">The federal narrative leads with employment, advanced manufacturing, artificial intelligence, and national security alongside decarbonization.</p>
+              </div>
+            </article>
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">80%</span>
+                <span class="ann-point-stat-sub">Share of clean/renewable energy as of today</span>
+              </p>
+              <div class="ann-point-body">
+                <img class="ann-point-icon" src="https://img.icons8.com/ios/100/2A2A2A/lightning-bolt.png" alt="" />
+                <p class="ann-point-text">Federal clean-electricity parameters continue to allow gas and offsets while stressing large-scale transmission and stronger interprovincial links.</p>
+              </div>
+            </article>
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">$10B</span>
+                <span class="ann-point-stat-sub">Doubled federal loan guarantees backing Indigenous equity in major clean electricity projects</span>
+              </p>
+              <div class="ann-point-body">
+                <img class="ann-point-icon" src="https://img.icons8.com/ios/100/2A2A2A/coins.png" alt="" />
+                <p class="ann-point-text">The Indigenous loan ceiling doubles to ten billion dollars, existing clean-project tax credits remain in place, and a single Crown hub for Indigenous consultation on major files was proposed.</p>
+              </div>
+            </article>
+          </div>
+          <div class="ann-consultation-alert" role="note" aria-label="Editorial context on the nature of the release">
+            <p class="ann-consultation-alert-text"><strong>Not a real strategy, and that is a weakness.</strong> Today's announcement is consultation on a draft, not firm law, funding, or timelines. Caveats and model ranges obscure who delivers and slip capital and permits past workable dates for a build this size.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="closing-band">
+        <div class="closing-rail" aria-hidden="true"></div>
+        <div class="closing-stack">
+          <p class="closing-kicker">Bottom line</p>
+          <p class="closing-one closing-one-lead">More substantive than past federal electricity rounds from Ottawa.</p>
+          <p class="closing-one closing-one-action">The directional shift is real. But this consultation document sets an ambition floor and defers most decisions, while leaving 90%+ of the $1 trillion build to ratepayers and provinces it has limited authority over.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        Sources: Prime Minister of Canada / CNW, Prime Minister Carney announces forthcoming National Electricity Strategy, May 14 2026 (including modelled $15B savings and 7-in-10 households, 130,000+ workers, 80% clean grid). Government of Canada, Powering Canada Strong, A National Strategy for an Electrified Canadian Economy, 2026. Build Canada, Canada Needs an Abundance of Electrical Energy, George Babu, April 9 2025. CBC News, reporting on federal electricity announcement funding context, May 14 2026.
+      </footer>
+    </main>
+
+    <main class="canvas canvas--announce canvas--headlines" id="canvas-strategy-headlines" aria-label="National Electricity Strategy, headline stats, May 14 2026">
+      <header class="header">
+        <div class="headlines">
+          <h1>National Electricity Strategy</h1>
+          <p class="deck">This draft strategy and consultation document focuses on jobs, security, practical fuels, and large-scale transmission. Many details remain open.</p>
+        </div>
+        <div class="brand" aria-label="Build Canada logo">
+          <img src="../Build Canada Logo.png" alt="Build Canada" />
+        </div>
+      </header>
+
+      <section class="announce-snapshot" aria-label="What Ottawa announced, headline stats">
+        <header class="ann-snap-head">
+          <p class="ann-band">What Ottawa announced</p>
+        </header>
+        <div class="ann-snap-body">
+          <article class="ann-point-card ann-point-card--featured">
+            <p class="ann-point-stat">
+              <span class="ann-northstar">North star</span>
+              <span class="ann-point-stat-main">~2×</span>
+              <span class="ann-point-stat-sub">Double power grid delivery by 2050.</span>
+            </p>
+          </article>
+          <div class="ann-point-grid">
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">130K+ jobs</span>
+                <span class="ann-point-stat-sub">Federal labour estimate for a doubled grid by 2050</span>
+              </p>
+            </article>
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">7 in 10</span>
+                <span class="ann-point-stat-sub">Expected households with lowered energy cost by 2050</span>
+              </p>
+            </article>
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">80%</span>
+                <span class="ann-point-stat-sub">Share of clean/renewable energy as of today</span>
+              </p>
+            </article>
+            <article class="ann-point-card">
+              <p class="ann-point-stat">
+                <span class="ann-point-stat-main">$10B</span>
+                <span class="ann-point-stat-sub">Doubled federal loan guarantees backing Indigenous equity in major clean electricity projects</span>
+              </p>
+            </article>
+          </div>
+          <div class="ann-consultation-alert" role="note" aria-label="Editorial context on the nature of the release">
+            <p class="ann-consultation-alert-text"><strong>Not a real strategy, and that is a weakness.</strong> Today's announcement is consultation on a draft, not firm law, funding, or timelines. Caveats and model ranges obscure who delivers and slip capital and permits past workable dates for a build this size.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="closing-band">
+        <div class="closing-rail" aria-hidden="true"></div>
+        <div class="closing-stack">
+          <p class="closing-kicker">Bottom line</p>
+          <p class="closing-one closing-one-lead">More substantive than past federal electricity rounds from Ottawa.</p>
+          <p class="closing-one closing-one-action">The directional shift is real. But this consultation document sets an ambition floor and defers most decisions, while leaving 90%+ of the $1 trillion build to ratepayers and provinces it has limited authority over.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        Sources: Prime Minister of Canada / CNW, Prime Minister Carney announces forthcoming National Electricity Strategy, May 14 2026 (including modelled $15B savings and 7-in-10 households, 130,000+ workers, 80% clean grid). Government of Canada, Powering Canada Strong, A National Strategy for an Electrified Canadian Economy, 2026. Build Canada, Canada Needs an Abundance of Electrical Energy, George Babu, April 9 2025. CBC News, reporting on federal electricity announcement funding context, May 14 2026.
+      </footer>
+    </main>
+
+    <main class="canvas canvas--compare" id="canvas-strategy-compare" aria-label="National Electricity Strategy, celebrate and pressure by theme, May 14 2026">
+      <header class="header">
+        <div class="headlines">
+          <h1>National Electricity Strategy</h1>
+          <p class="deck">This draft strategy and consultation document focuses on jobs, security, practical fuels, and large-scale transmission. Many details remain open.</p>
+        </div>
+        <div class="brand" aria-label="Build Canada logo">
+          <img src="../Build Canada Logo.png" alt="Build Canada" />
+        </div>
+      </header>
+
+      <section class="comparison" aria-label="What we can celebrate and where we need more, by theme">
+        <div class="cell head-cell left-head" aria-hidden="true"></div>
+        <div class="cell head-cell">
+          <h2 class="column-title">What we can celebrate</h2>
+        </div>
+        <div class="cell head-cell">
+          <h2 class="column-title">Where we need more</h2>
+        </div>
+
+        <div class="cell label-cell">
+          <span class="row-index">01</span>
+          <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/lightning-bolt.png" alt="" />
+          <span class="label">Power</span>
+        </div>
+        <div class="cell"><p class="cell-one credit-line">The releases frame a larger grid around jobs, affordability, and security, not climate metrics alone.</p></div>
+        <div class="cell"><p class="cell-one pressure-line">Today's package remains largely strategy and consultation rather than statute with defined megawatt milestones.</p></div>
+
+        <div class="cell label-cell">
+          <span class="row-index">02</span>
+          <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/idea.png" alt="" />
+          <span class="label">Mix</span>
+        </div>
+        <div class="cell"><p class="cell-one credit-line">Gas and practical offsets remain in the federal narrative rather than a single 2035 technology mandate for every region.</p></div>
+        <div class="cell"><p class="cell-one pressure-line">No incremental funding appeared beyond existing Canada Infrastructure Bank headroom and previously announced tax measures.</p></div>
+
+        <div class="cell label-cell">
+          <span class="row-index">03</span>
+          <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/globe--v1.png" alt="" />
+          <span class="label">Wires</span>
+        </div>
+        <div class="cell"><p class="cell-one credit-line">Very large lines and stronger east-west ties are identified as federal priorities where projects have historically stalled.</p></div>
+        <div class="cell"><p class="cell-one pressure-line">The implied timeline still reads as measured planning rather than a compressed delivery program with fixed in-service dates.</p></div>
+
+        <div class="cell label-cell">
+          <span class="row-index">04</span>
+          <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/maintenance.png" alt="" />
+          <span class="label">Build</span>
+        </div>
+        <div class="cell"><p class="cell-one credit-line">Manufacturing and skilled trades appear alongside new supply, consistent with how major projects are delivered.</p></div>
+        <div class="cell"><p class="cell-one pressure-line">There is still no published shelf of shovel-ready sites and designs, and no coordinated single pass across nuclear, impact assessment, and energy reviews.</p></div>
+
+        <div class="cell label-cell">
+          <span class="row-index">05</span>
+          <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/coins.png" alt="" />
+          <span class="label">Cash</span>
+        </div>
+        <div class="cell"><p class="cell-one credit-line">A Crown Consultation Hub was proposed so major electricity files use one federal consultation window rather than repetitive engagement across departments.</p></div>
+        <div class="cell"><p class="cell-one pressure-line">Large multilateral processes add legitimacy and tend to slow firm decisions compared with a narrow cabinet mandate to clear specific bottlenecks.</p></div>
+      </section>
+
+      <div class="closing-band">
+        <div class="closing-rail" aria-hidden="true"></div>
+        <div class="closing-stack">
+          <p class="closing-kicker">Bottom line</p>
+          <p class="closing-one closing-one-lead">More substantive than past federal electricity rounds from Ottawa.</p>
+          <p class="closing-one closing-one-action">The directional shift is real. But this consultation document sets an ambition floor and defers most decisions, while leaving 90%+ of the $1 trillion build to ratepayers and provinces it has limited authority over.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        Sources: Prime Minister of Canada / CNW, Prime Minister Carney announces forthcoming National Electricity Strategy, May 14 2026 (including modelled $15B savings and 7-in-10 households, 130,000+ workers, 80% clean grid). Government of Canada, Powering Canada Strong, A National Strategy for an Electrified Canadian Economy, 2026. Build Canada, Canada Needs an Abundance of Electrical Energy, George Babu, April 9 2025. CBC News, reporting on federal electricity announcement funding context, May 14 2026.
+      </footer>
+    </main>
+  </div>
+
+  <div class="export-row">
+    <button class="download-button" type="button" id="download-png-announce">Download PNG · announced · 2160×1728</button>
+    <button class="download-button" type="button" id="download-png-headlines">Download PNG · headline stats · 2160×1728</button>
+    <button class="download-button" type="button" id="download-png-compare">Download PNG · comparison · 2160×1728</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test Söhne", families: ["Test Söhne", "TestSöhne"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        }
+      ];
+      const sample = "Build Canada electricity strategy 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) return true;
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) => textWidth(`${quotedFont}, ${fallback}`));
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => { warning.hidden = true; });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts.filter((font) => !fontIsAvailable(font.families)).map((font) => font.name);
+        if (missingFonts.length > 0) showWarning(missingFonts);
+      });
+
+      async function exportPng(button, canvasId, width, height, filename) {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not load. Check your connection and try again.");
+          return;
+        }
+        button.disabled = true;
+        const originalText = button.textContent;
+        button.textContent = "Rendering...";
+        try {
+          if (document.fonts && document.fonts.ready) await document.fonts.ready;
+          const canvasElement = document.getElementById(canvasId);
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            canvasWidth: width,
+            canvasHeight: height,
+            pixelRatio: 1,
+            width,
+            height,
+            style: { margin: "0", transform: "none" }
+          });
+          const link = document.createElement("a");
+          link.download = filename;
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+      }
+
+      document.getElementById("download-png-announce").addEventListener("click", (e) => {
+        exportPng(e.currentTarget, "canvas-strategy-announce", 2160, 1728, "national-electricity-strategy-announced-2026-2160x1728.png");
+      });
+      document.getElementById("download-png-headlines").addEventListener("click", (e) => {
+        exportPng(e.currentTarget, "canvas-strategy-headlines", 2160, 1728, "national-electricity-strategy-headlines-2026-2160x1728.png");
+      });
+      document.getElementById("download-png-compare").addEventListener("click", (e) => {
+        exportPng(e.currentTarget, "canvas-strategy-compare", 2160, 1728, "national-electricity-strategy-comparison-2026-2160x1728.png");
+      });
+    })();
+  </script>
+</body>
+</html>

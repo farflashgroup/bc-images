@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ada CX" viewBox="0 0 200 42" fill="none">
+  <!-- Wordmark placeholder: swap this file for Ada CX’s official horizontal logo from your press kit when available. -->
+  <text
+    x="0"
+    y="32"
+    fill="#EDEAE4"
+    font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+    font-size="26"
+    font-weight="600"
+    letter-spacing="-0.02em"
+  >ada </text>
+  <text
+    x="72"
+    y="32"
+    fill="#BEB5AD"
+    font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+    font-size="15"
+    font-weight="600"
+    letter-spacing="0.14em"
+  >CX</text>
+</svg>

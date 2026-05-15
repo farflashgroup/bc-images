@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Canada · Toronto Tech Week 2026</title>
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --void: #0c0b0a;
+      --void-deep: #050504;
+      --ink: #1a1a1a;
+      --muted-dark: #8a8177;
+      --red: #872d2e;
+      --red-hot: #a63a3c;
+      --cream-dim: #d4c9bc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 28px 0 40px;
+      background: #1a1714;
+      color: var(--paper);
+      font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
+    }
+
+    /* —— Poster canvas · 1440×1155 —— */
+    .canvas {
+      position: relative;
+      width: 1440px;
+      height: 1155px;
+      background: var(--void-deep);
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      isolation: isolate;
+    }
+
+    .canvas-fringe {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      border: 12px solid var(--void-deep);
+      box-shadow: inset 0 0 0 3px var(--paper);
+    }
+
+    .canvas-atmos {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 75% 50% at 12% -2%, rgba(135, 45, 46, 0.55), transparent 55%),
+        radial-gradient(ellipse 65% 45% at 108% 12%, rgba(244, 235, 227, 0.09), transparent 45%),
+        radial-gradient(ellipse 85% 50% at 50% 108%, rgba(135, 45, 46, 0.2), transparent 52%),
+        linear-gradient(168deg, var(--void-deep) 0%, var(--void) 36%, #120f0e 100%);
+    }
+
+    .canvas-atmos::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.22;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .slash {
+      position: absolute;
+      left: -14%;
+      top: 31%;
+      width: 128%;
+      height: 288px;
+      z-index: 1;
+      background: linear-gradient(
+        105deg,
+        rgba(135, 45, 46, 0.95) 0%,
+        rgba(166, 58, 60, 0.55) 42%,
+        rgba(12, 11, 10, 0) 78%
+      );
+      transform: rotate(-6deg);
+      transform-origin: center;
+    }
+
+    .slash-edge {
+      position: absolute;
+      left: -14%;
+      top: calc(31% + 276px);
+      width: 128%;
+      height: 5px;
+      z-index: 1;
+      background: var(--paper);
+      opacity: 0.35;
+      transform: rotate(-6deg);
+    }
+
+    .year-mark {
+      position: absolute;
+      right: -8px;
+      bottom: 8px;
+      z-index: 1;
+      font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
+      font-size: 178px;
+      font-weight: 760;
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      color: transparent;
+      -webkit-text-stroke: 1.75px rgba(244, 235, 227, 0.12);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-lead {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+      pointer-events: none;
+    }
+
+    .hero-lead .mono-pill--banner {
+      pointer-events: auto;
+      margin: 0;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+
+    .marquee {
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      opacity: 0.28;
+      pointer-events: none;
+      width: calc(100% + 88px);
+      margin-left: -44px;
+      margin-bottom: 0;
+      margin-top: 0;
+      padding-block: 0;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+      gap: 0;
+      align-items: center;
+      padding: 5px 0 2px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      word-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(244, 235, 227, 0.5);
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .marquee-track span {
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .stack {
+      position: relative;
+      z-index: 2;
+      flex: 0 1 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 36px 44px 28px;
+      width: 100%;
+    }
+
+    .hero-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 20px 32px;
+      margin-bottom: 6px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .mono-pill {
+      display: inline-block;
+      margin: 0;
+      padding: 12px 20px 10px;
+      font-family: "Test Söhne Mono", "Roboto Mono", monospace;
+      font-size: 19px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--void-deep);
+      background: var(--paper);
+      border-radius: 2px;
+      box-shadow: 4px 4px 0 rgba(135, 45, 46, 0.85);
+    }
+
+    .hero-row .hero-brands {
+      align-self: start;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      flex-shrink: 0;
+      margin-top: 0;
+      margin-right: 0;
+      padding: 0;
+      background: var(--paper);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand--bc {
+      width: 96px;
+      height: 96px;
+      padding: 5px;
+      transform: rotate(3deg);
+    }
+
+    .brand--bc img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .brand--ttw {
+      height: 96px;
+      width: auto;
+      min-width: 0;
+      max-width: 340px;
+      transform: rotate(-2.5deg);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .brand--ttw img {
+      display: block;
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center left;
+    }
+
+    /* Larger radius + overflow on .brand clips TTW rotation fringe; asset corners also cleaned in PNG */
+    .brand.brand--ttw {
+      border-radius: 12px;
+    }
+
+    .poster-h1 {
+      margin: 0;
+      max-width: none;
+    }
+
+    .poster-h1 .line {
+      display: block;
+      font-size: 96px;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      font-weight: 760;
+      color: var(--paper);
+      text-shadow: 0 0 48px rgba(244, 235, 227, 0.1);
+    }
+
+    .poster-h1 .line--accent {
+      margin-top: 6px;
+      font-size: 68px;
+      letter-spacing: -0.035em;
+    }
+
+    .poster-h1 .at {
+      display: inline-block;
+      margin-right: 0.06em;
+      color: var(--red-hot);
+      font-weight: 800;
+      text-shadow: 0 0 48px rgba(166, 58, 60, 0.55);
+    }
+
+    .events {
+      flex: 0 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+      align-items: start;
+    }
+
+    .event {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+      margin: 0;
+      min-height: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .event-shell {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: stretch;
+      width: 100%;
+      min-height: 0;
+      min-width: 0;
+    }
+
+    /*
+      Grid row gets height from .event-main. Thumbnail shares that row height,
+      stays square via aspect-ratio, and fills from the definite height here.
+      (Plain flex dropped the gutter to 0×0 because the img is out-of-flow.)
+    */
+    .event-visual {
+      position: relative;
+      align-self: stretch;
+      justify-self: start;
+      width: auto;
+      aspect-ratio: 1 / 1;
+      min-height: 0;
+      overflow: hidden;
+      background: #1a1614;
+    }
+
+    .event-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset -16px 0 24px -8px rgba(0, 0, 0, 0.35);
+    }
+
+    .event--light .event-visual::after {
+      box-shadow: inset -14px 0 20px -6px rgba(26, 26, 26, 0.12);
+    }
+
+    .event--dark .event-visual::after {
+      box-shadow: inset -18px 0 28px -6px rgba(0, 0, 0, 0.65);
+    }
+
+    .event-visual img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .event-main {
+      min-width: 0;
+      max-width: 100%;
+      padding: 10px 16px 10px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .event--tilt-a,
+    .event--tilt-b {
+      transform: none;
+    }
+
+    .event--light {
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow:
+        4px 6px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px var(--ink);
+    }
+
+    .event--dark {
+      background: linear-gradient(145deg, #161311 0%, #0e0c0b 100%);
+      color: var(--paper);
+      border: 2px solid rgba(244, 235, 227, 0.55);
+      box-shadow:
+        0 0 0 1px rgba(135, 45, 46, 0.5) inset,
+        4px 10px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .event-meta {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .event-meta .event-location-box {
+      flex: 1;
+      min-width: min(180px, 100%);
+      margin-bottom: 0;
+    }
+
+    .event-date-box {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      flex-shrink: 0;
+      width: 86px;
+      text-align: center;
+      overflow: hidden;
+      border-style: solid;
+      border-width: 2px;
+    }
+
+    .event-date-box__month {
+      display: block;
+      padding: 8px 7px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .event-date-box__day {
+      display: block;
+      padding: 9px 3px;
+      font-size: 42px;
+      font-weight: 760;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+    }
+
+    .event-date-box--light {
+      border-color: var(--ink);
+    }
+
+    .event-date-box--light .event-date-box__month {
+      background: var(--red);
+      color: var(--paper);
+    }
+
+    .event-date-box--light .event-date-box__day {
+      background: rgba(237, 229, 213, 0.55);
+      color: var(--ink);
+    }
+
+    .event-date-box--dark {
+      border-color: rgba(244, 235, 227, 0.45);
+    }
+
+    .event-date-box--dark .event-date-box__month {
+      background: var(--red-hot);
+      color: var(--paper);
+    }
+
+    .event-date-box--dark .event-date-box__day {
+      background: #0f0e0d;
+      color: var(--paper);
+    }
+
+    .event-location-box {
+      margin-bottom: 10px;
+      padding: 11px 13px;
+      border-style: solid;
+      border-width: 2px;
+      display: grid;
+      gap: 2px;
+      max-width: 100%;
+    }
+
+    .event-location-box__kicker {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .event-location-box__venue {
+      display: block;
+      font-size: 20px;
+      font-weight: 760;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .event-location-box__detail {
+      display: block;
+      font-size: 15px;
+      font-weight: 520;
+      line-height: 1.26;
+    }
+
+    .event-location-box--light {
+      border-color: var(--ink);
+      background: rgba(237, 229, 213, 0.45);
+    }
+
+    .event-location-box--light .event-location-box__kicker {
+      color: #5c5349;
+    }
+
+    .event-location-box--light .event-location-box__venue,
+    .event-location-box--light .event-location-box__detail {
+      color: var(--ink);
+    }
+
+    .event-location-box--dark {
+      border-color: rgba(244, 235, 227, 0.45);
+      background: rgba(8, 7, 6, 0.55);
+    }
+
+    .event-location-box--dark .event-location-box__kicker {
+      color: var(--muted-dark);
+    }
+
+    .event-location-box--dark .event-location-box__venue {
+      color: var(--paper);
+    }
+
+    .event-location-box--dark .event-location-box__detail {
+      color: rgba(244, 235, 227, 0.78);
+    }
+
+    .event-link-box {
+      margin: 6px 0 0;
+      padding: 11px 14px;
+      border-style: solid;
+      border-width: 2px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      max-width: 100%;
+    }
+
+    .event-link-icon {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      pointer-events: none;
+      align-self: center;
+    }
+
+    .event-link-stack {
+      flex: 1 1 auto;
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .event-link-box__kicker {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .event-link-box__url {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.26;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .event-link-box__url:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+
+    .event-link-box--light {
+      border-color: var(--ink);
+      background: rgba(237, 229, 213, 0.45);
+    }
+
+    .event-link-box--light .event-link-box__kicker {
+      color: #5c5349;
+    }
+
+    .event-link-box--light .event-link-box__url {
+      color: var(--ink);
+    }
+
+    .event-link-box--dark {
+      border-color: rgba(244, 235, 227, 0.45);
+      background: rgba(8, 7, 6, 0.55);
+    }
+
+    .event-link-box--dark .event-link-box__kicker {
+      color: var(--muted-dark);
+    }
+
+    .event-link-box--dark .event-link-box__url {
+      color: var(--paper);
+    }
+
+    .event-title {
+      margin: 0 0 6px;
+      font-size: 48px;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
+      font-weight: 760;
+      max-width: 920px;
+    }
+
+    .event--light .event-title {
+      color: var(--ink);
+    }
+
+    .event--dark .event-title {
+      color: var(--paper);
+    }
+
+    .event-title strong {
+      font-weight: 760;
+      color: var(--red);
+    }
+
+    .event--dark .event-title strong {
+      color: var(--red-hot);
+    }
+
+    .event-body {
+      margin: 0 0 6px;
+      font-size: 24px;
+      line-height: 1.24;
+      font-weight: 500;
+      max-width: 930px;
+    }
+
+    .event--light .event-body {
+      color: var(--ink);
+    }
+
+    .event--dark .event-body {
+      color: rgba(244, 235, 227, 0.88);
+    }
+
+    .event-ft {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 6px 0 8px;
+    }
+
+    .event-ft-prefix {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: none;
+      color: rgba(244, 235, 227, 0.65);
+    }
+
+    .event--light .event-ft-prefix {
+      color: rgba(92, 83, 73, 0.92);
+    }
+
+    .event-ft-logo {
+      display: block;
+      height: 34px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .tape {
+      position: absolute;
+      top: -8px;
+      width: 48px;
+      height: 16px;
+      background: repeating-linear-gradient(
+        -35deg,
+        rgba(244, 235, 227, 0.35),
+        rgba(244, 235, 227, 0.35) 4px,
+        rgba(0, 0, 0, 0.08) 4px,
+        rgba(0, 0, 0, 0.08) 8px
+      );
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .event--light .tape {
+      right: 32px;
+      transform: rotate(4deg);
+    }
+
+    .event--dark .tape {
+      left: 48px;
+      transform: rotate(-5deg);
+    }
+
+    .download-panel {
+      text-align: center;
+    }
+
+    .download-button {
+      padding: 12px 28px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid var(--red);
+      background: var(--paper);
+      color: var(--red);
+      cursor: pointer;
+    }
+
+    .download-button:hover {
+      background: #e8ddd2;
+    }
+
+    .download-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .font-warning {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      z-index: 1000;
+      max-width: 560px;
+      padding: 18px 22px;
+      border: 2px solid var(--red);
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(26, 26, 26, 0.18);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="canvas" id="export-root" aria-label="Build Canada at Toronto Tech Week 2026">
+    <div class="canvas-fringe" aria-hidden="true"></div>
+    <div class="canvas-atmos" aria-hidden="true"></div>
+    <div class="slash" aria-hidden="true"></div>
+    <div class="slash-edge" aria-hidden="true"></div>
+    <span class="year-mark" aria-hidden="true">2026</span>
+
+    <div class="stack">
+      <div class="hero-lead">
+        <p class="mono-pill mono-pill--banner">May 25-29 2026</p>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span>Toronto Tech Week · Build Canada · Toronto Tech Week · Build Canada · Toronto Tech Week · Build Canada · Toronto Tech Week · Build Canada · </span>
+            <span>Toronto Tech Week · Build Canada · Toronto Tech Week · Build Canada · Toronto Tech Week · Build Canada · Toronto Tech Week · Build Canada · </span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-row">
+        <div class="hero-copy">
+          <h1 class="poster-h1">
+            <span class="line">Build Canada</span>
+            <span class="line line--accent"><span class="at">@</span> Toronto Tech Week</span>
+          </h1>
+        </div>
+        <div class="hero-brands" role="group" aria-label="Build Canada and Toronto Tech Week">
+          <div class="brand brand--bc">
+            <img src="../Build Canada Logo.png" alt="Build Canada" />
+          </div>
+          <div class="brand brand--ttw">
+            <img src="event-assets/toronto-tech-week-partner-lockup.png" alt="Toronto Tech Week Official Event Partner" />
+          </div>
+        </div>
+      </div>
+
+      <div class="events">
+        <article class="event event--dark event--tilt-b" aria-labelledby="ttl-build">
+          <span class="tape" aria-hidden="true"></span>
+          <div class="event-shell">
+            <div class="event-visual">
+              <img
+                src="event-assets/build-in-canada-ada-cover.png"
+                width="600"
+                height="600"
+                alt="What it will take to Build in Canada with Ada CX and Build Canada event cover"
+              />
+            </div>
+            <div class="event-main">
+              <div class="event-meta">
+                <div class="event-date-box event-date-box--dark" role="group" aria-label="Tuesday May 26 2026">
+                  <span class="event-date-box__month">May</span>
+                  <span class="event-date-box__day">26</span>
+                </div>
+                <div class="event-location-box event-location-box--dark" role="group" aria-label="Venue ada HQ, 46 Spadine Avenue suite 500, Toronto">
+                  <span class="event-location-box__kicker">Location</span>
+                  <span class="event-location-box__venue">ada HQ</span>
+                  <span class="event-location-box__detail">46 Spadine Ave #500, Toronto, ON</span>
+                </div>
+              </div>
+              <h2 class="event-title" id="ttl-build">What it will take to <strong>Build in Canada</strong></h2>
+              <div class="event-ft">
+                <span class="event-ft-prefix">in partnership w/</span>
+                <img
+                  class="event-ft-logo"
+                  src="event-assets/ada-cx-logo-official.svg"
+                  width="120"
+                  height="34"
+                  alt="Ada CX"
+                />
+              </div>
+              <p class="event-body">
+                A Toronto Tech Week evening built around Canadian leadership in AI, what it takes for homegrown companies to stay competitive, and the policy and product bets that matter.
+              </p>
+              <div class="event-link-box event-link-box--dark" role="group" aria-label="Register for Build in Canada on Luma">
+                <img class="event-link-icon" src="event-assets/link-emoji.png" alt="" width="160" height="160" decoding="async" />
+                <div class="event-link-stack">
+                  <span class="event-link-box__kicker">Register</span>
+                  <a class="event-link-box__url" href="https://luma.com/j9u9z1us">luma.com/j9u9z1us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="event event--light event--tilt-a" aria-labelledby="ttl-homecoming">
+          <span class="tape" aria-hidden="true"></span>
+          <div class="event-shell">
+            <div class="event-visual">
+              <img
+                src="event-assets/ttw-homecoming-cover.jpg"
+                width="600"
+                height="600"
+                alt="Toronto Tech Week 2026 Homecoming event cover"
+              />
+            </div>
+            <div class="event-main">
+              <div class="event-meta">
+                <div class="event-date-box event-date-box--light" role="group" aria-label="Wednesday May 27 2026">
+                  <span class="event-date-box__month">May</span>
+                  <span class="event-date-box__day">27</span>
+                </div>
+                <div class="event-location-box event-location-box--light" role="group" aria-label="Venue HISTORY, Toronto">
+                  <span class="event-location-box__kicker">Location</span>
+                  <span class="event-location-box__venue">HISTORY · Toronto</span>
+                  <span class="event-location-box__detail">1663 Queen St E, Toronto, ON M4L&nbsp;1G5</span>
+                </div>
+              </div>
+              <h2 class="event-title" id="ttl-homecoming">Toronto Tech Week: <strong>Homecoming</strong></h2>
+              <div class="event-ft">
+                <span class="event-ft-prefix">featuring Build Canada CEO Lucy Hargreaves</span>
+              </div>
+              <p class="event-body">
+                Toronto Tech Week's flagship Homecoming at HISTORY: programming and community that bring together builders, operators, and partners from across the ecosystem as the centerpiece of the city's annual tech week.
+              </p>
+              <div class="event-link-box event-link-box--light" role="group" aria-label="Register for Toronto Tech Week Homecoming on Luma">
+                <img class="event-link-icon" src="event-assets/link-emoji.png" alt="" width="160" height="160" decoding="async" />
+                <div class="event-link-stack">
+                  <span class="event-link-box__kicker">Register</span>
+                  <a class="event-link-box__url" href="https://luma.com/TTWHomecoming">luma.com/TTWHomecoming</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <div class="download-panel">
+    <button class="download-button" type="button" id="download-png">Download PNG · 1440×1155</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test Söhne", families: ["Test Söhne", "TestSöhne"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        },
+        { name: "Test Söhne Mono", families: ["Test Söhne Mono"] }
+      ];
+      const sample = "Build Canada Toronto Tech Week 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) {
+            return true;
+          }
+
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) =>
+            textWidth(`${quotedFont}, ${fallback}`)
+          );
+
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => {
+          warning.hidden = true;
+        });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts
+          .filter((font) => !fontIsAvailable(font.families))
+          .map((font) => font.name);
+
+        if (missingFonts.length > 0) {
+          showWarning(missingFonts);
+        }
+      });
+
+      const downloadButton = document.getElementById("download-png");
+      downloadButton.addEventListener("click", async () => {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
+          return;
+        }
+
+        downloadButton.disabled = true;
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+          }
+
+          const canvasElement = document.getElementById("export-root");
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#050504",
+            cacheBust: true,
+            canvasWidth: 1440,
+            canvasHeight: 1155,
+            pixelRatio: 1,
+            width: 1440,
+            height: 1155,
+            style: {
+              margin: "0",
+              transform: "none"
+            }
+          });
+
+          const link = document.createElement("a");
+          link.download = "build-canada-toronto-tech-week-2026.png";
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          downloadButton.disabled = false;
+          downloadButton.textContent = originalText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

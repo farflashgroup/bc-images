@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NATO surveillance — CTV teaser (1080×1030)</title>
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --muted: #6B6055;
+      --rule: #C8BFB0;
+      --red: #872D2E;
+      --hero-height: 478px;
+      --bc-watermark-h: 36px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 28px 0 40px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
+    }
+
+    /* Canvas: fixed width; shortened height trims bottom parchment slack */
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1030px;
+      background: var(--paper);
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .canvas::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 2px solid var(--ink);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Build Canada mark: same row as attribution (footer flex) */
+    .bc-watermark {
+      flex-shrink: 0;
+      align-self: center;
+      width: 40px;
+      height: var(--bc-watermark-h);
+      margin: 0;
+      opacity: 0.26;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+
+    .bc-watermark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    /* Inner safe padding — aligns text with ~6–7% side margin inside border */
+    .pad-x {
+      padding-left: 64px;
+      padding-right: 64px;
+    }
+
+    /* Hero occupies upper portion for quick scan */
+    .hero {
+      position: relative;
+      flex: 0 0 var(--hero-height);
+      width: 100%;
+      overflow: hidden;
+      z-index: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Tight crop; pan up and toward the right of the plate */
+    .hero img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 28% 46%;
+      transform: scale(1.44);
+      transform-origin: 26% 40%;
+    }
+
+    /* Readable publisher bar on imagery */
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(26, 26, 26, 0.55) 0%,
+        rgba(26, 26, 26, 0.08) 38%,
+        transparent 58%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .publisher {
+      position: absolute;
+      top: 36px;
+      left: 64px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+    }
+
+    .publisher img {
+      display: block;
+      height: 48px;
+      width: auto;
+    }
+
+    .body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding-top: 36px;
+      padding-bottom: 40px;
+      z-index: 1;
+    }
+
+    .footer-block {
+      margin-top: 24px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .footer-divider {
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+    }
+
+    .mono {
+      margin: 0 0 14px;
+      font-family: "Test Söhne Mono", "Roboto Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: calc(40px + 10pt);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      font-weight: 760;
+      color: var(--ink);
+      max-width: 26ch;
+    }
+
+    .summary {
+      margin: 22px 0 0;
+      font-size: calc(22px + 5pt);
+      line-height: 1.42;
+      font-weight: 520;
+      max-width: 46ch;
+      flex: 1 1 auto;
+    }
+
+    .footer {
+      margin-top: 0;
+      padding-top: 14px;
+      border-top: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .footer-source {
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .footer a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .download-panel {
+      display: flex;
+      justify-content: center;
+    }
+
+    .download-button {
+      padding: 12px 22px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .download-button:disabled {
+      opacity: 0.65;
+      cursor: progress;
+    }
+
+    .font-warning {
+      box-sizing: border-box;
+      max-width: 520px;
+      margin: 0 16px 8px;
+      padding: 12px 14px;
+      border: 1px solid rgba(135, 45, 46, 0.45);
+      background: rgba(237, 229, 213, 0.95);
+      color: var(--ink);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="canvas" id="export-root" aria-label="CTV News — NATO Canadian surveillance reporting">
+    <div class="hero" aria-hidden="false">
+      <img
+        src="article-assets/ctv-nato-surveillance-hero.jpg"
+        width="1600"
+        height="840"
+        alt=""
+        decoding="async"
+      />
+      <div class="hero-shade"></div>
+      <div class="publisher">
+        <img
+          src="article-assets/ctv-news-official.svg"
+          alt="CTV News"
+          width="302"
+          height="48"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <div class="body pad-x">
+      <p class="mono">CTV News · April 29, 2026</p>
+      <h1>
+        NATO to select Canadian advanced surveillance system, marking shift from Boeing aircraft: reports
+      </h1>
+      <p class="summary">
+        Canada&rsquo;s defence sector could soon be getting a major boost with European media suggesting NATO is considering a joint Saab-Bombardier advanced surveillance system in a major state-of-the-art defence purchase.
+      </p>
+      <div class="footer-block">
+        <hr class="footer-divider" aria-hidden="true" />
+        <footer class="footer">
+          <p class="footer-source">
+            Story:
+            <a href="https://www.ctvnews.ca/canada/article/canadian-company-in-the-running-for-a-massive-new-nato-purchase-reports/" target="_blank" rel="noopener noreferrer">CTV&nbsp;News</a>
+            · Updated April&nbsp;30,&nbsp;2026
+          </p>
+          <div class="bc-watermark" aria-hidden="true">
+            <img src="../Build Canada Logo.png" alt="" />
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <div class="download-panel">
+    <button class="download-button" type="button" id="download-png">Download PNG</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test Söhne", families: ["Test Söhne", "TestSöhne"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        }
+      ];
+      const sample = "Build Canada sovereign wealth fund 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) {
+            return true;
+          }
+
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) =>
+            textWidth(`${quotedFont}, ${fallback}`)
+          );
+
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => {
+          warning.hidden = true;
+        });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts
+          .filter((font) => !fontIsAvailable(font.families))
+          .map((font) => font.name);
+
+        if (missingFonts.length > 0) {
+          showWarning(missingFonts);
+        }
+      });
+
+      const downloadButton = document.getElementById("download-png");
+      downloadButton.addEventListener("click", async () => {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
+          return;
+        }
+
+        downloadButton.disabled = true;
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+          }
+
+          const canvasElement = document.getElementById("export-root");
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            canvasWidth: 1080,
+            canvasHeight: 1030,
+            pixelRatio: 1,
+            width: 1080,
+            height: 1030,
+            style: {
+              margin: "0",
+              transform: "none"
+            }
+          });
+
+          const link = document.createElement("a");
+          link.download = "ctv-nato-surveillance-square-2026.png";
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          downloadButton.disabled = false;
+          downloadButton.textContent = originalText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

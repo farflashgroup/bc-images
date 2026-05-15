@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spring Economic Update — deficit revision</title>
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --muted: #6B6055;
+      --rule: #C8BFB0;
+      --red: #872D2E;
+      --blue: #305E7E;
+      --tan: #EDE5D5;
+      --brand-tile: #C4A090;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 28px 0 40px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      background: var(--paper);
+      padding: 52px 56px 44px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .canvas::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 2px solid var(--red);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .headlines {
+      flex: 1;
+      min-width: 0;
+      padding-right: 12px;
+    }
+
+    .mono {
+      margin: 0 0 10px;
+      font-family: "Test Söhne Mono", "Roboto Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: 52px;
+      line-height: 1.05;
+      letter-spacing: -0.028em;
+      font-weight: 760;
+      color: var(--ink);
+    }
+
+    .deck {
+      margin: 18px 0 0;
+      max-width: 720px;
+      font-size: 19px;
+      line-height: 1.42;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* Square logo tile — asset fills tile without cropping */
+    /* Logo: parchment behind PNG only — no second taupe tile (avoids halo at side bars). */
+    .brand {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      background: var(--paper);
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      isolation: isolate;
+    }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .chart-block {
+      margin-top: 14px;
+      padding-bottom: 0;
+      border-bottom: none;
+      flex-shrink: 0;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-label svg {
+      width: 24px;
+      height: 24px;
+      stroke: #2A2A2A;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .section-label span {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .chart-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: end;
+      padding: 0 8px 0;
+    }
+
+    .bar-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bar-axis {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      align-self: stretch;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 620px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      border-bottom: 2px solid var(--rule);
+      padding: 96px 8px 0;
+      box-sizing: border-box;
+    }
+
+    .bar {
+      width: 72%;
+      max-width: 220px;
+      border-radius: 4px 4px 0 0;
+      position: relative;
+      transition: height 0.4s ease;
+      /* Draw-down heights use $80B chart ceiling → 78.3/80 and 66.9/80 of 260px */
+    }
+
+    .bar.forecast {
+      background: var(--blue);
+    }
+
+    .bar.revised {
+      background: var(--red);
+    }
+
+    .bar-value {
+      position: absolute;
+      bottom: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 56px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .bar.forecast .bar-value {
+      color: var(--blue);
+    }
+
+    .bar.revised .bar-value {
+      color: var(--red);
+    }
+
+    .bar-sub {
+      margin-top: 4px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      max-width: 280px;
+      line-height: 1.35;
+    }
+
+    .bar-title {
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .gap-band {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: var(--tan);
+      border-left: 5px solid var(--red);
+    }
+
+    .gap-band .key-badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 10px 5px;
+      background: rgba(135, 45, 46, 0.12);
+      color: var(--red);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .gap-band p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 520;
+    }
+
+    .gap-band strong {
+      font-weight: 760;
+      color: var(--red);
+    }
+
+    .footer {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      flex-shrink: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.55;
+      letter-spacing: 0.02em;
+    }
+
+    .footer a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .download-panel {
+      text-align: center;
+    }
+
+    .download-button {
+      padding: 12px 28px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid var(--red);
+      background: var(--paper);
+      color: var(--red);
+      cursor: pointer;
+    }
+
+    .download-button:hover {
+      background: var(--tan);
+    }
+
+    .download-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .font-warning {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      z-index: 1000;
+      max-width: 560px;
+      padding: 18px 22px;
+      border: 2px solid var(--red);
+      background: var(--tan);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(26, 26, 26, 0.18);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="canvas" id="export-root" aria-label="Federal deficit: Budget 2025 forecast versus Spring Economic Update 2026">
+    <header class="header">
+      <div class="headlines">
+        <p class="mono">Spring economic update · April 28, 2026</p>
+        <h1>2025–26 deficit below Budget&nbsp;2025 projection</h1>
+        <p class="deck">
+          Budget&nbsp;2025 (November&nbsp;2025) forecast a budgetary deficit of <strong>$78.3B</strong> for 2025–26. The Spring Economic Update (April&nbsp;28,&nbsp;2026) revises that outlook to <strong>$66.9B</strong>, based on Department of Finance figures published with the release.
+        </p>
+      </div>
+      <div class="brand" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" />
+      </div>
+    </header>
+
+    <section class="chart-block">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 20V10M10 20V4M16 20v-8M22 20v-12" />
+        </svg>
+        <span>2025–26 deficit (billions CAD)</span>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="bar-column">
+          <div class="bar-axis">Scale 0–80</div>
+          <div class="bar-title">November Budget&nbsp;2025<br />forecast</div>
+          <div class="bar-track">
+            <div class="bar forecast" style="height: 513px" aria-hidden="true">
+              <span class="bar-value">$78.3B</span>
+            </div>
+          </div>
+          <div class="bar-sub">Department of Finance,<br />Fall Economic Statement track</div>
+        </div>
+
+        <div class="bar-column">
+          <div class="bar-axis">Same scale</div>
+          <div class="bar-title">Spring Economic<br />Update 2026</div>
+          <div class="bar-track">
+            <div class="bar revised" style="height: 438px" aria-hidden="true">
+              <span class="bar-value">$66.9B</span>
+            </div>
+          </div>
+          <div class="bar-sub">Revised projection,<br />Apr. 28 release</div>
+        </div>
+      </div>
+
+      <div class="gap-band">
+        <span class="key-badge">Key difference</span>
+        <p><strong>$11.4B</strong> below the Budget&nbsp;2025 forecast for the same fiscal year. Final audited results will appear in the Annual Financial Report after the fiscal year closes.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Sources: Department of Finance Canada — Budget&nbsp;2025 (November&nbsp;2025) and Spring Economic Update &ldquo;Canada Strong For All&rdquo; (April&nbsp;28,&nbsp;2026). Figures are federal budgetary deficit for fiscal year 2025–26.
+    </footer>
+  </main>
+
+  <div class="download-panel">
+    <button class="download-button" type="button" id="download-png">Download PNG</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test Söhne", families: ["Test Söhne", "TestSöhne"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        }
+      ];
+      const sample = "Build Canada sovereign wealth fund 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) {
+            return true;
+          }
+
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) =>
+            textWidth(`${quotedFont}, ${fallback}`)
+          );
+
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => {
+          warning.hidden = true;
+        });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts
+          .filter((font) => !fontIsAvailable(font.families))
+          .map((font) => font.name);
+
+        if (missingFonts.length > 0) {
+          showWarning(missingFonts);
+        }
+      });
+
+      const downloadButton = document.getElementById("download-png");
+      downloadButton.addEventListener("click", async () => {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
+          return;
+        }
+
+        downloadButton.disabled = true;
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+          }
+
+          const canvasElement = document.getElementById("export-root");
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            canvasWidth: 1080,
+            canvasHeight: 1350,
+            pixelRatio: 1,
+            width: 1080,
+            height: 1350,
+            style: {
+              margin: "0",
+              transform: "none"
+            }
+          });
+
+          const link = document.createElement("a");
+          link.download = "spring-economic-update-deficit-2026.png";
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          downloadButton.disabled = false;
+          downloadButton.textContent = originalText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
