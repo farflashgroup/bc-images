@@ -39,9 +39,9 @@
 
     .canvas {
       position: relative;
-      width: 2160px;
-      height: 1728px;
-      aspect-ratio: 5 / 4;
+      width: 2360px;
+      height: 1928px;
+      aspect-ratio: 295 / 241;
       background: var(--paper);
       padding: 28px 44px 22px;
       overflow: hidden;
@@ -207,7 +207,7 @@
 
     /* First sheet: featured row plus 2×2 icon cards, each with a standout stat */
     .canvas--announce .announce-snapshot {
-      margin-top: 18px;
+      margin-top: 14px;
       padding: 0;
       border: none;
       background: transparent;
@@ -231,20 +231,20 @@
     }
 
     .canvas--announce .ann-snap-body {
-      padding: 10px 0 0;
+      padding: 8px 0 0;
       border-left: none;
       background: none;
       display: flex;
       flex-direction: column;
       flex: 1 1 auto;
       min-height: 0;
-      gap: 18px;
+      gap: 12px;
     }
 
     .canvas--announce .ann-consultation-alert {
       flex-shrink: 0;
       margin: 0;
-      padding: 20px 26px 22px 22px;
+      padding: 14px 18px 16px 18px;
       border: 2px solid var(--ink);
       border-left: 8px solid var(--red);
       background: linear-gradient(90deg, rgba(135, 45, 46, 0.11) 0%, rgba(244, 235, 227, 0.5) 48%);
@@ -252,8 +252,8 @@
 
     .canvas--announce .ann-consultation-alert-text {
       margin: 0;
-      font-size: 42px;
-      line-height: 1.28;
+      font-size: 44px;
+      line-height: 1.22;
       font-weight: 520;
       color: var(--ink);
       letter-spacing: -0.02em;
@@ -270,8 +270,8 @@
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-text {
-      font-size: 37px;
-      line-height: 1.26;
+      font-size: 42px;
+      line-height: 1.22;
     }
 
     .canvas--announce .ann-point-grid {
@@ -280,7 +280,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      gap: 20px;
+      gap: 14px;
       align-content: stretch;
     }
 
@@ -344,51 +344,51 @@
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-card {
-      gap: 6px;
-      padding: 14px 18px 18px 18px;
+      gap: 4px;
+      padding: 11px 14px 13px 14px;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-stat {
-      margin: 0 0 8px;
-      padding: 0 0 10px;
-      column-gap: 12px;
+      margin: 0 0 5px;
+      padding: 0 0 6px;
+      column-gap: 10px;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-stat-main {
-      font-size: 50px;
+      font-size: 54px;
       line-height: 0.92;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-stat-sub {
-      font-size: 27px;
-      line-height: 1.2;
+      font-size: 30px;
+      line-height: 1.18;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-stat {
-      margin-bottom: 10px;
-      padding-bottom: 12px;
+      margin-bottom: 6px;
+      padding-bottom: 8px;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-stat-main {
-      font-size: 62px;
+      font-size: 66px;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-card--featured .ann-point-stat-sub {
-      font-size: 29px;
+      font-size: 32px;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-body {
-      gap: 14px;
+      gap: 10px;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-icon {
-      width: 74px;
-      height: 74px;
+      width: 68px;
+      height: 68px;
     }
 
     .canvas--announce:not(.canvas--headlines) .ann-point-text {
-      font-size: 35px;
-      line-height: 1.28;
+      font-size: 40px;
+      line-height: 1.22;
     }
 
     .canvas--announce .ann-point-text .ann-lead-accent {
@@ -396,23 +396,44 @@
       font-weight: 760;
     }
 
-    /* Third sheet: headline stats only (no icons or body copy) */
+    /* Second sheet: headline stats only (no icons or body copy) — tuned for Instagram legibility */
+    .canvas--announce.canvas--headlines {
+      padding: 28px 32px 22px;
+    }
+
+    .canvas--announce.canvas--headlines .announce-snapshot {
+      margin-top: 10px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-snap-head {
+      padding-bottom: 2px;
+    }
+
     .canvas--announce.canvas--headlines .ann-snap-body {
-      gap: 16px;
+      gap: 32px;
+      padding-top: 4px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-grid {
+      gap: 40px;
     }
 
     .canvas--announce.canvas--headlines .ann-point-card {
       justify-content: center;
-      padding: 14px 14px 16px;
+      padding: 8px 10px 10px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-card {
+      padding: 0;
     }
 
     .canvas--announce.canvas--headlines .ann-northstar {
       display: block;
-      margin: 0 0 8px;
+      margin: 0 0 4px;
       font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--red);
     }
@@ -427,37 +448,118 @@
       justify-content: center;
       text-align: center;
       column-gap: 0;
-      row-gap: 12px;
+      row-gap: 4px;
       width: 100%;
     }
 
-    .canvas--announce.canvas--headlines .ann-point-card--featured .ann-point-stat {
-      margin: 0;
-      padding: 0;
-      row-gap: 14px;
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-stat {
+      row-gap: 2px;
     }
 
-    .canvas--announce.canvas--headlines .ann-point-stat-main {
-      font-size: 88px;
-      line-height: 0.94;
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-stat-main {
+      font-size: 140px;
+      line-height: 0.88;
     }
 
-    .canvas--announce.canvas--headlines .ann-point-stat-sub {
-      font-size: 33px;
-      line-height: 1.22;
-      max-width: 860px;
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-stat-sub {
+      line-height: 1.1;
+      max-width: none;
       flex: 0 1 auto;
       min-width: 0;
+      letter-spacing: -0.035em;
     }
 
-    .canvas--announce.canvas--headlines .ann-point-card--featured .ann-point-stat-main {
-      font-size: 104px;
+    /* Single-line descriptions: max size per box (longest copy sets the limit) */
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-card:not(.ann-point-card--multiline) .ann-point-stat-sub {
+      white-space: nowrap;
+      letter-spacing: -0.04em;
     }
 
-    .canvas--announce.canvas--headlines .ann-point-card--featured .ann-point-stat-sub {
-      font-size: 38px;
-      max-width: 1880px;
-      line-height: 1.22;
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-card:nth-child(1) .ann-point-stat-sub {
+      font-size: 46px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-card:nth-child(2) .ann-point-stat-sub {
+      font-size: 45px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-card:nth-child(3) .ann-point-stat-sub {
+      font-size: 50px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-card--multiline .ann-point-stat {
+      align-items: stretch;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-grid .ann-point-card--multiline .ann-point-stat-sub {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding-inline: 8px;
+      font-size: 47px;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      white-space: normal;
+    }
+
+    /* North star featured row: centered label + stat + description */
+    .canvas--announce.canvas--headlines .ann-point-card--northstar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      padding: 8px 12px 10px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-card--northstar .ann-northstar {
+      display: block;
+      width: 100%;
+      margin: 0 0 6px;
+      font-size: 24px;
+      letter-spacing: 0.24em;
+      text-align: center;
+    }
+
+    .canvas--announce.canvas--headlines .ann-northstar-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex: 0 1 auto;
+      width: 100%;
+      max-width: 100%;
+      min-height: 0;
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-card--northstar .ann-point-stat-main {
+      flex: 0 0 auto;
+      font-size: 208px;
+      line-height: 0.86;
+      letter-spacing: -0.07em;
+      color: var(--red);
+    }
+
+    .canvas--announce.canvas--headlines .ann-point-card--northstar .ann-point-stat-sub {
+      flex: 0 1 auto;
+      min-width: 0;
+      max-width: none;
+      margin: 0;
+      font-size: 76px;
+      line-height: 1.1;
+      font-weight: 620;
+      text-align: center;
+      letter-spacing: -0.025em;
+    }
+
+    .canvas--announce.canvas--headlines .ann-consultation-alert {
+      padding: 10px 12px 12px 12px;
+    }
+
+    .canvas--announce.canvas--headlines .ann-consultation-alert-text {
+      font-size: 46px;
+      line-height: 1.18;
     }
 
     .comparison {
@@ -465,12 +567,12 @@
       min-height: min-content;
       display: grid;
       grid-template-columns: minmax(200px, 0.19fr) 1fr 1fr;
-      margin-top: 10px;
+      margin-top: 8px;
       align-content: start;
     }
 
     .cell {
-      padding: 16px 14px;
+      padding: 11px 12px;
       border-top: 1px solid var(--rule);
       display: flex;
       flex-direction: column;
@@ -483,7 +585,7 @@
     }
 
     .head-cell {
-      padding: 16px 14px 18px;
+      padding: 12px 12px 14px;
       justify-content: center;
       background: rgba(237, 229, 213, 0.32);
       border-top-color: transparent;
@@ -507,8 +609,8 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 16px 14px 16px 10px;
+      gap: 6px;
+      padding: 11px 10px 11px 8px;
       background: rgba(237, 229, 213, 0.22);
     }
 
@@ -541,8 +643,8 @@
 
     .cell-one {
       margin: 0;
-      font-size: 32px;
-      line-height: 1.36;
+      font-size: 36px;
+      line-height: 1.24;
       font-weight: 520;
       letter-spacing: -0.015em;
       color: var(--ink);
@@ -797,12 +899,12 @@
           <p class="ann-band">What Ottawa announced</p>
         </header>
         <div class="ann-snap-body">
-          <article class="ann-point-card ann-point-card--featured">
-            <p class="ann-point-stat">
-              <span class="ann-northstar">North star</span>
+          <article class="ann-point-card ann-point-card--featured ann-point-card--northstar">
+            <span class="ann-northstar">North star</span>
+            <div class="ann-northstar-row">
               <span class="ann-point-stat-main">~2×</span>
               <span class="ann-point-stat-sub">Double power grid delivery by 2050.</span>
-            </p>
+            </div>
           </article>
           <div class="ann-point-grid">
             <article class="ann-point-card">
@@ -823,7 +925,7 @@
                 <span class="ann-point-stat-sub">Share of clean/renewable energy as of today</span>
               </p>
             </article>
-            <article class="ann-point-card">
+            <article class="ann-point-card ann-point-card--multiline">
               <p class="ann-point-stat">
                 <span class="ann-point-stat-main">$10B</span>
                 <span class="ann-point-stat-sub">Doubled federal loan guarantees backing Indigenous equity in major clean electricity projects</span>
@@ -927,9 +1029,9 @@
   </div>
 
   <div class="export-row">
-    <button class="download-button" type="button" id="download-png-announce">Download PNG · announced · 2160×1728</button>
-    <button class="download-button" type="button" id="download-png-headlines">Download PNG · headline stats · 2160×1728</button>
-    <button class="download-button" type="button" id="download-png-compare">Download PNG · comparison · 2160×1728</button>
+    <button class="download-button" type="button" id="download-png-announce">Download PNG · announced · 2360×1928</button>
+    <button class="download-button" type="button" id="download-png-headlines">Download PNG · headline stats · 2360×1928</button>
+    <button class="download-button" type="button" id="download-png-compare">Download PNG · comparison · 2360×1928</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
@@ -1014,13 +1116,13 @@
       }
 
       document.getElementById("download-png-announce").addEventListener("click", (e) => {
-        exportPng(e.currentTarget, "canvas-strategy-announce", 2160, 1728, "national-electricity-strategy-announced-2026-2160x1728.png");
+        exportPng(e.currentTarget, "canvas-strategy-announce", 2360, 1928, "national-electricity-strategy-announced-2026-2360x1928.png");
       });
       document.getElementById("download-png-headlines").addEventListener("click", (e) => {
-        exportPng(e.currentTarget, "canvas-strategy-headlines", 2160, 1728, "national-electricity-strategy-headlines-2026-2160x1728.png");
+        exportPng(e.currentTarget, "canvas-strategy-headlines", 2360, 1928, "national-electricity-strategy-headlines-2026-2360x1928.png");
       });
       document.getElementById("download-png-compare").addEventListener("click", (e) => {
-        exportPng(e.currentTarget, "canvas-strategy-compare", 2160, 1728, "national-electricity-strategy-comparison-2026-2160x1728.png");
+        exportPng(e.currentTarget, "canvas-strategy-compare", 2360, 1928, "national-electricity-strategy-comparison-2026-2360x1928.png");
       });
     })();
   </script>

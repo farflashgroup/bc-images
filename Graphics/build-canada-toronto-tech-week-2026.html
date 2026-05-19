@@ -10,6 +10,7 @@
       --void: #0c0b0a;
       --void-deep: #050504;
       --ink: #1a1a1a;
+      --event-visual-size: 240px;
       --muted-dark: #8a8177;
       --red: #872d2e;
       --red-hot: #a63a3c;
@@ -27,18 +28,25 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
-      padding: 28px 0 40px;
+      gap: 28px;
+      padding: 28px 0 48px;
       background: #1a1714;
       color: var(--paper);
       font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
     }
 
-    /* —— Poster canvas · 1440×1155 —— */
+    .download-panel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* —— Poster canvas · 1440×1260 —— */
     .canvas {
       position: relative;
       width: 1440px;
-      height: 1155px;
+      height: 1260px;
       background: var(--void-deep);
       padding: 0;
       overflow: hidden;
@@ -47,6 +55,11 @@
       justify-content: flex-start;
       align-items: stretch;
       isolation: isolate;
+    }
+
+    .canvas > .stack {
+      flex: 1 1 auto;
+      min-height: 0;
     }
 
     .canvas-fringe {
@@ -191,16 +204,12 @@
       flex: 0 1 auto;
       display: flex;
       flex-direction: column;
-      padding: 36px 44px 28px;
+      padding: 36px 44px 40px;
       width: 100%;
     }
 
     .hero-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: start;
-      gap: 20px 32px;
-      margin-bottom: 6px;
+      margin-bottom: 14px;
       margin-top: 2px;
       flex-shrink: 0;
     }
@@ -224,14 +233,29 @@
       box-shadow: 4px 4px 0 rgba(135, 45, 46, 0.85);
     }
 
-    .hero-row .hero-brands {
-      align-self: start;
-      margin-top: 10px;
+    .hero-brands {
+      position: relative;
+      z-index: 4;
+      flex-shrink: 0;
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
-      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      align-self: center;
+      margin: 0 auto;
+      padding: 0 44px 32px;
+    }
+
+    .brand-collab {
       flex-shrink: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--paper);
+      opacity: 0.7;
+      user-select: none;
     }
 
     .brand {
@@ -245,14 +269,13 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
     }
 
     .brand--bc {
-      width: 96px;
-      height: 96px;
-      padding: 5px;
-      transform: rotate(3deg);
+      width: 72px;
+      height: 72px;
+      padding: 4px;
     }
 
     .brand--bc img {
@@ -264,11 +287,10 @@
     }
 
     .brand--ttw {
-      height: 96px;
+      height: 72px;
       width: auto;
       min-width: 0;
-      max-width: 340px;
-      transform: rotate(-2.5deg);
+      max-width: 260px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -284,7 +306,6 @@
       object-position: center left;
     }
 
-    /* Larger radius + overflow on .brand clips TTW rotation fringe; asset corners also cleaned in PNG */
     .brand.brand--ttw {
       border-radius: 12px;
     }
@@ -323,8 +344,8 @@
       min-height: 0;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-      margin-top: 14px;
+      gap: 56px;
+      margin-top: 36px;
       align-items: start;
     }
 
@@ -340,25 +361,18 @@
 
     .event-shell {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-columns: var(--event-visual-size) minmax(0, 1fr);
       align-items: stretch;
       width: 100%;
       min-height: 0;
       min-width: 0;
     }
 
-    /*
-      Grid row gets height from .event-main. Thumbnail shares that row height,
-      stays square via aspect-ratio, and fills from the definite height here.
-      (Plain flex dropped the gutter to 0×0 because the img is out-of-flow.)
-    */
     .event-visual {
       position: relative;
-      align-self: stretch;
-      justify-self: start;
-      width: auto;
-      aspect-ratio: 1 / 1;
-      min-height: 0;
+      width: var(--event-visual-size);
+      height: var(--event-visual-size);
+      flex-shrink: 0;
       overflow: hidden;
       background: #1a1614;
     }
@@ -394,7 +408,7 @@
     .event-main {
       min-width: 0;
       max-width: 100%;
-      padding: 10px 16px 10px 16px;
+      padding: 14px 18px 14px 18px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -501,9 +515,27 @@
       padding: 11px 13px;
       border-style: solid;
       border-width: 2px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      max-width: 100%;
+    }
+
+    .event-location-pin {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      pointer-events: none;
+      align-self: center;
+    }
+
+    .event-location-stack {
+      flex: 1 1 auto;
       display: grid;
       gap: 2px;
-      max-width: 100%;
+      min-width: 0;
     }
 
     .event-location-box__kicker {
@@ -711,6 +743,10 @@
       object-position: left center;
     }
 
+    .event--light .event-ft-logo {
+      filter: brightness(0);
+    }
+
     .tape {
       position: absolute;
       top: -8px;
@@ -735,10 +771,6 @@
     .event--dark .tape {
       left: 48px;
       transform: rotate(-5deg);
-    }
-
-    .download-panel {
-      text-align: center;
     }
 
     .download-button {
@@ -833,18 +865,10 @@
             <span class="line line--accent"><span class="at">@</span> Toronto Tech Week</span>
           </h1>
         </div>
-        <div class="hero-brands" role="group" aria-label="Build Canada and Toronto Tech Week">
-          <div class="brand brand--bc">
-            <img src="../Build Canada Logo.png" alt="Build Canada" />
-          </div>
-          <div class="brand brand--ttw">
-            <img src="event-assets/toronto-tech-week-partner-lockup.png" alt="Toronto Tech Week Official Event Partner" />
-          </div>
-        </div>
       </div>
 
       <div class="events">
-        <article class="event event--dark event--tilt-b" aria-labelledby="ttl-build">
+        <article class="event event--light event--tilt-b" aria-labelledby="ttl-build-light">
           <span class="tape" aria-hidden="true"></span>
           <div class="event-shell">
             <div class="event-visual">
@@ -857,17 +881,20 @@
             </div>
             <div class="event-main">
               <div class="event-meta">
-                <div class="event-date-box event-date-box--dark" role="group" aria-label="Tuesday May 26 2026">
+                <div class="event-date-box event-date-box--light" role="group" aria-label="Tuesday May 26 2026">
                   <span class="event-date-box__month">May</span>
                   <span class="event-date-box__day">26</span>
                 </div>
-                <div class="event-location-box event-location-box--dark" role="group" aria-label="Venue ada HQ, 46 Spadine Avenue suite 500, Toronto">
-                  <span class="event-location-box__kicker">Location</span>
-                  <span class="event-location-box__venue">ada HQ</span>
-                  <span class="event-location-box__detail">46 Spadine Ave #500, Toronto, ON</span>
+                <div class="event-location-box event-location-box--light" role="group" aria-label="Venue ada HQ, 46 Spadine Avenue suite 500, Toronto">
+                  <img class="event-location-pin" src="event-assets/location-pin-emoji.png" alt="" width="160" height="160" decoding="async" />
+                  <div class="event-location-stack">
+                    <span class="event-location-box__kicker">Location</span>
+                    <span class="event-location-box__venue">ada HQ</span>
+                    <span class="event-location-box__detail">46 Spadine Ave #500, Toronto, ON</span>
+                  </div>
                 </div>
               </div>
-              <h2 class="event-title" id="ttl-build">What it will take to <strong>Build in Canada</strong></h2>
+              <h2 class="event-title" id="ttl-build-light">What it will take to <strong>Build in Canada</strong></h2>
               <div class="event-ft">
                 <span class="event-ft-prefix">in partnership w/</span>
                 <img
@@ -879,9 +906,9 @@
                 />
               </div>
               <p class="event-body">
-                A Toronto Tech Week evening built around Canadian leadership in AI, what it takes for homegrown companies to stay competitive, and the policy and product bets that matter.
+                A Toronto Tech Week evening on Canadian AI leadership, competitiveness, and the policy and product bets that matter.
               </p>
-              <div class="event-link-box event-link-box--dark" role="group" aria-label="Register for Build in Canada on Luma">
+              <div class="event-link-box event-link-box--light" role="group" aria-label="Register for Build in Canada on Luma">
                 <img class="event-link-icon" src="event-assets/link-emoji.png" alt="" width="160" height="160" decoding="async" />
                 <div class="event-link-stack">
                   <span class="event-link-box__kicker">Register</span>
@@ -892,7 +919,7 @@
           </div>
         </article>
 
-        <article class="event event--light event--tilt-a" aria-labelledby="ttl-homecoming">
+        <article class="event event--light event--tilt-a" aria-labelledby="ttl-homecoming-light">
           <span class="tape" aria-hidden="true"></span>
           <div class="event-shell">
             <div class="event-visual">
@@ -910,17 +937,20 @@
                   <span class="event-date-box__day">27</span>
                 </div>
                 <div class="event-location-box event-location-box--light" role="group" aria-label="Venue HISTORY, Toronto">
-                  <span class="event-location-box__kicker">Location</span>
-                  <span class="event-location-box__venue">HISTORY · Toronto</span>
-                  <span class="event-location-box__detail">1663 Queen St E, Toronto, ON M4L&nbsp;1G5</span>
+                  <img class="event-location-pin" src="event-assets/location-pin-emoji.png" alt="" width="160" height="160" decoding="async" />
+                  <div class="event-location-stack">
+                    <span class="event-location-box__kicker">Location</span>
+                    <span class="event-location-box__venue">HISTORY · Toronto</span>
+                    <span class="event-location-box__detail">1663 Queen St E, Toronto, ON M4L&nbsp;1G5</span>
+                  </div>
                 </div>
               </div>
-              <h2 class="event-title" id="ttl-homecoming">Toronto Tech Week: <strong>Homecoming</strong></h2>
+              <h2 class="event-title" id="ttl-homecoming-light">Toronto Tech Week: <strong>Homecoming</strong></h2>
               <div class="event-ft">
                 <span class="event-ft-prefix">featuring Build Canada CEO Lucy Hargreaves</span>
               </div>
               <p class="event-body">
-                Toronto Tech Week's flagship Homecoming at HISTORY: programming and community that bring together builders, operators, and partners from across the ecosystem as the centerpiece of the city's annual tech week.
+                Toronto Tech Week's flagship Homecoming at HISTORY featuring heavy hitters from Toronto's tech sphere.
               </p>
               <div class="event-link-box event-link-box--light" role="group" aria-label="Register for Toronto Tech Week Homecoming on Luma">
                 <img class="event-link-icon" src="event-assets/link-emoji.png" alt="" width="160" height="160" decoding="async" />
@@ -934,10 +964,19 @@
         </article>
       </div>
     </div>
+    <div class="hero-brands" role="group" aria-label="Build Canada x Toronto Tech Week">
+      <div class="brand brand--bc">
+        <img src="../Build Canada Logo.png" alt="Build Canada" />
+      </div>
+      <span class="brand-collab" aria-hidden="true">x</span>
+      <div class="brand brand--ttw">
+        <img src="event-assets/toronto-tech-week-partner-lockup.png" alt="Toronto Tech Week Official Event Partner" />
+      </div>
+    </div>
   </main>
 
   <div class="download-panel">
-    <button class="download-button" type="button" id="download-png">Download PNG · 1440×1155</button>
+    <button class="download-button" type="button" data-export-target="export-root" data-export-filename="build-canada-toronto-tech-week-2026.png">Download PNG · 1440×1260</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
@@ -995,6 +1034,30 @@
         });
       }
 
+      function syncEventVisualSize(root = document.getElementById("export-root")) {
+        if (!root) {
+          return;
+        }
+
+        const mains = root.querySelectorAll(".event-main");
+        if (!mains.length) {
+          return;
+        }
+
+        let maxMainHeight = 0;
+        mains.forEach((main) => {
+          maxMainHeight = Math.max(maxMainHeight, Math.ceil(main.getBoundingClientRect().height));
+        });
+
+        root.style.setProperty("--event-visual-size", `${maxMainHeight}px`);
+      }
+
+      function waitForLayout() {
+        return new Promise((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        });
+      }
+
       window.addEventListener("load", () => {
         const missingFonts = requiredFonts
           .filter((font) => !fontIsAvailable(font.families))
@@ -1003,47 +1066,70 @@
         if (missingFonts.length > 0) {
           showWarning(missingFonts);
         }
+
+        const runSync = () => syncEventVisualSize();
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(runSync);
+        } else {
+          runSync();
+        }
       });
 
-      const downloadButton = document.getElementById("download-png");
-      downloadButton.addEventListener("click", async () => {
-        if (!window.htmlToImage) {
-          window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
-          return;
+      window.addEventListener("resize", () => {
+        requestAnimationFrame(() => syncEventVisualSize());
+      });
+
+      const exportOptions = {
+        backgroundColor: "#050504",
+        cacheBust: true,
+        canvasWidth: 1440,
+        canvasHeight: 1260,
+        pixelRatio: 1,
+        width: 1440,
+        height: 1260,
+        style: {
+          margin: "0",
+          transform: "none"
         }
+      };
 
-        downloadButton.disabled = true;
-        const originalText = downloadButton.textContent;
-        downloadButton.textContent = "Rendering...";
-
-        try {
-          if (document.fonts && document.fonts.ready) {
-            await document.fonts.ready;
+      document.querySelectorAll("[data-export-target]").forEach((downloadButton) => {
+        downloadButton.addEventListener("click", async () => {
+          if (!window.htmlToImage) {
+            window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
+            return;
           }
 
-          const canvasElement = document.getElementById("export-root");
-          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
-            backgroundColor: "#050504",
-            cacheBust: true,
-            canvasWidth: 1440,
-            canvasHeight: 1155,
-            pixelRatio: 1,
-            width: 1440,
-            height: 1155,
-            style: {
-              margin: "0",
-              transform: "none"
-            }
-          });
+          const targetId = downloadButton.dataset.exportTarget;
+          const filename = downloadButton.dataset.exportFilename;
+          const canvasElement = document.getElementById(targetId);
+          if (!canvasElement) {
+            return;
+          }
 
-          const link = document.createElement("a");
-          link.download = "build-canada-toronto-tech-week-2026.png";
-          link.href = dataUrl;
-          link.click();
-        } finally {
-          downloadButton.disabled = false;
-          downloadButton.textContent = originalText;
-        }
+          downloadButton.disabled = true;
+          const originalText = downloadButton.textContent;
+          downloadButton.textContent = "Rendering...";
+
+          try {
+            if (document.fonts && document.fonts.ready) {
+              await document.fonts.ready;
+            }
+
+            syncEventVisualSize(canvasElement);
+            await waitForLayout();
+
+            const dataUrl = await window.htmlToImage.toPng(canvasElement, exportOptions);
+
+            const link = document.createElement("a");
+            link.download = filename;
+            link.href = dataUrl;
+            link.click();
+          } finally {
+            downloadButton.disabled = false;
+            downloadButton.textContent = originalText;
+          }
+        });
       });
     })();
   </script>
