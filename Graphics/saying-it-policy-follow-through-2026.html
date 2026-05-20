@@ -41,8 +41,8 @@
 
     .canvas.portrait {
       width: 1580px;
-      height: 1150px;
-      padding: 46px 56px 28px;
+      height: 1480px;
+      padding: 44px 48px 28px;
     }
 
     .canvas::before {
@@ -58,8 +58,8 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 20px;
-      padding-bottom: 16px;
+      gap: 24px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--rule);
       flex-shrink: 0;
     }
@@ -80,7 +80,7 @@
       line-height: 1.2;
     }
 
-    .canvas.portrait .mono { font-size: 17px; }
+    .canvas.portrait .mono { font-size: 22px; }
 
     h1 {
       margin: 0;
@@ -91,23 +91,23 @@
     }
 
     .canvas.portrait h1 {
-      font-size: 54px;
-      max-width: 860px;
+      font-size: 72px;
+      max-width: 920px;
     }
 
 
     .h1-accent { color: var(--red); }
 
     .deck {
-      margin: 12px 0 0;
+      margin: 14px 0 0;
       font-weight: 520;
       color: var(--ink);
     }
 
     .canvas.portrait .deck {
-      max-width: 800px;
-      font-size: 21px;
-      line-height: 1.3;
+      max-width: 1180px;
+      font-size: 28px;
+      line-height: 1.28;
     }
 
 
@@ -120,7 +120,7 @@
       overflow: hidden;
     }
 
-    .canvas.portrait .brand { width: 70px; height: 70px; }
+    .canvas.portrait .brand { width: 92px; height: 92px; }
 
     .brand img {
       display: block;
@@ -134,32 +134,31 @@
       flex: 1 1 auto;
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(190px, 0.2fr) 1fr 1fr minmax(110px, 0.26fr);
-      margin-top: 12px;
-      align-content: start;
+      grid-template-columns: minmax(300px, 0.34fr) 1fr 1fr;
+      margin-top: 14px;
+      align-content: stretch;
     }
 
 
     .cell {
-      padding: 12px 14px;
+      padding: 14px 16px;
       border-top: 1px solid var(--rule);
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .canvas.portrait .cell { min-height: 100px; }
+    .canvas.portrait .cell { min-height: 134px; }
 
-    .cell:nth-child(4n + 2),
-    .cell:nth-child(4n + 3),
-    .cell:nth-child(4n + 4) {
+    .cell:nth-child(3n + 2),
+    .cell:nth-child(3n + 3) {
       border-left: 1px solid var(--rule);
     }
 
     .head-cell {
-      min-height: 128px;
+      min-height: 162px;
       justify-content: flex-start;
-      padding-top: 16px;
+      padding-top: 20px;
       background: rgba(237, 229, 213, 0.35);
       border-top-color: transparent;
     }
@@ -171,7 +170,7 @@
     }
 
     .source-label {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--muted);
       font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
       font-weight: 600;
@@ -179,7 +178,7 @@
       text-transform: uppercase;
     }
 
-    .canvas.portrait .source-label { font-size: 11px; }
+    .canvas.portrait .source-label { font-size: 14px; }
 
     .column-title {
       margin: 0;
@@ -188,53 +187,39 @@
       font-weight: 760;
     }
 
-    .canvas.portrait .column-title { font-size: 42px; }
+    .canvas.portrait .column-title { font-size: 54px; }
 
     .column-title.memo-title { color: var(--red); }
     .column-title.gov-title { color: var(--red); }
-    .column-title.grade-title { color: var(--red); }
 
     .subline {
-      margin: 8px 0 0;
+      margin: 10px 0 0;
       font-weight: 520;
       color: var(--muted);
     }
 
-    .canvas.portrait .subline { font-size: 17px; line-height: 1.3; }
+    .canvas.portrait .subline { font-size: 22px; line-height: 1.28; }
 
     .label-cell {
       align-items: center;
-      gap: 8px;
-      padding-left: 10px;
+      gap: 10px;
+      padding-left: 12px;
       background: rgba(237, 229, 213, 0.35);
     }
 
     .label-top {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       width: 100%;
     }
-
-    .row-index {
-      flex-shrink: 0;
-      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      line-height: 1.2;
-      padding-top: 2px;
-      min-width: 1.35em;
-    }
-
 
     .label-icon {
       object-fit: contain;
       flex-shrink: 0;
     }
 
-    .canvas.portrait .label-icon { width: 24px; height: 24px; }
+    .canvas.portrait .label-icon { width: 32px; height: 32px; }
 
     .label {
       font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
@@ -244,24 +229,24 @@
       text-transform: uppercase;
     }
 
-    .canvas.portrait .label { font-size: 12px; }
+    .canvas.portrait .label { font-size: 15px; }
 
     .metric {
-      margin: 0 0 6px;
+      margin: 0 0 8px;
       line-height: 1.04;
       letter-spacing: 0.024em;
       font-weight: 760;
     }
 
-    .canvas.portrait .metric { font-size: 38px; }
+    .canvas.portrait .metric { font-size: 48px; }
 
     .metric.memo { color: var(--red); }
     .metric.gov { color: var(--red); }
 
     .memo-name {
-      margin: 0 0 6px;
+      margin: 0 0 4px;
       font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -269,11 +254,20 @@
       line-height: 1.24;
     }
 
+    .memo-author {
+      margin: 0 0 8px;
+      font-weight: 520;
+      color: var(--muted);
+      line-height: 1.28;
+    }
+
+    .canvas.portrait .memo-author { font-size: 17px; }
+
 
     .stat-lead {
-      margin: 0 0 6px;
+      margin: 0 0 8px;
       font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -281,50 +275,22 @@
     }
 
 
-    .grade-cell {
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-
-    .grade-letter {
-      margin: 0;
-      font-size: 40px;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      font-weight: 760;
-      color: var(--red);
-    }
-
-
-    .grade-note {
-      margin: 4px 0 0;
-      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
-      font-size: 10px;
-      line-height: 1.2;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
     .copy {
       margin: 0;
       font-weight: 520;
       letter-spacing: -0.003em;
     }
 
-    .canvas.portrait .copy { font-size: 16px; line-height: 1.38; }
+    .canvas.portrait .copy { font-size: 24px; line-height: 1.34; }
 
     .footer {
-      margin-top: 14px;
-      padding-top: 12px;
+      margin-top: 12px;
+      padding-top: 10px;
       border-top: 1px solid var(--rule);
       flex-shrink: 0;
       font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.34;
       letter-spacing: 0.02em;
     }
@@ -391,12 +357,11 @@
     <button type="button" id="font-warning-dismiss">Dismiss</button>
   </aside>
 
-  <main class="canvas portrait" id="canvas-saying-it-portrait" aria-label="Build Canada memos and federal policy, portrait">
+  <main class="canvas portrait" id="canvas-saying-it-portrait" aria-label="Builder memos and federal policy follow-through, portrait">
     <header class="header">
       <div class="headlines">
-        <p class="mono">Build Canada impact</p>
         <h1>The Benefit of <span class="h1-accent">Saying It</span></h1>
-        <p class="deck">Five ideas with a clear federal echo. When citizens speak up, we can inspire change.</p>
+        <p class="deck">Five ideas from Canada’s builders. Each one echoed in federal policy months later.</p>
       </div>
       <div class="brand" aria-label="Build Canada logo">
         <img src="../Build Canada Logo.png" alt="Build Canada" />
@@ -406,45 +371,35 @@
     <section class="comparison">
       <div class="cell head-cell left-head"></div>
       <div class="cell head-cell">
-        <div class="source-label">Build Canada memo</div>
-        <h2 class="column-title memo-title">Said it</h2>
-        <p class="subline">What we argued in public.</p>
+        <div class="source-label">Builder memos</div>
+        <h2 class="column-title memo-title">The call</h2>
+        <p class="subline">What builders called for.</p>
       </div>
       <div class="cell head-cell">
-        <div class="source-label">Federal policy</div>
-        <h2 class="column-title gov-title">Did it</h2>
-        <p class="subline">What is on the record.</p>
+        <div class="source-label">Federal government</div>
+        <h2 class="column-title gov-title">Federal record</h2>
+        <p class="subline">What Ottawa announced.</p>
       </div>
-      <div class="cell head-cell grade-cell">
-        <div class="source-label">Fulfillment</div>
-        <h2 class="column-title grade-title">Grade</h2>
-      </div>
-
       <div class="cell label-cell">
         <div class="label-top">
-          <span class="row-index">01</span>
-          <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/bank-building.png" alt="" />
-          <div class="label">Sovereign wealth fund</div>
+          <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/under-construction.png" alt="" />
+          <div class="label">Infrastructure approvals</div>
         </div>
       </div>
       <div class="cell">
-        <p class="metric memo">Apr 2025</p>
-        <p class="memo-name">Turn Canada&#39;s Resources into Lasting Wealth</p>
-        <p class="copy">National fund, independent management, long horizon wealth.</p>
+        <p class="metric memo">Jan 2026</p>
+        <p class="memo-name">Go!</p>
+        <p class="memo-author">Build Canada</p>
+        <p class="copy">Accelerate project approval timelines, cut red tape, and get to shovels in the ground.</p>
       </div>
       <div class="cell">
-        <p class="metric gov">Apr 2026</p>
-        <p class="stat-lead">$25B seed</p>
-        <p class="copy">Canada Strong Fund, federal capital, arms length Crown co-investing with the private sector.</p>
-      </div>
-      <div class="cell grade-cell">
-        <p class="grade-letter">B+</p>
-        <p class="grade-note">Strong start</p>
+        <p class="metric gov">May 2026</p>
+        <p class="stat-lead">1 year cap</p>
+        <p class="copy">Federal reviews and decisions within one year once a complete proponent file is in, consultation opened May 8.</p>
       </div>
 
       <div class="cell label-cell">
         <div class="label-top">
-          <span class="row-index">02</span>
           <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/conference-call.png" alt="" />
           <div class="label">Private sector in government</div>
         </div>
@@ -452,21 +407,17 @@
       <div class="cell">
         <p class="metric memo">Jul 2025</p>
         <p class="memo-name">Deploy Private Sector Experts to Support Government</p>
+        <p class="memo-author">Andrew Graham</p>
         <p class="copy">Fast deployment of senior operators from industry into delivery roles.</p>
       </div>
       <div class="cell">
-        <p class="metric gov">Live</p>
+        <p class="metric gov">Nov 2025</p>
         <p class="stat-lead">Interchange Canada</p>
         <p class="copy">Formal secondment rules, host pays sponsor, assignments up to three years.</p>
-      </div>
-      <div class="cell grade-cell">
-        <p class="grade-letter">B</p>
-        <p class="grade-note">Framework exists</p>
       </div>
 
       <div class="cell label-cell">
         <div class="label-top">
-          <span class="row-index">03</span>
           <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/coins.png" alt="" />
           <div class="label">Stablecoins</div>
         </div>
@@ -474,6 +425,7 @@
       <div class="cell">
         <p class="metric memo">Mar 2025</p>
         <p class="memo-name">Canada Cannot Afford to Miss Out on Stablecoins</p>
+        <p class="memo-author">Som Seif</p>
         <p class="copy">Federal framework, payment-grade rules, CAD credibility on the line.</p>
       </div>
       <div class="cell">
@@ -481,14 +433,9 @@
         <p class="stat-lead">Bank of Canada supervision</p>
         <p class="copy">Stablecoin Act path, 1:1 reserves, national registry, RPAA named in federal guidance.</p>
       </div>
-      <div class="cell grade-cell">
-        <p class="grade-letter">A-</p>
-        <p class="grade-note">High alignment</p>
-      </div>
 
       <div class="cell label-cell">
         <div class="label-top">
-          <span class="row-index">04</span>
           <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/laser-beam--v1.png" alt="" />
           <div class="label">Photonics fab</div>
         </div>
@@ -496,6 +443,7 @@
       <div class="cell">
         <p class="metric memo">Nov 2025</p>
         <p class="memo-name">Seize Canada&#39;s Semiconductor Opportunity</p>
+        <p class="memo-author">Ivan Zhang</p>
         <p class="copy">Commercialize CPFC, bring in private capital, scale compound semiconductors.</p>
       </div>
       <div class="cell">
@@ -503,14 +451,9 @@
         <p class="stat-lead">NRC spin-off</p>
         <p class="copy">Work begins to move CPFC into a Canadian anchored commercial entity with private scaling.</p>
       </div>
-      <div class="cell grade-cell">
-        <p class="grade-letter">A-</p>
-        <p class="grade-note">Direct match</p>
-      </div>
 
       <div class="cell label-cell">
         <div class="label-top">
-          <span class="row-index">05</span>
           <img class="label-icon" src="https://img.icons8.com/ios/100/2A2A2A/document--v1.png" alt="" />
           <div class="label">SR and ED</div>
         </div>
@@ -518,6 +461,7 @@
       <div class="cell">
         <p class="metric memo">Sep 2025</p>
         <p class="memo-name">Fix Canada&#39;s Primary R&amp;D Program</p>
+        <p class="memo-author">Harley Finkelstein</p>
         <p class="copy">Pre-approval, less narrative friction, faster certainty for real R and D.</p>
       </div>
       <div class="cell">
@@ -525,19 +469,15 @@
         <p class="stat-lead">8 week decision</p>
         <p class="copy">Optional CRA pre-claim approval before spend, half the time on reviewed claims.</p>
       </div>
-      <div class="cell grade-cell">
-        <p class="grade-letter">B+</p>
-        <p class="grade-note">Meaningful reform</p>
-      </div>
     </section>
 
     <footer class="footer">
-      Sources: Prime Minister of Canada, Canada Strong Fund announcement, April 27 2026. Department of Finance Canada, Canada Stablecoin Framework, March 31 2026. NRC, photonic semiconductor capacity, May 4 2026. CRA, SR and ED pre-claim approval, April 8 2026. Treasury Board Secretariat, Interchange Canada, updated August 14 2025. Build Canada memos cited in brief.
+      Sources: Government of Canada, One Canadian Economy, regulatory process news release, May 8 2026. Department of Finance Canada, Canada Stablecoin Framework, March 31 2026. NRC, photonic semiconductor capacity, May 4 2026. CRA, SR and ED pre-claim approval, April 8 2026. Treasury Board Secretariat, Interchange Canada, updated August 14 2025. Build Canada memos cited in brief.
     </footer>
   </main>
 
   <div class="export-row">
-    <button class="download-button" type="button" id="download-png-portrait">Download PNG · 1580×1150</button>
+    <button class="download-button" type="button" id="download-png-portrait">Download PNG · 1580×1480</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
@@ -623,7 +563,7 @@
       }
 
       document.getElementById("download-png-portrait").addEventListener("click", (e) => {
-        exportPng(e.currentTarget, "canvas-saying-it-portrait", 1580, 1150, "saying-it-policy-follow-through-2026-1580x1150.png");
+        exportPng(e.currentTarget, "canvas-saying-it-portrait", 1580, 1480, "saying-it-policy-follow-through-2026-1580x1480.png");
       });
     })();
   </script>
