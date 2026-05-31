@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canada technical recession explained - Build Canada</title>
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --muted: #6B6055;
+      --rule: #C8BFB0;
+      --red: #872D2E;
+      --blue: #305E7E;
+      --blue-tint: #8ACCE4;
+      --tan: #EDE5D5;
+      --rose: #EBB1B1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      padding: 20px 0 32px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background: var(--paper);
+      padding: 32px 38px 28px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .canvas::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 2px solid var(--ink);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+
+    .headlines {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .mono {
+      margin: 0 0 4px;
+      font-family: "Test Söhne Mono", "TestSöhneMono", "Roboto Mono", monospace;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 520;
+      color: var(--muted);
+      line-height: 1.15;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 58px;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      font-weight: 520;
+      color: var(--ink);
+      max-width: 18ch;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    /* Section labels — consistent weight across slides */
+    #export-root-1 .quarter-label,
+    #export-root-4 .quarter-label,
+    #export-root-1 .callout-strip-label,
+    #export-root-4 .callout-strip-label,
+    #export-root-1 .forecast-panel-label,
+    #export-root-1 .everyday-panel-label,
+    #export-root-1 .forecast-when,
+    #export-root-2 .rule-hero-label,
+    #export-root-2 .caveats-label,
+    #export-root-2 .nuance-box-label,
+    .compare-head,
+    .key-badge {
+      font-weight: 600;
+    }
+
+    .brand {
+      width: 84px;
+      height: 84px;
+      flex-shrink: 0;
+      background: var(--paper);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding-top: 10px;
+    }
+
+    .body-main {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer {
+      flex-shrink: 0;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-weight: 520;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    /* Slide 1 */
+    #export-root-1 {
+      --bar-meta-axis-gap: 6px;
+      --bar-col-q4: 54px;
+      --bar-chart-gap: 8px;
+      --bar-chart-w: calc(3 * var(--bar-col-q4) + 2 * var(--bar-chart-gap));
+      padding: 28px 36px 24px;
+    }
+
+    #export-root-1 .header {
+      padding-bottom: 6px;
+    }
+
+
+    #export-root-1 .mono {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    #export-root-1 h1 {
+      max-width: 100%;
+      font-size: 60px;
+      line-height: 1.05;
+    }
+
+    #export-root-1 .footer {
+      font-size: 13px;
+    }
+
+    #export-root-1 .body,
+    #export-root-1 .body-main,
+    #export-root-1 .stat-duo,
+    #export-root-1 .quarter-card,
+    #export-root-1 .quarter-main,
+    #export-root-1 .quarter-bar-col,
+    #export-root-4 .body,
+    #export-root-4 .body-main,
+    #export-root-4 .stat-duo,
+    #export-root-4 .quarter-card,
+    #export-root-4 .quarter-main {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    #export-root-1 .body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding-top: 6px;
+    }
+
+    #export-root-1 .body-main {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    #export-root-1 .body-main > .stat-duo,
+    #export-root-1 .body-main > .callout-strip,
+    #export-root-1 .body-main > .forecast-panel {
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+
+    #export-root-1 .body-main > .everyday-panel {
+      flex: 1 1 auto;
+      min-height: 0;
+      min-width: 0;
+    }
+
+    #export-root-1 .stat-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+      height: auto;
+    }
+
+    #export-root-1 .quarter-card,
+    #export-root-4 .quarter-card {
+      --stat-size: 104px;
+      --stat-h: calc(var(--stat-size) * 0.9);
+      --plot-h: var(--stat-h);
+      --bar-width: 60px;
+      --bar-pole: calc(var(--stat-size) * 0.46);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: flex-start;
+      padding: 16px 20px 18px;
+      border: 1px solid var(--rule);
+      background: var(--tan);
+      height: auto;
+      overflow: visible;
+    }
+
+    #export-root-1 .quarter-label,
+    #export-root-4 .quarter-label {
+      font-size: 20px;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    #export-root-1 .quarter-note,
+    #export-root-4 .quarter-note {
+      font-size: 26px;
+      line-height: 1.32;
+      margin: 0;
+      font-weight: 520;
+      color: var(--ink);
+    }
+
+    .stat-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .quarter-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 16px 20px 18px;
+      border: 1px solid var(--rule);
+      background: var(--tan);
+    }
+
+    .quarter-label {
+      margin: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.15;
+    }
+
+    .quarter-main {
+      display: grid;
+      grid-template-columns: 1fr 168px;
+      gap: 14px;
+      align-items: flex-end;
+    }
+
+    #export-root-1 .quarter-main,
+    #export-root-4 .quarter-main {
+      display: block;
+      flex: 0 0 auto;
+      padding: 2px 0 4px;
+      width: 100%;
+    }
+
+    #export-root-1 .quarter-axis-row,
+    #export-root-4 .quarter-axis-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, calc(var(--bar-width) * 2 + 12px));
+      column-gap: 16px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .quarter-value {
+      margin: 0;
+      font-size: 80px;
+      line-height: 0.9;
+      letter-spacing: 0.03em;
+      font-weight: 600;
+      color: var(--red);
+    }
+
+    #export-root-1 .quarter-value,
+    #export-root-4 .quarter-value {
+      margin: 0;
+      font-size: var(--stat-size);
+      line-height: 0.88;
+      height: var(--stat-h);
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.02em;
+    }
+
+    #export-root-1 .quarter-bar-meta,
+    #export-root-4 .quarter-bar-meta {
+      position: absolute;
+      left: 50%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      margin: 0;
+      padding: 0;
+      width: max-content;
+      max-width: 130%;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    #export-root-1 .quarter-bar-meta--above,
+    #export-root-4 .quarter-bar-meta--above {
+      bottom: calc(50% + var(--bar-meta-axis-gap));
+      transform: translateX(-50%);
+    }
+
+    #export-root-1 .quarter-bar-meta--below,
+    #export-root-4 .quarter-bar-meta--below {
+      top: calc(50% + var(--bar-meta-axis-gap));
+      transform: translateX(-50%);
+    }
+
+    #export-root-1 .quarter-bar-meta .quarter-bar-tag,
+    #export-root-1 .quarter-bar-meta .quarter-bar-pct,
+    #export-root-4 .quarter-bar-meta .quarter-bar-tag,
+    #export-root-4 .quarter-bar-meta .quarter-bar-pct {
+      margin: 0;
+      width: auto;
+      white-space: nowrap;
+    }
+
+    #export-root-1 .quarter-label,
+    #export-root-4 .quarter-label {
+      letter-spacing: 0.16em;
+    }
+
+    .quarter-bar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .quarter-bar-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    #export-root-1 .quarter-bar-row,
+    #export-root-4 .quarter-bar-row {
+      gap: 10px;
+      width: 100%;
+      max-width: calc(var(--bar-width) * 2 + 10px);
+      justify-self: end;
+      align-items: stretch;
+      height: var(--plot-h);
+    }
+
+    #export-root-1 .quarter-bar-item,
+    #export-root-4 .quarter-bar-item {
+      position: relative;
+      width: var(--bar-width);
+      height: var(--plot-h);
+      min-width: 0;
+      overflow: visible;
+    }
+
+    #export-root-1 .quarter-plot,
+    #export-root-4 .quarter-plot {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      overflow: visible;
+    }
+
+    #export-root-1 .quarter-plot::before,
+    #export-root-4 .quarter-plot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -6px;
+      right: -6px;
+      border-top: 2px solid var(--ink);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #export-root-1 .quarter-plot .quarter-bar,
+    #export-root-4 .quarter-plot .quarter-bar {
+      position: absolute;
+      left: 0;
+      z-index: 0;
+    }
+
+    .quarter-bar-tag {
+      margin: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    #export-root-1 .quarter-bar-tag,
+    #export-root-4 .quarter-bar-tag {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+    }
+
+    .quarter-bar-pct {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    #export-root-1 .quarter-bar-pct,
+    #export-root-4 .quarter-bar-pct {
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .quarter-bar-pct--actual {
+      color: var(--red);
+    }
+
+    .quarter-bar {
+      width: 56px;
+      flex-shrink: 0;
+      height: calc(var(--bar-scale, 1) * 72px);
+      min-height: 8px;
+    }
+
+    #export-root-1 .quarter-bar,
+    #export-root-4 .quarter-bar {
+      width: var(--bar-width);
+      min-height: 6px;
+    }
+
+    #export-root-1 .quarter-bar--down,
+    #export-root-4 .quarter-bar--down {
+      top: 50%;
+      height: calc(var(--bar-scale, 1) * var(--bar-pole));
+      border-radius: 0 0 4px 4px;
+      background: var(--red);
+    }
+
+    #export-root-1 .quarter-bar--down.quarter-bar--proj,
+    #export-root-4 .quarter-bar--down.quarter-bar--proj {
+      background: var(--rule);
+    }
+
+    #export-root-1 .quarter-bar--up,
+    #export-root-4 .quarter-bar--up {
+      height: calc(var(--bar-scale, 1) * var(--bar-pole));
+      top: calc(50% - var(--bar-scale, 1) * var(--bar-pole));
+      border-radius: 4px 4px 0 0;
+      background: var(--rule);
+    }
+
+    .quarter-note {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.28;
+      font-weight: 520;
+    }
+
+    .callout-strip {
+      padding: 16px 20px;
+      border: 1px solid var(--rule);
+      background: var(--tan);
+      height: auto;
+    }
+
+    .callout-strip p {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.3;
+      font-weight: 520;
+    }
+
+    .callout-strip strong {
+      color: var(--red);
+      font-weight: 520;
+    }
+
+    #export-root-1 .callout-strip,
+    #export-root-4 .callout-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 22px 20px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    #export-root-1 .callout-strip-label,
+    #export-root-4 .callout-strip-label {
+      margin: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+
+    #export-root-1 .callout-strip-body,
+    #export-root-4 .callout-strip-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+    }
+
+    #export-root-1 .callout-strip-lead,
+    #export-root-4 .callout-strip-lead {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.22;
+      font-weight: 600;
+      color: var(--red);
+    }
+
+    #export-root-1 .callout-strip-detail,
+    #export-root-4 .callout-strip-detail {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.32;
+      font-weight: 520;
+      color: var(--ink);
+    }
+
+    #export-root-1 .forecast-panel {
+      flex: 0 0 auto;
+      padding: 18px 22px 20px;
+      gap: 12px;
+      min-width: 0;
+      overflow: hidden;
+      justify-content: flex-start;
+    }
+
+    #export-root-1 .forecast-panel-label {
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+      font-size: 19px;
+      line-height: 1.2;
+      color: var(--red);
+    }
+
+    #export-root-1 .forecast-compare {
+      gap: 10px;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    #export-root-1 .forecast-block {
+      min-width: 0;
+      min-height: 0;
+      padding: 14px 16px 16px;
+    }
+
+    #export-root-1 .forecast-when {
+      font-size: 16px;
+    }
+
+    #export-root-1 .forecast-who {
+      font-size: 24px;
+      line-height: 1.22;
+    }
+
+    #export-root-1 .forecast-num {
+      font-size: 54px;
+      margin-top: 6px;
+    }
+
+    #export-root-1 .forecast-arrow {
+      font-size: 38px;
+    }
+
+    #export-root-1 .forecast-note {
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    #export-root-1 .everyday-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 16px 24px;
+      border: 1px solid var(--rule);
+      background: rgba(235, 177, 177, 0.22);
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    #export-root-1 .everyday-panel-label {
+      margin: 0 0 8px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+
+    #export-root-1 .everyday-panel-text {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.32;
+      font-weight: 520;
+    }
+
+    #export-root-1 .quarter-axis-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+    }
+
+    #export-root-1 .quarter-value {
+      flex: 0 1 auto;
+      min-width: 0;
+      height: auto;
+    }
+
+    #export-root-1 .quarter-bar-row {
+      display: grid;
+      flex: 0 0 auto;
+      margin-left: auto;
+      width: var(--bar-chart-w);
+      max-width: var(--bar-chart-w);
+      gap: var(--bar-chart-gap);
+      height: var(--plot-h);
+      align-items: stretch;
+      justify-self: auto;
+    }
+
+    #export-root-1 .quarter-bar-row--three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    #export-root-1 .quarter-bar-row--two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #export-root-1 .quarter-bar-item {
+      width: 100%;
+      max-width: none;
+      position: relative;
+      height: var(--plot-h);
+      min-width: 0;
+      overflow: visible;
+    }
+
+    #export-root-1 .quarter-bar,
+    #export-root-1 .quarter-plot .quarter-bar {
+      width: 100%;
+      min-height: 6px;
+    }
+
+    #export-root-1 .quarter-bar-meta {
+      max-width: 100%;
+    }
+
+    #export-root-1 .quarter-bar-tag,
+    #export-root-1 .quarter-bar-when {
+      font-family: "Test Söhne Mono", "TestSöhneMono", "Roboto Mono", monospace;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    #export-root-1 .quarter-bar-tag {
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+      white-space: normal;
+      color: var(--muted);
+    }
+
+    #export-root-1 .quarter-bar-when {
+      margin: 0;
+      font-size: 8px;
+      font-weight: 520;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    #export-root-1 .quarter-bar-meta .quarter-bar-tag,
+    #export-root-1 .quarter-bar-meta .quarter-bar-pct {
+      white-space: normal;
+    }
+
+    #export-root-1 .quarter-bar-meta .quarter-bar-when {
+      white-space: nowrap;
+    }
+
+    #export-root-1 .quarter-bar-pct {
+      font-size: 15px;
+      margin-top: 1px;
+    }
+
+    /* Slide 4 — summary (same chart rules as slide 1; scaled for extra space) */
+    #export-root-4 {
+      --bar-meta-axis-gap: 10px;
+      --bar-col-q4: 165px;
+      --bar-chart-gap: 12px;
+      --bar-chart-w: calc(3 * var(--bar-col-q4) + 2 * var(--bar-chart-gap));
+      padding: 28px 36px 24px;
+    }
+
+    #export-root-4 .mono {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    #export-root-4 h1 {
+      max-width: 100%;
+      font-size: 60px;
+      line-height: 1.05;
+    }
+
+    #export-root-4 .footer {
+      font-size: 13px;
+    }
+
+    #export-root-4 .body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding-top: 6px;
+    }
+
+    #export-root-4 .body-main {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+    }
+
+    #export-root-4 .body-main > .stat-duo {
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+
+    #export-root-4 .body-main > .callout-strip {
+      flex: 1 1 auto;
+      min-height: 0;
+      min-width: 0;
+      justify-content: center;
+      padding: 20px 26px 22px;
+      gap: 10px;
+    }
+
+    #export-root-4 .stat-duo {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: start;
+      align-content: start;
+      height: auto;
+    }
+
+    #export-root-4 .quarter-card {
+      --stat-size: 112px;
+      --stat-h: calc(var(--stat-size) * 0.9);
+      --plot-h: 156px;
+      --bar-pole: 72px;
+      gap: 10px;
+      padding: 16px 22px 14px;
+      height: auto;
+      align-self: start;
+    }
+
+    #export-root-4 .quarter-main {
+      flex: 0 0 auto;
+      padding: 0;
+      width: 100%;
+    }
+
+    #export-root-4 .quarter-label {
+      font-size: 21px;
+    }
+
+    #export-root-4 .quarter-note {
+      font-size: 28px;
+      line-height: 1.24;
+    }
+
+    #export-root-4 .quarter-axis-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+    }
+
+    #export-root-4 .quarter-value {
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    #export-root-4 .quarter-bar-row {
+      display: grid;
+      flex: 0 0 auto;
+      margin-left: auto;
+      width: var(--bar-chart-w);
+      max-width: var(--bar-chart-w);
+      height: var(--plot-h);
+      align-items: stretch;
+      gap: var(--bar-chart-gap);
+    }
+
+    #export-root-4 .quarter-bar-row--three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    #export-root-4 .quarter-bar-row--two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #export-root-4 .quarter-bar-item {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    #export-root-4 .quarter-bar,
+    #export-root-4 .quarter-plot .quarter-bar {
+      width: 100%;
+    }
+
+    #export-root-4 .quarter-bar-meta {
+      gap: 1px;
+      max-width: 100%;
+    }
+
+    #export-root-4 .quarter-bar-tag,
+    #export-root-4 .quarter-bar-when {
+      font-family: "Test Söhne Mono", "TestSöhneMono", "Roboto Mono", monospace;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    #export-root-4 .quarter-bar-tag {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      white-space: normal;
+      max-width: 11em;
+      color: var(--muted);
+    }
+
+    #export-root-4 .quarter-bar-when {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 520;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    #export-root-4 .quarter-bar-pct {
+      font-size: 21px;
+      margin-top: 2px;
+    }
+
+    #export-root-4 .quarter-bar-pct--rev {
+      color: var(--red);
+    }
+
+    .forecast-panel {
+      padding: 18px 22px 20px;
+      border: 1px solid var(--rule);
+      background: rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .forecast-panel-label {
+      margin: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 17px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.15;
+    }
+
+    .forecast-compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .forecast-block {
+      padding: 16px 18px;
+      border: 1px solid var(--rule);
+      background: var(--tan);
+      min-height: 100%;
+    }
+
+    .forecast-block--actual {
+      background: rgba(235, 177, 177, 0.28);
+    }
+
+    .forecast-when {
+      margin: 0;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.15;
+    }
+
+    .forecast-who {
+      margin: 4px 0 0;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 520;
+      color: var(--ink);
+    }
+
+    .forecast-num {
+      margin: 10px 0 0;
+      font-size: 56px;
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .forecast-block--actual .forecast-num {
+      color: var(--red);
+    }
+
+    .forecast-arrow {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 520;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .forecast-note {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.3;
+      font-weight: 520;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Slide 2 */
+    #export-root-2 .rule-hero {
+      flex: 0 0 auto;
+      padding: 22px 26px;
+      background: var(--tan);
+      border: 1px solid var(--rule);
+    }
+
+    #export-root-2 .rule-hero-label {
+      margin: 0 0 8px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    #export-root-2 .rule-hero-text {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.28;
+      font-weight: 520;
+    }
+
+    #export-root-2 .rule-hero-text strong {
+      color: var(--red);
+    }
+
+    #export-root-2 .caveats-block {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #export-root-2 .caveats-label {
+      margin: 0 0 2px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+
+    #export-root-2 .step-list li:first-child {
+      padding-top: 8px;
+    }
+
+    .step-list {
+      flex: 1 1 auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .step-list li {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 30px;
+      line-height: 1.28;
+      font-weight: 520;
+    }
+
+    .step-list li:last-child {
+      border-bottom: none;
+    }
+
+    #export-root-2 .step-lead {
+      color: var(--red);
+    }
+
+    #export-root-2 .step-lead strong {
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    .step-icon {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      justify-self: center;
+    }
+
+    .nuance-box {
+      flex: 0 0 auto;
+      padding: 14px 18px;
+      border: 1px solid var(--rule);
+      background: rgba(235, 177, 177, 0.35);
+    }
+
+    #export-root-2 .nuance-box-label {
+      margin: 0 0 8px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.15;
+    }
+
+    .nuance-box p {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.3;
+      font-weight: 520;
+    }
+
+    #export-root-3 h1 {
+      max-width: none;
+      white-space: nowrap;
+      font-size: 54px;
+      letter-spacing: -0.025em;
+    }
+
+    /* Slide 3 comparison — row pairs keep Trigger/Scope/etc. aligned */
+    #export-root-3 .compare-grid {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+
+    .compare-head-row,
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .compare-head-row {
+      flex: 0 0 auto;
+    }
+
+    .compare-row {
+      flex: 1 1 0;
+      min-height: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .compare-head {
+      margin: 0;
+      padding: 14px 16px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .compare-head--technical {
+      background: rgba(235, 177, 177, 0.45);
+      color: var(--red);
+      border-right: 1px solid var(--rule);
+    }
+
+    .compare-head--full {
+      background: rgba(138, 204, 228, 0.35);
+      color: var(--blue);
+    }
+
+    .compare-point {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.3;
+      font-weight: 520;
+      padding: 14px 18px;
+      min-height: 100%;
+    }
+
+    .compare-point--technical {
+      background: rgba(235, 177, 177, 0.12);
+      border-right: 1px solid var(--rule);
+    }
+
+    .compare-point--full {
+      background: rgba(138, 204, 228, 0.1);
+    }
+
+    .compare-point--technical strong {
+      color: var(--red);
+    }
+
+    .compare-point--full strong {
+      color: var(--blue);
+    }
+
+    #export-root-3 .debate-box {
+      flex: 0 0 auto;
+      margin-top: 10px;
+      padding: 14px 18px;
+      background: var(--tan);
+      border: 1px solid var(--rule);
+    }
+
+    #export-root-3 .debate-box p {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.3;
+      font-weight: 520;
+    }
+
+    #export-root-3 .debate-box strong {
+      color: var(--red);
+    }
+
+    #export-root-3 .debate-box strong.emph-full {
+      color: var(--blue);
+    }
+
+    .key-badge {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 4px 8px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--red);
+      line-height: 1.1;
+    }
+
+    .download-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      max-width: 1080px;
+    }
+
+    .download-button {
+      padding: 12px 20px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 520;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .download-button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .download-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .font-warning {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      z-index: 1000;
+      max-width: 560px;
+      padding: 18px 22px;
+      border: 2px solid var(--red);
+      background: var(--tan);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(26, 26, 26, 0.18);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="canvas" id="export-root-1" aria-label="Canada technical recession - what happened">
+    <header class="header">
+      <div class="headlines">
+        <p class="mono">Technical recession vs full recession</p>
+        <h1>Canada is in a technical recession</h1>
+      </div>
+      <div class="brand" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" />
+      </div>
+    </header>
+    <div class="body">
+      <div class="body-main">
+        <div class="stat-duo">
+          <div class="quarter-card">
+            <p class="quarter-label">Q4 2025 (revised)</p>
+            <div class="quarter-main">
+              <div class="quarter-axis-row">
+                <p class="quarter-value">-1.0%</p>
+                <div class="quarter-bar-row quarter-bar-row--three" aria-hidden="true">
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--below">
+                        <p class="quarter-bar-tag">BoC projection</p>
+                        <p class="quarter-bar-when">Oct 2025</p>
+                        <p class="quarter-bar-pct">+1.0%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--up quarter-bar--proj" style="--bar-scale: 1;"></div>
+                    </div>
+                  </div>
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--above">
+                        <p class="quarter-bar-tag">StatCan Actual</p>
+                        <p class="quarter-bar-when">Feb 2026</p>
+                        <p class="quarter-bar-pct">-0.6%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--down quarter-bar--proj" style="--bar-scale: 0.6;"></div>
+                    </div>
+                  </div>
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--above">
+                        <p class="quarter-bar-tag">StatCan Revised</p>
+                        <p class="quarter-bar-when">May 2026</p>
+                        <p class="quarter-bar-pct quarter-bar-pct--actual">-1.0%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--down" style="--bar-scale: 1;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="quarter-note">Annualized real GDP contraction.</p>
+          </div>
+          <div class="quarter-card">
+            <p class="quarter-label">Q1 2026 (actual)</p>
+            <div class="quarter-main">
+              <div class="quarter-axis-row">
+                <p class="quarter-value">-0.1%</p>
+                <div class="quarter-bar-row quarter-bar-row--two" aria-hidden="true">
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--below">
+                        <p class="quarter-bar-tag">BoC projection</p>
+                        <p class="quarter-bar-when">Apr 2026</p>
+                        <p class="quarter-bar-pct">+1.5%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--up quarter-bar--proj" style="--bar-scale: 1;"></div>
+                    </div>
+                  </div>
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--above">
+                        <p class="quarter-bar-tag">StatCan Actual</p>
+                        <p class="quarter-bar-when">May 2026</p>
+                        <p class="quarter-bar-pct quarter-bar-pct--actual">-0.1%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--down" style="--bar-scale: 0.067;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="quarter-note">Second straight annualized drop.</p>
+          </div>
+        </div>
+        <div class="callout-strip">
+          <p class="callout-strip-label">What happened?</p>
+          <div class="callout-strip-body">
+            <p class="callout-strip-lead">We&rsquo;ve reached the technical GDP definition of a recession.</p>
+            <p class="callout-strip-detail">Statistics Canada has reported in its May 2026 release that Q1 real GDP fell 0.1% annualized after a revised 1.0% drop in Q4 2025. That is two consecutive quarters of annualized contraction.</p>
+          </div>
+        </div>
+        <div class="forecast-panel">
+          <p class="forecast-panel-label">What we learned this week</p>
+          <div class="forecast-compare">
+            <div class="forecast-block">
+              <p class="forecast-when">In April</p>
+              <p class="forecast-who">Bank of Canada projected</p>
+              <p class="forecast-num">+1.5%</p>
+            </div>
+            <p class="forecast-arrow" aria-hidden="true">&rarr;</p>
+            <div class="forecast-block forecast-block--actual">
+              <p class="forecast-when">This week</p>
+              <p class="forecast-who">Statistics Canada reported</p>
+              <p class="forecast-num">-0.1%</p>
+            </div>
+          </div>
+          <p class="forecast-note">April 29 Monetary Policy Report vs May 29 GDP release</p>
+        </div>
+        <div class="everyday-panel">
+          <p class="everyday-panel-label">What does this mean for everyday Canadians?</p>
+          <p class="everyday-panel-text">Slower growth can show up in hiring, wages, and household budgets. The technical label flags weak momentum — it is not, by itself, a call that a full crash is here.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">Sources: BoC MPR Oct 29, 2025 and Apr 29, 2026 (Table 3). StatCan Q4 Feb 27 and Q1 May 29, 2026.</footer>
+  </main>
+
+  <main class="canvas" id="export-root-2" aria-label="What is a technical recession">
+    <header class="header">
+      <div class="headlines">
+        <p class="mono">Technical recession vs full recession</p>
+        <h1>A technical recession is a GDP rule, not a final verdict</h1>
+      </div>
+      <div class="brand" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" />
+      </div>
+    </header>
+    <div class="body">
+      <div class="body-main">
+        <div class="rule-hero">
+          <p class="rule-hero-label">The simple rule</p>
+          <p class="rule-hero-text">A recession is defined as <strong>two quarters in a row</strong> where the economy shrinks after adjusting for inflation. No committee signs off. The label follows the data.</p>
+        </div>
+        <section class="caveats-block">
+          <p class="caveats-label">Caveats</p>
+          <ul class="step-list">
+          <li>
+            <img class="step-icon" src="https://img.icons8.com/ios/100/1A1A1A/combo-chart--v1.png" alt="" />
+            <span><span class="step-lead">Canada often reports each quarter <strong>as if it ran for a full year</strong>.</span> That pace can turn consecutive weak quarters into a recession label.</span>
+          </li>
+          <li>
+            <img class="step-icon" src="https://img.icons8.com/ios/100/1A1A1A/scales.png" alt="" />
+            <span><span class="step-lead">The rule tracks <strong>direction, not depth</strong>.</span> After a 1.0% Q4 drop, Q1 2026&rsquo;s -0.1% still extended the streak.</span>
+          </li>
+          <li>
+            <img class="step-icon" src="https://img.icons8.com/ios/100/1A1A1A/clock--v1.png" alt="" />
+            <span><span class="step-lead">Numbers get <strong>revised</strong>.</span> A later Statistics Canada update could undo or confirm the two-quarter streak.</span>
+          </li>
+          <li>
+            <img class="step-icon" src="https://img.icons8.com/ios/100/1A1A1A/news--v1.png" alt="" />
+            <span><span class="step-lead">Headlines say &ldquo;recession.&rdquo;</span> Economists often separate a two-quarter GDP rule from a wider, longer slump in jobs and spending.</span>
+          </li>
+        </ul>
+        </section>
+        <div class="nuance-box">
+          <p class="nuance-box-label">The unavoidable truth</p>
+          <p>Three of the last four quarters shrank on that year-style pace. Whether you use the recession label, the economy has been contracting.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">Sources: Statistics Canada, May 29, 2026. IMF Finance and Development, recession basics. CBC News, May 29, 2026.</footer>
+  </main>
+
+  <main class="canvas" id="export-root-3" aria-label="Technical vs full recession">
+    <header class="header">
+      <div class="headlines">
+        <p class="mono">Technical recession vs full recession</p>
+        <h1>Technical label vs a full recession</h1>
+      </div>
+      <div class="brand" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" />
+      </div>
+    </header>
+    <div class="body">
+      <div class="body-main">
+        <div class="compare-grid">
+          <div class="compare-head-row">
+            <h2 class="compare-head compare-head--technical">Technical recession</h2>
+            <h2 class="compare-head compare-head--full">Full recession</h2>
+          </div>
+          <div class="compare-row">
+            <p class="compare-point compare-point--technical"><strong>Trigger:</strong> Two quarters of lower real GDP, usually annualized.</p>
+            <p class="compare-point compare-point--full"><strong>Trigger:</strong> A <strong>significant</strong> decline across the economy, usually over months.</p>
+          </div>
+          <div class="compare-row">
+            <p class="compare-point compare-point--technical"><strong>Scope:</strong> GDP only. Not jobs or how wide the slump runs.</p>
+            <p class="compare-point compare-point--full"><strong>Scope:</strong> Jobs, incomes, output, and spending weaken together.</p>
+          </div>
+          <div class="compare-row">
+            <p class="compare-point compare-point--technical"><strong>Timing:</strong> In the GDP print. Can reverse next quarter.</p>
+            <p class="compare-point compare-point--full"><strong>Timing:</strong> U.S. NBER dates with a lag, using many monthly series, not GDP alone.</p>
+          </div>
+          <div class="compare-row">
+            <p class="compare-point compare-point--technical"><strong>Canada now:</strong> Rule met after Q4 -1.0% and Q1 -0.1%. April data may change the read.</p>
+            <p class="compare-point compare-point--full"><strong>Canada now:</strong> Investment down <strong>five</strong> straight quarters. Labour markets have softened alongside weak output.</p>
+          </div>
+        </div>
+        <div class="debate-box">
+          <span class="key-badge">Key difference</span>
+          <p><strong>Technical</strong> refers to back-to-back GDP declines. <strong class="emph-full">Full</strong> means broad, lasting weakness across the economy. BMO cited a year of weak GDP as reason to question further rate hikes.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">Sources: Statistics Canada, May 29, 2026. IMF and U.S. NBER recession definitions. CBC News and Global News, May 29, 2026.</footer>
+  </main>
+
+  <main class="canvas" id="export-root-4" aria-label="Canada technical recession - GDP summary">
+    <header class="header">
+      <div class="headlines">
+        <p class="mono">May 2026 StatCan release</p>
+        <h1>Canada is in a technical recession</h1>
+      </div>
+      <div class="brand" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" />
+      </div>
+    </header>
+    <div class="body">
+      <div class="body-main">
+        <div class="stat-duo">
+          <div class="quarter-card quarter-card--q4">
+            <p class="quarter-label">Q4 2025 (revised)</p>
+            <div class="quarter-main">
+              <div class="quarter-axis-row">
+                <p class="quarter-value">-1.0%</p>
+                <div class="quarter-bar-row quarter-bar-row--three" aria-hidden="true">
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--below">
+                        <p class="quarter-bar-tag">BoC projection</p>
+                        <p class="quarter-bar-when">Oct 2025</p>
+                        <p class="quarter-bar-pct">+1.0%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--up quarter-bar--proj" style="--bar-scale: 1;"></div>
+                    </div>
+                  </div>
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--above">
+                        <p class="quarter-bar-tag">StatCan Actual</p>
+                        <p class="quarter-bar-when">Feb 2026</p>
+                        <p class="quarter-bar-pct">-0.6%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--down quarter-bar--proj" style="--bar-scale: 0.6;"></div>
+                    </div>
+                  </div>
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--above">
+                        <p class="quarter-bar-tag">StatCan Revised</p>
+                        <p class="quarter-bar-when">May 2026</p>
+                        <p class="quarter-bar-pct quarter-bar-pct--actual">-1.0%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--down" style="--bar-scale: 1;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="quarter-note">Annualized real GDP contraction.</p>
+          </div>
+          <div class="quarter-card">
+            <p class="quarter-label">Q1 2026 (actual)</p>
+            <div class="quarter-main">
+              <div class="quarter-axis-row">
+                <p class="quarter-value">-0.1%</p>
+                <div class="quarter-bar-row quarter-bar-row--two" aria-hidden="true">
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--below">
+                        <p class="quarter-bar-tag">BoC projection</p>
+                        <p class="quarter-bar-when">Apr 2026</p>
+                        <p class="quarter-bar-pct">+1.5%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--up" style="--bar-scale: 1;"></div>
+                    </div>
+                  </div>
+                  <div class="quarter-bar-item">
+                    <div class="quarter-plot">
+                      <div class="quarter-bar-meta quarter-bar-meta--above">
+                        <p class="quarter-bar-tag">StatCan Actual</p>
+                        <p class="quarter-bar-when">May 2026</p>
+                        <p class="quarter-bar-pct quarter-bar-pct--actual">-0.1%</p>
+                      </div>
+                      <div class="quarter-bar quarter-bar--down" style="--bar-scale: 0.067;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="quarter-note">Second straight annualized drop.</p>
+          </div>
+        </div>
+        <div class="callout-strip">
+          <p class="callout-strip-label">What happened?</p>
+          <div class="callout-strip-body">
+            <p class="callout-strip-lead">We&rsquo;ve reached the technical GDP definition of a recession.</p>
+            <p class="callout-strip-detail">Statistics Canada has reported in its May 2026 release that Q1 real GDP fell 0.1% annualized after a revised 1.0% drop in Q4 2025. That is two consecutive quarters of annualized contraction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">Sources: BoC MPR Oct 29, 2025 and Apr 29, 2026 (Table 3). StatCan Q4 Feb 27 and Q1 May 29, 2026.</footer>
+  </main>
+
+  <div class="download-row">
+    <button type="button" class="download-button" id="download-png-1">Download slide 1</button>
+    <button type="button" class="download-button" id="download-png-2">Download slide 2</button>
+    <button type="button" class="download-button" id="download-png-3">Download slide 3</button>
+    <button type="button" class="download-button" id="download-png-4">Download slide 4</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test Söhne", families: ["Test Söhne", "TestSöhne"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        }
+      ];
+      const sample = "Build Canada technical recession GDP 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) {
+            return true;
+          }
+
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) =>
+            textWidth(`${quotedFont}, ${fallback}`)
+          );
+
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => {
+          warning.hidden = true;
+        });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts
+          .filter((font) => !fontIsAvailable(font.families))
+          .map((font) => font.name);
+
+        if (missingFonts.length > 0) {
+          showWarning(missingFonts);
+        }
+      });
+
+      function whenImagesLoaded(root) {
+        const images = [...root.querySelectorAll("img")];
+        return Promise.all(
+          images.map(
+            (img) =>
+              new Promise((resolve) => {
+                if (img.complete) {
+                  resolve();
+                  return;
+                }
+                img.addEventListener("load", resolve, { once: true });
+                img.addEventListener("error", resolve, { once: true });
+              })
+          )
+        );
+      }
+
+      const EXPORT_PIXEL_RATIO = 4;
+      const EXPORT_WIDTH = 1080;
+      const EXPORT_HEIGHT = 1080;
+
+      async function exportSlide(rootId, filename, triggerButton) {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
+          return;
+        }
+
+        const buttons = document.querySelectorAll(".download-button");
+        buttons.forEach((button) => {
+          button.disabled = true;
+        });
+        const originalText = triggerButton.textContent;
+        triggerButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+          }
+
+          const canvasElement = document.getElementById(rootId);
+          await whenImagesLoaded(canvasElement);
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            pixelRatio: EXPORT_PIXEL_RATIO,
+            width: EXPORT_WIDTH,
+            height: EXPORT_HEIGHT,
+            style: {
+              margin: "0",
+              transform: "none"
+            }
+          });
+
+          const link = document.createElement("a");
+          link.download = filename;
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          buttons.forEach((button) => {
+            button.disabled = false;
+          });
+          triggerButton.textContent = originalText;
+        }
+      }
+
+      [
+        {
+          buttonId: "download-png-1",
+          rootId: "export-root-1",
+          filename: "canada-technical-recession-01-context.png"
+        },
+        {
+          buttonId: "download-png-2",
+          rootId: "export-root-2",
+          filename: "canada-technical-recession-02-definition.png"
+        },
+        {
+          buttonId: "download-png-3",
+          rootId: "export-root-3",
+          filename: "canada-technical-recession-03-vs-full.png"
+        },
+        {
+          buttonId: "download-png-4",
+          rootId: "export-root-4",
+          filename: "canada-technical-recession-04-summary.png"
+        }
+      ].forEach(({ buttonId, rootId, filename }) => {
+        const button = document.getElementById(buttonId);
+        button.addEventListener("click", () => exportSlide(rootId, filename, button));
+      });
+    })();
+  </script>
+</body>
+</html>
