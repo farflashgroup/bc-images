@@ -1,0 +1,57 @@
+/* Build Canada brand fonts — load from repo fonts/ (relative to Graphics/). */
+
+@font-face {
+  font-family: "Test Söhne";
+  font-style: normal;
+  font-weight: 400 520;
+  font-display: swap;
+  src: url("../fonts/TestSöhne-Buch.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Söhne";
+  font-style: italic;
+  font-weight: 400 520;
+  font-display: swap;
+  src: url("../fonts/TestSöhne-BuchKursiv.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Söhne";
+  font-style: normal;
+  font-weight: 600 760;
+  font-display: swap;
+  src: url("../fonts/TestSöhne-Dreiviertelfett.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Söhne Mono";
+  font-style: normal;
+  font-weight: 400 520;
+  font-display: swap;
+  src: url("../fonts/TestSöhneMono-Buch.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Söhne Mono";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("../fonts/TestSöhneMono-Halbfett.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Founders Grotesk";
+  font-style: normal;
+  font-weight: 400 520;
+  font-display: swap;
+  src: url("../fonts/TestFoundersGroteskText-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Founders Grotesk";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("../fonts/TestFoundersGroteskText-Bold.otf") format("opentype");
+}

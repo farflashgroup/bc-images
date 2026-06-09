@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Where are businesses adopting AI the most? — Build Canada</title>
+  <link rel="stylesheet" href="brand-fonts.css" />
   <style>
     :root {
       --paper: #F4EBE3;
@@ -31,7 +32,8 @@
       padding: 28px 0 40px;
       background: #d9d0c7;
       color: var(--ink);
-      font-family: "Test Söhne", "TestSöhne", Arial, sans-serif;
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-synthesis: none;
     }
 
     .canvas {
@@ -43,6 +45,9 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-synthesis: none;
+      color: var(--ink);
     }
 
     .canvas::before {
@@ -70,9 +75,9 @@
       padding-right: 8px;
     }
 
-    .mono {
+    .canvas .mono {
       margin: 0 0 12px;
-      font-family: "Test Söhne Mono", "TestSöhneMono", "Roboto Mono", monospace;
+      font-family: "Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO", "Roboto Mono", monospace;
       font-size: 20px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -81,9 +86,10 @@
       line-height: 1.2;
     }
 
-    h1 {
+    .canvas h1 {
       margin: 0;
       max-width: 860px;
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
       font-size: 64px;
       line-height: 1.02;
       letter-spacing: -0.03em;
@@ -91,9 +97,10 @@
       color: var(--ink);
     }
 
-    .deck {
+    .canvas .deck {
       margin: 16px 0 0;
       max-width: 860px;
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
       font-size: 26px;
       line-height: 1.32;
       font-weight: 520;
@@ -219,12 +226,14 @@
       min-width: 0;
     }
 
-    .entity-name {
+    .canvas .entity-name {
       margin: 0;
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
       font-size: 26px;
       line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-weight: 520;
+      letter-spacing: -0.01em;
+      color: var(--ink);
     }
 
     .bar-track {
@@ -249,10 +258,11 @@
       background: var(--red);
     }
 
-    .bar-value {
+    .canvas .bar-value {
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
       font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-weight: 760;
+      letter-spacing: 0.02em;
       color: var(--paper);
       line-height: 1.1;
       white-space: nowrap;

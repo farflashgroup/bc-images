@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Canada — font family check</title>
+  <link rel="stylesheet" href="brand-fonts.css" />
+  <style>
+    body {
+      margin: 24px;
+      max-width: 720px;
+      font-family: "Test Söhne", Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.45;
+      color: #1a1a1a;
+      background: #f4ebe3;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 760;
+      margin: 0 0 12px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 760;
+      margin: 24px 0 10px;
+    }
+
+    .sample {
+      margin: 12px 0;
+      padding: 14px 16px;
+      border: 1px solid #c8bfb0;
+      background: #fff;
+    }
+
+    .sample p {
+      margin: 0 0 8px;
+      font-size: 36px;
+      font-weight: 520;
+    }
+
+    .sample p.display {
+      font-size: 32px;
+      font-weight: 760;
+      margin-top: 6px;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #6b6055;
+      font-family: Arial, sans-serif;
+    }
+
+    .bad {
+      color: #872d2e;
+      font-weight: 700;
+    }
+
+    .ok {
+      color: #2e7935;
+      font-weight: 700;
+    }
+
+    .hero-ok {
+      padding: 14px 16px;
+      border: 2px solid #2e7935;
+      background: rgba(46, 121, 53, 0.08);
+      margin-bottom: 16px;
+    }
+
+    .hero-bad {
+      padding: 14px 16px;
+      border: 2px solid #872d2e;
+      background: rgba(135, 45, 46, 0.08);
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Font family check</h1>
+  <p>
+    Open via <code>http://localhost:8765/font-family-check-2026.html</code> (not double-click).
+    This page loads <code>brand-fonts.css</code> from <code>../fonts/</code> in the repo.
+  </p>
+  <div id="summary"></div>
+  <h2>Test Söhne (body 520 / display 760)</h2>
+  <div id="sohne-sample" class="sample"></div>
+  <h2>Test Söhne Mono (600)</h2>
+  <div id="mono-sample" class="sample"></div>
+  <h2>Test Founders Grotesk (700)</h2>
+  <div id="founders-sample" class="sample"></div>
+  <p class="meta" id="width-note"></p>
+  <script>
+    const probe = "Build Canada 0123456789";
+
+    function widthFor(fontDescriptor) {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.font = fontDescriptor;
+      return ctx.measureText(probe).width;
+    }
+
+    function differsFromArial(weight, family) {
+      const arialW = widthFor(`${weight} 48px Arial`);
+      const testW = widthFor(`${weight} 48px "${family}", Arial`);
+      return Math.abs(testW - arialW) > 0.5;
+    }
+
+    function addSample(rootId, family, weights) {
+      const root = document.getElementById(rootId);
+      weights.forEach(({ weight, label, className }) => {
+        const line = document.createElement("p");
+        if (className) line.className = className;
+        line.style.fontFamily = `"${family}", Arial, sans-serif`;
+        line.style.fontWeight = String(weight);
+        line.textContent = `${family} — ${label} (${weight})`;
+        root.appendChild(line);
+
+        const arialW = widthFor(`${weight} 48px Arial`);
+        const testW = widthFor(`${weight} 48px "${family}", Arial`);
+        const ok = Math.abs(testW - arialW) > 0.5;
+        const meta = document.createElement("p");
+        meta.className = "meta";
+        meta.innerHTML = ok
+          ? `<span class="ok">Distinct from Arial</span> — width ${testW.toFixed(1)} (Arial ${arialW.toFixed(1)})`
+          : `<span class="bad">Still Arial</span> — width ${testW.toFixed(1)} matches Arial ${arialW.toFixed(1)}`;
+        root.appendChild(meta);
+      });
+    }
+
+    async function run() {
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+
+      addSample("sohne-sample", "Test Söhne", [
+        { weight: 520, label: "body" },
+        { weight: 760, label: "display", className: "display" }
+      ]);
+      addSample("mono-sample", "Test Söhne Mono", [{ weight: 600, label: "mono caps" }]);
+      addSample("founders-sample", "Test Founders Grotesk", [{ weight: 700, label: "labels" }]);
+
+      const sohneOk = differsFromArial(520, "Test Söhne") && differsFromArial(760, "Test Söhne");
+      const summary = document.getElementById("summary");
+      summary.className = sohneOk ? "hero-ok" : "hero-bad";
+      summary.innerHTML = sohneOk
+        ? "<strong>Repo fonts loaded.</strong> Test Söhne is rendering from <code>fonts/TestSöhne-*.otf</code> via <code>brand-fonts.css</code>."
+        : "<strong>Repo fonts not loading.</strong> Check that <code>fonts/TestSöhne-Buch.otf</code> exists and you are on <code>http://localhost</code> (file:// blocks font files).";
+
+      document.getElementById("width-note").textContent =
+        "System-only names (TestSöhne, TESTSÖHNE) often fail on Windows; graphics should link brand-fonts.css, not rely on installed fonts alone.";
+    }
+
+    run();
+  </script>
+</body>
+</html>

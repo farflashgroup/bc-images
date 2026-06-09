@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Canada - National AI Strategy carousel (1080×1080)</title>
+  <link rel="stylesheet" href="brand-fonts.css" />
+  <style>
+    :root {
+      --paper: #f4ebe3;
+      --ink: #1a1a1a;
+      --muted: #6b6055;
+      --rule: #c8bfb0;
+      --red: #872d2e;
+      --tan: #ede5d5;
+      --rose-fill: rgba(235, 177, 177, 0.24);
+      --size: 1080px;
+      --frame: 10px;
+      --sohne: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      --mono: "Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO", "Roboto Mono", monospace;
+      --founders: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0 40px;
+      background: #d9d0c7;
+      font-family: var(--sohne);
+      font-synthesis: none;
+      color: var(--ink);
+    }
+
+    /* ── Slide shell (1080×1080) ── */
+    .slide {
+      position: relative;
+      width: var(--size);
+      height: var(--size);
+      background: var(--paper);
+      overflow: hidden;
+      font-family: var(--sohne);
+      font-synthesis: none;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: var(--frame);
+      border: 2px solid var(--ink);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .slide--content {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      padding: 26px 34px 18px;
+      gap: 0;
+    }
+
+    .slide--content::after {
+      content: "";
+      position: absolute;
+      inset: var(--frame);
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(26, 26, 26, 0.12) 1px, transparent 1.1px);
+      background-size: 12px 12px;
+      -webkit-mask-image: radial-gradient(ellipse 120% 90% at 0% 0%, #000 0%, transparent 65%);
+      mask-image: radial-gradient(ellipse 120% 90% at 0% 0%, #000 0%, transparent 65%);
+    }
+
+    .slide--content > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Header / footer ── */
+    .slide__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .slide__headlines {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .slide__logo {
+      flex-shrink: 0;
+      width: 76px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide__logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .slide__body {
+      min-height: 0;
+      overflow: hidden;
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slide__footer {
+      margin: 0;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--founders);
+      font-size: 13px;
+      font-weight: 520;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    /* ── Type roles ── */
+    .t-kicker {
+      margin: 0 0 6px;
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--muted);
+    }
+
+    .t-h1 {
+      margin: 0;
+      font-size: 60px;
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 760;
+      color: var(--ink);
+    }
+
+    .t-stat {
+      margin: 0;
+      font-family: var(--sohne);
+      font-size: 28px;
+      font-weight: 760;
+      font-synthesis: none;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .t-stat--red {
+      color: var(--red);
+    }
+
+    .t-body {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 520;
+      line-height: 1.28;
+      color: var(--ink);
+    }
+
+    .t-body-lg {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 520;
+      line-height: 1.24;
+      color: var(--ink);
+    }
+
+    .t-row-title {
+      margin: 0 0 3px;
+      font-size: 22px;
+      font-weight: 760;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .t-mono-label {
+      margin: 0 0 5px;
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--muted);
+    }
+
+    /* ── Cover (slide 1) ── */
+    .slide--cover {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      padding: 0;
+    }
+
+    .cover__hero {
+      grid-area: 1 / 1;
+      position: relative;
+      overflow: hidden;
+      background: #141c22;
+    }
+
+    .cover__hero img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 42%;
+      transform: scale(1.06);
+      transform-origin: 50% 40%;
+    }
+
+    .cover__shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(26, 26, 26, 0.18) 0%,
+        rgba(26, 26, 26, 0.04) 22%,
+        rgba(26, 26, 26, 0) 32%,
+        rgba(244, 235, 227, 0) 36%,
+        rgba(244, 235, 227, 0.35) 44%,
+        rgba(244, 235, 227, 0.68) 50%,
+        rgba(244, 235, 227, 0.9) 56%,
+        var(--paper) 62%
+      );
+      pointer-events: none;
+    }
+
+    .cover__logo {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      z-index: 6;
+    }
+
+    .cover__logo img {
+      display: block;
+      height: 72px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .cover__body {
+      grid-area: 1 / 1;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 34px 52px;
+      pointer-events: none;
+    }
+
+    .cover__kicker {
+      margin: 0 0 10px;
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+
+    .cover__rule {
+      width: 96px;
+      height: 6px;
+      background: var(--red);
+      margin-bottom: 16px;
+    }
+
+    .cover__h1 {
+      margin: 0;
+      font-size: 96px;
+      line-height: 0.98;
+      letter-spacing: -0.034em;
+      font-weight: 760;
+      text-wrap: balance;
+      color: var(--ink);
+    }
+
+    .cover__h1 .accent {
+      color: var(--red);
+    }
+
+    .cover__deck {
+      display: inline-block;
+      margin: 18px 0 0;
+      padding: 10px 18px;
+      font-size: 32px;
+      font-weight: 520;
+      line-height: 1.15;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .slide--cover .slide__footer {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 18px;
+      z-index: 6;
+      margin: 0;
+    }
+
+    /* ── Quote block (slide 2) ── */
+    .quote {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--tan);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 12px 16px 10px;
+      box-shadow: 0 2px 0 rgba(26, 26, 26, 0.05);
+    }
+
+    .quote__inner {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding-left: 68px;
+      border-left: 5px solid var(--red);
+    }
+
+    .quote__mark {
+      position: absolute;
+      left: 12px;
+      top: 0;
+      margin: 0;
+      font-size: 76px;
+      line-height: 0.85;
+      font-weight: 760;
+      color: var(--red);
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .quote__paras {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0 10px;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .quote__para {
+      margin: 0;
+      font-size: 52px;
+      font-weight: 520;
+      font-style: italic;
+      font-synthesis: none;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .quote__attr {
+      flex-shrink: 0;
+      margin: 0;
+      padding: 10px 0 0;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 19px;
+      font-weight: 600;
+      font-synthesis: none;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ── Bar chart panel ── */
+    .panel {
+      flex-shrink: 0;
+      background: var(--tan);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--red);
+      border-radius: 10px;
+      padding: 12px 16px 10px;
+      box-shadow: 0 2px 0 rgba(26, 26, 26, 0.05);
+    }
+
+    .bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bars__title {
+      margin: 0 0 4px;
+      font-family: var(--mono);
+      font-size: 17px;
+      font-weight: 600;
+      font-synthesis: none;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--muted);
+    }
+
+    .bars__label {
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 600;
+      font-synthesis: none;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--muted);
+    }
+
+    .bars__chart {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) 72px;
+      column-gap: 10px;
+      row-gap: 8px;
+      align-items: center;
+    }
+
+    .bars__chart .t-stat {
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      justify-self: stretch;
+    }
+
+    .bars__track {
+      height: 24px;
+      background: rgba(26, 26, 26, 0.06);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bars__fill {
+      display: block;
+      height: 100%;
+      border-radius: 3px;
+      min-width: 3px;
+    }
+
+    .bars__fill--now {
+      width: 12%;
+      background: var(--red);
+    }
+
+    .bars__fill--goal {
+      width: 60%;
+      background: var(--ink);
+      opacity: 0.72;
+    }
+
+    .bars__note {
+      margin: 4px 0 0;
+      padding-top: 10px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: 520;
+      line-height: 1.28;
+    }
+
+    .bars__note .t-stat {
+      font-size: 22px;
+    }
+
+    .bars__caption {
+      margin: 4px 0 0;
+      padding-top: 10px;
+      border-top: 1px solid var(--rule);
+      font-size: 19px;
+      font-weight: 520;
+      line-height: 1.28;
+    }
+
+    .bars__flag {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    /* ── Item rows (slide 3) ── */
+    .items {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      gap: 7px;
+      overflow: hidden;
+    }
+
+    .items--six {
+      grid-template-rows: repeat(6, minmax(0, 1fr));
+    }
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 14px;
+      padding: 12px 16px 12px 12px;
+      min-height: 0;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      box-shadow: 0 1px 0 rgba(26, 26, 26, 0.04);
+    }
+
+    .item__icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--tan);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+    }
+
+    .item__icon img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    .item__copy {
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .item .t-row-title {
+      font-size: 26px;
+      margin-bottom: 3px;
+      line-height: 1.12;
+    }
+
+    .item .t-body {
+      font-size: 26px;
+      line-height: 1.24;
+    }
+
+    #export-root-3 .item {
+      padding-left: 16px;
+    }
+
+    /* ── Need cards (slide 4) ── */
+    .needs {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    .need {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      padding: 10px 14px;
+      min-height: 0;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--red);
+      border-radius: 10px;
+      box-shadow: 0 2px 0 rgba(26, 26, 26, 0.04);
+    }
+
+    .need__num {
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 760;
+      color: var(--red);
+      background: var(--rose-fill);
+      border: 1px solid rgba(135, 45, 46, 0.35);
+      border-radius: 50%;
+    }
+
+    .need__copy {
+      min-width: 0;
+    }
+
+    #export-root-4 .need {
+      grid-template-columns: 66px minmax(0, 1fr);
+      gap: 16px;
+      padding: 8px 16px 8px 12px;
+    }
+
+    #export-root-4 .need__num {
+      width: 60px;
+      height: 60px;
+      font-size: 34px;
+    }
+
+    #export-root-4 .t-mono-label {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    #export-root-4 .t-body-lg {
+      font-size: 38px;
+      line-height: 1.2;
+    }
+
+    /* ── Downloads / warning ── */
+    .downloads {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      max-width: var(--size);
+      padding: 0 12px;
+    }
+
+    .downloads button {
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      font-family: var(--founders);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .downloads button:hover {
+      background: var(--tan);
+    }
+
+    .downloads button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .font-warning {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      max-width: 520px;
+      padding: 16px 20px;
+      border: 2px solid var(--red);
+      background: var(--tan);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      box-shadow: 0 8px 24px rgba(26, 26, 26, 0.15);
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+    }
+
+    .font-warning button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <!-- Slide 1: Cover -->
+  <main class="slide slide--cover" id="export-root-1" aria-label="National AI Strategy - cover">
+    <div class="cover__hero">
+      <img src="article-assets/ai-datacenter-hero.jpg" width="2000" height="1333" alt="" decoding="async" />
+      <div class="cover__shade" aria-hidden="true"></div>
+    </div>
+    <div class="cover__logo" aria-label="Build Canada logo">
+      <img src="../Build Canada Logo.png" alt="Build Canada" width="2000" height="2000" decoding="async" />
+    </div>
+    <div class="cover__body">
+      <p class="cover__kicker">National AI Strategy · June 4, 2026</p>
+      <div class="cover__rule" aria-hidden="true"></div>
+      <h1 class="cover__h1">Canada is not going for <span class="accent">Gold</span> with our AI strategy.</h1>
+      <p class="cover__deck">Our take on AI for All</p>
+    </div>
+    <footer class="slide__footer">Sources: Government of Canada, National Artificial Intelligence Strategy, June 4, 2026. Build Canada analysis, June 4, 2026.</footer>
+  </main>
+
+  <!-- Slide 2: Quote -->
+  <main class="slide slide--content" id="export-root-2" aria-label="National AI Strategy - key quote">
+    <header class="slide__header">
+      <div class="slide__headlines">
+        <p class="t-kicker">Build Canada</p>
+        <h1 class="t-h1">Sovereignty still falls short</h1>
+      </div>
+      <div class="slide__logo" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" width="2000" height="2000" decoding="async" />
+      </div>
+    </header>
+    <div class="slide__body">
+      <div class="quote">
+        <div class="quote__inner">
+          <p class="quote__mark" aria-hidden="true">&ldquo;</p>
+          <div class="quote__paras">
+            <p class="quote__para">On the consumer side, Canada&rsquo;s National Artificial Intelligence Strategy gets a lot of things right and this government deserves credit for that.</p>
+            <p class="quote__para">But from a digital and economic sovereignty perspective it falls short.</p>
+            <p class="quote__para">What the AI industry most needs is for governments to create the free market conditions for AI companies to start, scale and thrive here.</p>
+          </div>
+          <p class="quote__attr">Build Canada</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide__footer">Sources: Build Canada analysis, June 4, 2026. Government of Canada, National Artificial Intelligence Strategy, June 4, 2026.</footer>
+  </main>
+
+  <!-- Slide 3: What it includes -->
+  <main class="slide slide--content" id="export-root-3" aria-label="National AI Strategy - what it includes">
+    <header class="slide__header">
+      <div class="slide__headlines">
+        <p class="t-kicker">What the strategy includes</p>
+        <h1 class="t-h1">What it includes</h1>
+      </div>
+      <div class="slide__logo" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" width="2000" height="2000" decoding="async" />
+      </div>
+    </header>
+    <div class="slide__body">
+      <div class="panel" aria-label="Business AI adoption today versus strategy target">
+        <div class="bars">
+          <p class="bars__title">Adoption north star</p>
+          <div class="bars__chart">
+            <span class="bars__label">Today</span>
+            <div class="bars__track"><span class="bars__fill bars__fill--now"></span></div>
+            <span class="t-stat">12%</span>
+            <span class="bars__label">Target</span>
+            <div class="bars__track"><span class="bars__fill bars__fill--goal"></span></div>
+            <span class="t-stat">60%</span>
+          </div>
+          <p class="bars__note">
+            <img class="bars__flag" src="../iOS Emoji Flags/CA.png" alt="" width="36" height="36" decoding="async" />
+            <span><span class="t-stat t-stat--red">12%</span> of Canadian businesses used AI in 2025</span>
+          </p>
+        </div>
+      </div>
+      <div class="items items--six">
+        <div class="item">
+          <div class="item__icon"><img src="https://img.icons8.com/ios/100/1A1A1A/overview-pages-3.png" alt="" width="24" height="24" decoding="async" /></div>
+          <div class="item__copy">
+            <p class="t-row-title">AI for All</p>
+            <p class="t-body">Six-pillar national roadmap for safe, sovereign AI.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item__icon"><img src="https://img.icons8.com/ios/100/1A1A1A/cloud-storage.png" alt="" width="24" height="24" decoding="async" /></div>
+          <div class="item__copy">
+            <p class="t-row-title">Sovereign compute</p>
+            <p class="t-body">Public supercomputer and sovereign cloud at scale.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item__icon"><img src="https://img.icons8.com/ios/100/1A1A1A/rocket--v1.png" alt="" width="24" height="24" decoding="async" /></div>
+          <div class="item__copy">
+            <p class="t-row-title">Scale champions</p>
+            <p class="t-body">Canada Strong Fund, Tech Growth Fund, anchor customer.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item__icon"><img src="https://img.icons8.com/ios/100/1A1A1A/stethoscope.png" alt="" width="24" height="24" decoding="async" /></div>
+          <div class="item__copy">
+            <p class="t-row-title">AI missions</p>
+            <p class="t-body">Sector missions starting in health care.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item__icon"><img src="https://img.icons8.com/ios/100/1A1A1A/database.png" alt="" width="24" height="24" decoding="async" /></div>
+          <div class="item__copy">
+            <p class="t-row-title">Compute access</p>
+            <p class="t-body">AI Compute Access Fund for SMEs.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item__icon"><img src="https://img.icons8.com/ios/100/1A1A1A/shield.png" alt="" width="24" height="24" decoding="async" /></div>
+          <div class="item__copy">
+            <p class="t-row-title">Trust and literacy</p>
+            <p class="t-body">Literacy training, trusted-AI certification, and new privacy rules signalled.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide__footer">Sources: Government of Canada, National Artificial Intelligence Strategy, June 4, 2026. CBC News, April 28, 2026. Statistics Canada, business AI adoption, 2025.</footer>
+  </main>
+
+  <!-- Slide 4: What it needs -->
+  <main class="slide slide--content" id="export-root-4" aria-label="National AI Strategy - what it needs">
+    <header class="slide__header">
+      <div class="slide__headlines">
+        <p class="t-kicker">Playing to win</p>
+        <h1 class="t-h1">What it needs</h1>
+      </div>
+      <div class="slide__logo" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" width="2000" height="2000" decoding="async" />
+      </div>
+    </header>
+    <div class="slide__body">
+      <div class="needs">
+        <div class="need">
+          <div class="need__num" aria-hidden="true">1</div>
+          <div class="need__copy">
+            <p class="t-mono-label">Founder economics now</p>
+            <p class="t-body-lg">Defer capital gains reinvested in Canadian companies and fix employee equity taxation. Not a future study.</p>
+          </div>
+        </div>
+        <div class="need">
+          <div class="need__num" aria-hidden="true">2</div>
+          <div class="need__copy">
+            <p class="t-mono-label">Energy emergency</p>
+            <p class="t-body-lg">Approve power and data centres in months. Build this decade.</p>
+          </div>
+        </div>
+        <div class="need">
+          <div class="need__num" aria-hidden="true">3</div>
+          <div class="need__copy">
+            <p class="t-mono-label">Regulation speed limit</p>
+            <p class="t-body-lg">Apply the laws we have. Clear new products fast.</p>
+          </div>
+        </div>
+        <div class="need">
+          <div class="need__num" aria-hidden="true">4</div>
+          <div class="need__copy">
+            <p class="t-mono-label">Fewer programs</p>
+            <p class="t-body-lg">Collapse 130+ programs into fewer than ten. Unlock pension capital.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide__footer">Sources: Build Canada analysis, June 4, 2026.</footer>
+  </main>
+
+  <div class="downloads">
+    <button type="button" id="download-png-1">Download slide 1</button>
+    <button type="button" id="download-png-2">Download slide 2</button>
+    <button type="button" id="download-png-3">Download slide 3</button>
+    <button type="button" id="download-png-4">Download slide 4</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const SAMPLE = "Build Canada National AI Strategy 0123456789";
+
+      function textWidth(descriptor) {
+        const c = document.createElement("canvas").getContext("2d");
+        c.font = descriptor;
+        return c.measureText(SAMPLE).width;
+      }
+
+      function fontOk(family, weight) {
+        const a = textWidth(`${weight} 48px Arial`);
+        const t = textWidth(`${weight} 48px "${family}", Arial`);
+        return Math.abs(t - a) > 0.5;
+      }
+
+      async function embedCss() {
+        let css = "";
+        try {
+          const res = await fetch("brand-fonts.css");
+          if (res.ok) css = await res.text();
+        } catch (_) {}
+        const inline = document.querySelector("style");
+        if (inline) css += "\n" + inline.textContent;
+        return css;
+      }
+
+      const FONT_CHECKS = [
+        { name: "Test Söhne", family: "Test Söhne", weights: [520, 760] },
+        { name: "Test Founders Grotesk", family: "Test Founders Grotesk", weights: [700] },
+        { name: "Test Söhne Mono", family: "Test Söhne Mono", weights: [600] }
+      ];
+
+      window.addEventListener("load", async () => {
+        if (document.fonts?.ready) await document.fonts.ready;
+        const missing = [];
+        FONT_CHECKS.forEach((f) => {
+          const bad = f.weights.filter((w) => !fontOk(f.family, w));
+          if (bad.length) missing.push(`${f.name} (${bad.join(", ")})`);
+        });
+        if (missing.length) {
+          const el = document.getElementById("font-warning");
+          document.getElementById("font-warning-message").textContent =
+            `Required brand font${missing.length > 1 ? "s are" : " is"} not loading: ${missing.join(", ")}. Open via http://localhost (not file://).`;
+          el.hidden = false;
+          document.getElementById("font-warning-dismiss").onclick = () => {
+            el.hidden = true;
+          };
+        }
+      });
+
+      function whenImagesLoaded(root) {
+        return Promise.all(
+          [...root.querySelectorAll("img")].map(
+            (img) =>
+              new Promise((resolve) => {
+                if (img.complete) resolve();
+                else {
+                  img.addEventListener("load", resolve, { once: true });
+                  img.addEventListener("error", resolve, { once: true });
+                }
+              })
+          )
+        );
+      }
+
+      async function exportSlide(rootId, filename, btn) {
+        if (!window.htmlToImage) {
+          alert("PNG export library failed to load.");
+          return;
+        }
+        document.querySelectorAll(".downloads button").forEach((b) => {
+          b.disabled = true;
+        });
+        const prev = btn.textContent;
+        btn.textContent = "Rendering…";
+        try {
+          if (document.fonts?.ready) await document.fonts.ready;
+          const root = document.getElementById(rootId);
+          await whenImagesLoaded(root);
+          const url = await htmlToImage.toPng(root, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            fontEmbedCSS: await embedCss(),
+            pixelRatio: 4,
+            width: 1080,
+            height: 1080,
+            canvasWidth: 1080,
+            canvasHeight: 1080,
+            style: { margin: "0", transform: "none" }
+          });
+          const a = document.createElement("a");
+          a.download = filename;
+          a.href = url;
+          a.click();
+        } finally {
+          document.querySelectorAll(".downloads button").forEach((b) => {
+            b.disabled = false;
+          });
+          btn.textContent = prev;
+        }
+      }
+
+      [
+        ["download-png-1", "export-root-1", "build-canada-ai-strategy-01-cover.png"],
+        ["download-png-2", "export-root-2", "build-canada-ai-strategy-02-quote.png"],
+        ["download-png-3", "export-root-3", "build-canada-ai-strategy-03-includes.png"],
+        ["download-png-4", "export-root-4", "build-canada-ai-strategy-04-needs.png"]
+      ].forEach(([id, root, file]) => {
+        const btn = document.getElementById(id);
+        btn.addEventListener("click", () => exportSlide(root, file, btn));
+      });
+    })();
+  </script>
+</body>
+</html>

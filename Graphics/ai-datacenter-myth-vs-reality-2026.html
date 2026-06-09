@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Data Centres Are Worth Building - Build Canada (4 slides)</title>
+  <link rel="stylesheet" href="brand-fonts.css" />
+  <link rel="stylesheet" href="brand-type-scale.css" />
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --muted: #6B6055;
+      --rule: #C8BFB0;
+      --red: #872D2E;
+      --blue: #305E7E;
+      --tan: #EDE5D5;
+      --grey-track: rgba(200, 191, 176, 0.35);
+      --size: 1080px;
+      --frame: 10px;
+      --sohne: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      --mono: "Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO", "Roboto Mono", monospace;
+      --founders: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 0 44px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: var(--sohne);
+      font-synthesis: none;
+    }
+
+    .slide {
+      position: relative;
+      width: var(--size);
+      height: var(--size);
+      background: var(--paper);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      padding: 22px 40px 14px;
+      font-family: var(--sohne);
+      font-synthesis: none;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: var(--frame);
+      border: 2px solid var(--ink);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .slide__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+
+    .slide__headlines { flex: 1; min-width: 0; }
+
+    .slide__kicker {
+      margin: 0 0 4px;
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+
+    .slide__title-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide__icon {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .slide__h1 {
+      margin: 0;
+      font-size: 64px;
+      line-height: 1.02;
+      letter-spacing: -0.028em;
+      font-weight: 760;
+      color: var(--ink);
+    }
+
+    .slide__logo {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      background: var(--paper);
+    }
+
+    .slide__logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .slide__body {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding-top: 12px;
+    }
+
+    /* Myth */
+    .myth-band {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 14px 18px 14px 16px;
+      background: var(--tan);
+      border-left: 5px solid var(--blue);
+      border-radius: 2px;
+    }
+
+    .myth-label {
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      line-height: 1.2;
+    }
+
+    .myth-text {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.28;
+      font-weight: 520;
+      color: var(--ink);
+    }
+
+    /* Reality block */
+    .reality-zone {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .reality-head {
+      flex-shrink: 0;
+      padding-left: 16px;
+      border-left: 4px solid var(--red);
+    }
+
+    .reality-label {
+      margin: 0 0 2px;
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.2;
+    }
+
+    .hero-stat {
+      margin: 0 0 6px;
+      font-size: 92px;
+      line-height: 0.96;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: var(--red);
+    }
+
+    .finding-copy {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.32;
+      font-weight: 520;
+      color: var(--ink);
+    }
+
+    /* Chart panel */
+    .chart-panel {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 14px;
+      padding: 22px 20px 20px;
+      background: var(--tan);
+      border-radius: 2px;
+    }
+
+    .chart-caption {
+      margin: 0;
+      font-family: var(--founders);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.25;
+      flex-shrink: 0;
+    }
+
+    .chart-note {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.32;
+      font-weight: 520;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .chart-note strong {
+      font-weight: 760;
+      color: var(--ink);
+    }
+
+    /* Power - stacked sector bar */
+    .slice-track {
+      display: flex;
+      width: 100%;
+      height: 112px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: var(--grey-track);
+      flex-shrink: 0;
+    }
+
+    .slice { height: 100%; flex-shrink: 0; }
+    .slice--industrial { background: #7A6B5E; }
+    .slice--residential { background: #A89485; }
+    .slice--commercial { background: #C8BFB0; }
+    .slice--transport { background: #958678; }
+    .slice--ag { background: #C4B5A5; }
+    .slice--grid { background: #D9D0C7; }
+    .slice--dc { background: var(--blue); }
+    .slice--ai { background: var(--red); }
+    .slice--muted { background: rgba(107, 96, 85, 0.42); }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px 14px;
+      flex-shrink: 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--founders);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      line-height: 1.15;
+    }
+
+    .legend-item--highlight {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    .stat-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      flex-shrink: 0;
+      margin-top: auto;
+    }
+
+    .stat-compare-item {
+      padding: 24px 26px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+    }
+
+    .stat-compare-label {
+      margin: 0 0 6px;
+      font-family: var(--founders);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+
+    .stat-compare-val {
+      margin: 0;
+      font-size: 58px;
+      line-height: 1.02;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    .stat-compare-val--blue { color: var(--blue); }
+    .stat-compare-val--red { color: var(--red); }
+
+    .stat-compare-sub {
+      margin: 6px 0 0;
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 520;
+      color: var(--muted);
+    }
+
+    /* Horizontal bars */
+    .hbar-list {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      gap: 12px;
+    }
+
+    .hbar-row {
+      display: grid;
+      grid-template-columns: 168px 1fr;
+      gap: 18px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .hbar-label {
+      margin: 0;
+      font-family: var(--founders);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .hbar-track {
+      height: 96px;
+      background: var(--grey-track);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slide--bars .hbar-row {
+      grid-template-columns: 182px 1fr 96px;
+      gap: 14px;
+    }
+
+    .slide--bars .hbar-label {
+      font-size: 18px;
+    }
+
+    .slide--bars .hbar-track {
+      height: 56px;
+    }
+
+    .slide--bars .hbar-val-col {
+      margin: 0;
+      font-family: var(--sohne);
+      font-size: 34px;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      line-height: 1;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .slide--bars .hbar-val-col--blue { color: var(--blue); }
+    .slide--bars .hbar-val-col--red { color: var(--red); }
+
+    .slide--bars .hbar-list {
+      gap: 8px;
+      justify-content: flex-start;
+    }
+
+    .slide--bars .hbar-fill { padding-right: 0; }
+
+    .slide--water .hbar-row {
+      grid-template-columns: 248px 1fr;
+      gap: 12px;
+      flex: 1 1 0;
+      min-height: 0;
+      align-items: center;
+    }
+
+    .slide--water .hbar-label {
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .slide--water .hbar-track {
+      height: 100%;
+      min-height: 56px;
+      overflow: visible;
+    }
+
+    .hbar-fill {
+      height: 100%;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+      min-width: 0;
+    }
+
+    .hbar-val-end {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--sohne);
+      font-size: 40px;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .slide--water .hbar-fill {
+      padding-right: 0;
+      position: relative;
+      overflow: visible;
+    }
+
+    .slide--water .hbar-val-after {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translate(10px, -50%);
+      font-family: var(--sohne);
+      font-size: 34px;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .slide--water .hbar-val-after--red { color: var(--red); }
+
+    .slide--water .hbar-val-end {
+      position: absolute;
+      left: calc(100% - 80px);
+      right: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--sohne);
+      font-size: 34px;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .slide--water .hbar-list {
+      flex: 1 1 auto;
+      min-height: 0;
+      gap: 10px;
+      justify-content: stretch;
+    }
+
+    .slide--water .chart-panel {
+      min-height: 0;
+    }
+
+    /* Purpose - workload bar */
+    .spend-track {
+      display: flex;
+      width: 100%;
+      height: 120px;
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .spend-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2px;
+      font-family: var(--founders);
+      color: var(--paper);
+      text-align: center;
+      padding: 0 6px;
+    }
+
+    .spend-seg__pct {
+      font-family: var(--sohne);
+      font-size: 48px;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .spend-seg__name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      opacity: 0.92;
+    }
+
+    .spend-seg--cloud { background: var(--blue); flex: 54; }
+    .spend-seg--trad { background: rgba(48, 94, 126, 0.55); flex: 32; }
+    .spend-seg--ai { background: var(--red); flex: 14; }
+
+    .insight-list {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .insight-row {
+      display: grid;
+      grid-template-columns: 14px 72px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px 16px;
+      padding: 12px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .insight-row:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .insight-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .insight-swatch--cloud { background: var(--blue); }
+    .insight-swatch--it { background: rgba(48, 94, 126, 0.55); }
+    .insight-swatch--ai { background: var(--red); }
+
+    .insight-tag {
+      margin: 0;
+      font-family: var(--founders);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .insight-tag--cloud { color: var(--blue); }
+    .insight-tag--it { color: rgba(48, 94, 126, 0.55); }
+    .insight-tag--ai { color: var(--red); }
+
+    .insight-text {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.34;
+      font-weight: 520;
+      color: var(--ink);
+    }
+
+    .insight-logos {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-shrink: 0;
+      min-width: 132px;
+      padding-left: 8px;
+    }
+
+    .insight-logos img {
+      display: block;
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .slide--purpose .chart-panel {
+      gap: 16px;
+    }
+
+    .slide--purpose .spend-track {
+      flex-shrink: 0;
+    }
+
+    .slide__footer {
+      margin: 0;
+      padding-top: 6px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--founders);
+      font-size: 16px;
+      font-weight: 520;
+      line-height: 1.4;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .downloads {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      max-width: 1080px;
+      padding: 0 16px;
+    }
+
+    .downloads button {
+      font-family: var(--founders);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .downloads button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .downloads button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .font-warning {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      z-index: 1000;
+      max-width: 560px;
+      padding: 18px 22px;
+      border: 2px solid var(--red);
+      background: var(--tan);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(26, 26, 26, 0.18);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+    }
+
+    .font-warning[hidden] { display: none; }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 8px 14px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="slide" id="export-root-1" aria-label="AI data centre myth vs reality - Power">
+    <header class="slide__header">
+      <div class="slide__headlines">
+        <p class="slide__kicker">AI data centres</p>
+        <div class="slide__title-row">
+          <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/lightning-bolt.png" alt="" width="52" height="52" decoding="async" />
+          <h1 class="slide__h1">Power</h1>
+        </div>
+      </div>
+      <div class="slide__logo" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" decoding="async" />
+      </div>
+    </header>
+
+    <div class="slide__body">
+      <div class="myth-band">
+        <p class="myth-label">Myth</p>
+        <p class="myth-text">AI data centres will consume power at an unprecedented rate.</p>
+      </div>
+
+      <div class="reality-zone">
+        <div class="reality-head">
+          <p class="reality-label">Reality</p>
+          <p class="hero-stat">3% by 2030</p>
+          <p class="finding-copy">All data centres combined, even under aggressive forecasts. Rising fast, but from a small base.</p>
+        </div>
+        <div class="chart-panel">
+          <p class="chart-caption">Global electricity by sector, 2030 (IEA base case), approximate</p>
+          <div class="slice-track" aria-hidden="true">
+            <div class="slice slice--industrial" style="width: 41%"></div>
+            <div class="slice slice--residential" style="width: 27%"></div>
+            <div class="slice slice--commercial" style="width: 21%"></div>
+            <div class="slice slice--transport" style="width: 2%"></div>
+            <div class="slice slice--ag" style="width: 2%"></div>
+            <div class="slice slice--grid" style="width: 4%"></div>
+            <div class="slice slice--dc" style="width: 1.8%"></div>
+            <div class="slice slice--ai" style="width: 1.2%"></div>
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span class="legend-item"><span class="swatch" style="background: #7A6B5E"></span>Industrial 41%</span>
+            <span class="legend-item"><span class="swatch" style="background: #A89485"></span>Residential 27%</span>
+            <span class="legend-item"><span class="swatch" style="background: #C8BFB0"></span>Commercial 21%</span>
+            <span class="legend-item"><span class="swatch" style="background: #958678"></span>Transport 2%</span>
+            <span class="legend-item"><span class="swatch" style="background: #C4B5A5"></span>Agriculture 2%</span>
+            <span class="legend-item"><span class="swatch" style="background: #D9D0C7"></span>Grid 4%</span>
+            <span class="legend-item legend-item--highlight"><span class="swatch" style="background: var(--blue)"></span>Non-AI DC 1.8%</span>
+            <span class="legend-item legend-item--highlight"><span class="swatch" style="background: var(--red)"></span>AI 1.2%</span>
+          </div>
+          <p class="chart-note">Data centres stay a thin slice of a grid dominated by industry and buildings.</p>
+          <div class="stat-compare" aria-hidden="true">
+            <div class="stat-compare-item">
+              <p class="stat-compare-label">2024 baseline</p>
+              <p class="stat-compare-val stat-compare-val--blue">1.5%</p>
+              <p class="stat-compare-sub">415 TWh, all data centres</p>
+            </div>
+            <div class="stat-compare-item">
+              <p class="stat-compare-label">2030 IEA base case</p>
+              <p class="stat-compare-val stat-compare-val--red">945 TWh</p>
+              <p class="stat-compare-sub">3%, still single-digit share</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide__footer">Source: IEA, Global Energy Review 2025 and Energy and AI (2025).</footer>
+  </main>
+
+  <main class="slide slide--bars" id="export-root-2" aria-label="AI data centre myth vs reality - Carbon">
+    <header class="slide__header">
+      <div class="slide__headlines">
+        <p class="slide__kicker">AI data centres</p>
+        <div class="slide__title-row">
+          <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/clouds.png" alt="" width="52" height="52" decoding="async" />
+          <h1 class="slide__h1">Carbon</h1>
+        </div>
+      </div>
+      <div class="slide__logo" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" decoding="async" />
+      </div>
+    </header>
+
+    <div class="slide__body">
+      <div class="myth-band">
+        <p class="myth-label">Myth</p>
+        <p class="myth-text">AI emissions will blow past cement, aviation, and everything else.</p>
+      </div>
+
+      <div class="reality-zone">
+        <div class="reality-head">
+          <p class="reality-label">Reality</p>
+          <p class="hero-stat">208 Mt</p>
+          <p class="finding-copy">All data-centre CO₂ in 2025, about Argentina-sized. Real, but not cement- or aviation-scale yet.</p>
+        </div>
+        <div class="chart-panel">
+          <p class="chart-caption">Share of global fossil CO₂, 2024 (Statista/IEA), approximate</p>
+          <div class="hbar-list">
+            <div class="hbar-row">
+              <p class="hbar-label">Power & heat</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: 39%"></div>
+              </div>
+              <p class="hbar-val-col">39%</p>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">Transport</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: 21%"></div>
+              </div>
+              <p class="hbar-val-col">21%</p>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">Cement</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: 7%"></div>
+              </div>
+              <p class="hbar-val-col">7%</p>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">Aviation</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: 2%"></div>
+              </div>
+              <p class="hbar-val-col">2%</p>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">Data centres</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--dc" style="width: 0.6%"></div>
+              </div>
+              <p class="hbar-val-col hbar-val-col--blue">0.6%</p>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">AI only</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--ai" style="width: 0.1%"></div>
+              </div>
+              <p class="hbar-val-col hbar-val-col--red">0.1%</p>
+            </div>
+          </div>
+          <p class="chart-note">Bar width = share of global fossil CO₂. Data-centre and AI shares from UNU-INWEH (2025).</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide__footer">Sources: Statista/IEA, global fossil CO₂ by sector (2024). UNU-INWEH, data-centre and AI shares (2025).</footer>
+  </main>
+
+  <main class="slide slide--water" id="export-root-3" aria-label="AI data centre myth vs reality - Water">
+    <header class="slide__header">
+      <div class="slide__headlines">
+        <p class="slide__kicker">AI data centres</p>
+        <div class="slide__title-row">
+          <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/water.png" alt="" width="52" height="52" decoding="async" />
+          <h1 class="slide__h1">Water</h1>
+        </div>
+      </div>
+      <div class="slide__logo" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" decoding="async" />
+      </div>
+    </header>
+
+    <div class="slide__body">
+      <div class="myth-band">
+        <p class="myth-label">Myth</p>
+        <p class="myth-text">Every ChatGPT query wastes a bottle of water.</p>
+      </div>
+
+      <div class="reality-zone">
+        <div class="reality-head">
+          <p class="reality-label">Reality</p>
+          <p class="hero-stat">2,400x</p>
+          <p class="finding-copy">One California almond uses about as much water as 2,400 typical ChatGPT prompts. Facility cooling still varies, but a single query is not a bottle of water.</p>
+        </div>
+        <div class="chart-panel">
+          <p class="chart-caption">Water per unit, linear scale, approximate</p>
+          <div class="hbar-list">
+            <div class="hbar-row">
+              <p class="hbar-label">1 Google search</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--dc" style="width: calc(100% * 0.3 / 15400)">
+                  <span class="hbar-val-after">0.3 ml</span>
+                </div>
+              </div>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">1 ChatGPT query</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--ai" style="width: calc(100% * 5 / 15400)">
+                  <span class="hbar-val-after hbar-val-after--red">5 ml</span>
+                </div>
+              </div>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">Average hand wash</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: calc(100% * 5000 / 15400)">
+                  <span class="hbar-val-after">5 L</span>
+                </div>
+              </div>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">1 almond</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: calc(100% * 12000 / 15400)">
+                  <span class="hbar-val-after">12 L</span>
+                </div>
+              </div>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">10 grams of rice</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: calc(100% * 13250 / 15400)"></div>
+                <span class="hbar-val-end">13 L</span>
+              </div>
+            </div>
+            <div class="hbar-row">
+              <p class="hbar-label">1 gram of beef</p>
+              <div class="hbar-track">
+                <div class="hbar-fill slice--muted" style="width: 100%"></div>
+                <span class="hbar-val-end">15 L</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide__footer">Sources: Kendall et al. (2017), almonds. OpenAI via Altman, 2025. Google, AI inference impact (2025). Water Footprint Network, beef and rice. Engineering Toolbox, hand washing.</footer>
+  </main>
+
+  <main class="slide slide--purpose" id="export-root-4" aria-label="AI data centre myth vs reality - Purpose">
+    <header class="slide__header">
+      <div class="slide__headlines">
+        <p class="slide__kicker">AI data centres</p>
+        <div class="slide__title-row">
+          <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/database.png" alt="" width="52" height="52" decoding="async" />
+          <h1 class="slide__h1">Purpose</h1>
+        </div>
+      </div>
+      <div class="slide__logo" aria-label="Build Canada logo">
+        <img src="../Build Canada Logo.png" alt="Build Canada" decoding="async" />
+      </div>
+    </header>
+
+    <div class="slide__body">
+      <div class="myth-band">
+        <p class="myth-label">Myth</p>
+        <p class="myth-text">Most of the usage of these data centres will be to power the creation of AI slop.</p>
+      </div>
+
+      <div class="reality-zone">
+        <div class="reality-head">
+          <p class="reality-label">Reality</p>
+          <p class="hero-stat">86% non-AI</p>
+          <p class="finding-copy">Most power still serves cloud apps, email, storage, and business IT. AI is the fastest-growing slice, not the whole stack.</p>
+        </div>
+        <div class="chart-panel">
+          <p class="chart-caption">Typical hyperscale campus, power by workload, 2024, approximate</p>
+          <div class="spend-track" aria-hidden="true">
+            <div class="spend-seg spend-seg--cloud">
+              <span class="spend-seg__pct">54%</span>
+              <span class="spend-seg__name">Cloud</span>
+            </div>
+            <div class="spend-seg spend-seg--trad">
+              <span class="spend-seg__pct">32%</span>
+              <span class="spend-seg__name">IT</span>
+            </div>
+            <div class="spend-seg spend-seg--ai">
+              <span class="spend-seg__pct">14%</span>
+              <span class="spend-seg__name">AI</span>
+            </div>
+          </div>
+          <ul class="insight-list" aria-hidden="true">
+            <li class="insight-row">
+              <span class="insight-swatch insight-swatch--cloud"></span>
+              <p class="insight-tag insight-tag--cloud">Cloud</p>
+              <p class="insight-text">Streaming, SaaS, and web apps people already rely on every day.</p>
+              <div class="insight-logos">
+                <img src="article-assets/workload-logos/netflix.svg" alt="" width="34" height="34" decoding="async" />
+                <img src="article-assets/workload-logos/spotify.svg" alt="" width="34" height="34" decoding="async" />
+                <img src="article-assets/workload-logos/salesforce.svg" alt="" width="34" height="34" decoding="async" />
+              </div>
+            </li>
+            <li class="insight-row">
+              <span class="insight-swatch insight-swatch--it"></span>
+              <p class="insight-tag insight-tag--it">IT</p>
+              <p class="insight-text">Email, databases, backups, and back-office enterprise software.</p>
+              <div class="insight-logos">
+                <img src="article-assets/workload-logos/microsoft.svg" alt="" width="34" height="34" decoding="async" />
+                <img src="article-assets/workload-logos/google.svg" alt="" width="34" height="34" decoding="async" />
+                <img src="article-assets/workload-logos/oracle.svg" alt="" width="34" height="34" decoding="async" />
+              </div>
+            </li>
+            <li class="insight-row">
+              <span class="insight-swatch insight-swatch--ai"></span>
+              <p class="insight-tag insight-tag--ai">AI</p>
+              <p class="insight-text">Coding tools, search, and research workloads. Fastest-growing slice.</p>
+              <div class="insight-logos">
+                <img src="article-assets/workload-logos/openai.svg" alt="" width="34" height="34" decoding="async" />
+                <img src="article-assets/workload-logos/github.svg" alt="" width="34" height="34" decoding="async" />
+                <img src="article-assets/workload-logos/claude.svg" alt="" width="34" height="34" decoding="async" />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide__footer">Source: Goldman Sachs Research, AI to drive 165% increase in data center power demand by 2030 (2024).</footer>
+  </main>
+
+  <div class="downloads">
+    <button type="button" id="download-png-1">Download · Power</button>
+    <button type="button" id="download-png-2">Download · Carbon</button>
+    <button type="button" id="download-png-3">Download · Water</button>
+    <button type="button" id="download-png-4">Download · Purpose</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const SAMPLE = "Build Canada AI data centre myth reality 0123456789";
+
+      function textWidth(descriptor) {
+        const c = document.createElement("canvas").getContext("2d");
+        c.font = descriptor;
+        return c.measureText(SAMPLE).width;
+      }
+
+      function fontOk(family, weight) {
+        const a = textWidth(`${weight} 48px Arial`);
+        const t = textWidth(`${weight} 48px "${family}", Arial`);
+        return Math.abs(t - a) > 0.5;
+      }
+
+      const FONT_CHECKS = [
+        { name: "Test Söhne", family: "Test Söhne", weights: [520, 760] },
+        { name: "Test Founders Grotesk", family: "Test Founders Grotesk", weights: [700] },
+        { name: "Test Söhne Mono", family: "Test Söhne Mono", weights: [600] }
+      ];
+
+      window.addEventListener("load", async () => {
+        if (document.fonts?.ready) await document.fonts.ready;
+        const missing = [];
+        FONT_CHECKS.forEach((f) => {
+          const bad = f.weights.filter((w) => !fontOk(f.family, w));
+          if (bad.length) missing.push(`${f.name} (${bad.join(", ")})`);
+        });
+        if (missing.length) {
+          const el = document.getElementById("font-warning");
+          document.getElementById("font-warning-message").textContent =
+            `Required brand font${missing.length > 1 ? "s are" : " is"} not loading: ${missing.join(", ")}. Open via http://localhost (not file://).`;
+          el.hidden = false;
+          document.getElementById("font-warning-dismiss").onclick = () => {
+            el.hidden = true;
+          };
+        }
+      });
+
+      function whenImagesLoaded(root) {
+        return Promise.all(
+          [...root.querySelectorAll("img")].map(
+            (img) =>
+              new Promise((resolve) => {
+                if (img.complete) resolve();
+                else {
+                  img.addEventListener("load", resolve, { once: true });
+                  img.addEventListener("error", resolve, { once: true });
+                }
+              })
+          )
+        );
+      }
+
+      async function exportSlide(rootId, filename, triggerButton) {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not load. Check your connection and try again.");
+          return;
+        }
+
+        const buttons = document.querySelectorAll(".downloads button");
+        buttons.forEach((b) => { b.disabled = true; });
+        const originalText = triggerButton.textContent;
+        triggerButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts?.ready) await document.fonts.ready;
+          const canvasElement = document.getElementById(rootId);
+          await whenImagesLoaded(canvasElement);
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            canvasWidth: 1080,
+            canvasHeight: 1080,
+            pixelRatio: 1,
+            width: 1080,
+            height: 1080,
+            style: { margin: "0", transform: "none" }
+          });
+          const link = document.createElement("a");
+          link.download = filename;
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          buttons.forEach((b) => { b.disabled = false; });
+          triggerButton.textContent = originalText;
+        }
+      }
+
+      [
+        ["download-png-1", "export-root-1", "ai-datacenter-myth-power-2026.png"],
+        ["download-png-2", "export-root-2", "ai-datacenter-myth-carbon-2026.png"],
+        ["download-png-3", "export-root-3", "ai-datacenter-myth-water-2026.png"],
+        ["download-png-4", "export-root-4", "ai-datacenter-myth-purpose-2026.png"]
+      ].forEach(([buttonId, rootId, filename]) => {
+        const btn = document.getElementById(buttonId);
+        if (btn) btn.addEventListener("click", () => exportSlide(rootId, filename, btn));
+      });
+    })();
+  </script>
+</body>
+</html>

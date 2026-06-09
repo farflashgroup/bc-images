@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Draft federal AI strategy — CBC News teaser (1080×1080)</title>
+  <link rel="stylesheet" href="brand-fonts.css" />
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --muted: #6B6055;
+      --rule: #C8BFB0;
+      --red: #872D2E;
+      --canvas-h: 1080px;
+      --hero-height: 430px;
+      --bc-watermark-h: 32px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 28px 0 40px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: "Test SÃ¶hne", "TestSÃ¶hne", "TESTSÃ–HNE", Arial, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: var(--canvas-h);
+      background: var(--paper);
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .canvas::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 2px solid var(--ink);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .bc-watermark {
+      flex-shrink: 0;
+      align-self: center;
+      width: 36px;
+      height: var(--bc-watermark-h);
+      margin: 0;
+      opacity: 0.26;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      outline: none;
+      overflow: hidden;
+    }
+
+    .bc-watermark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .pad-x {
+      padding-left: 64px;
+      padding-right: 64px;
+    }
+
+    .hero {
+      position: relative;
+      flex: 0 0 var(--hero-height);
+      width: 100%;
+      overflow: hidden;
+      z-index: 0;
+      border-bottom: 1px solid var(--rule);
+      background: #1a2830;
+    }
+
+    .hero-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 28%;
+      transform: scale(1.08);
+      transform-origin: 50% 24%;
+    }
+
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(26, 26, 26, 0.5) 0%,
+        rgba(26, 26, 26, 0.06) 42%,
+        transparent 62%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .publisher {
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      height: fit-content;
+      padding: 12px;
+      background: #ffffff;
+      border-radius: 2px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+    }
+
+    .publisher img {
+      display: block;
+      flex-shrink: 0;
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding-top: 30px;
+      padding-bottom: 38px;
+      z-index: 1;
+    }
+
+    .footer-block {
+      margin-top: auto;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .footer-divider {
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+    }
+
+    .mono {
+      margin: 0 0 12px;
+      font-family: "Test SÃ¶hne Mono", "TestSÃ¶hneMono", "TESTSÃ–HNEMONO", "Roboto Mono", monospace;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: calc(44px + 14pt);
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      font-weight: 760;
+      color: var(--ink);
+      max-width: 36ch;
+    }
+
+    .summary {
+      margin: 20px 0 0;
+      font-size: calc(34px + 8pt);
+      line-height: 1.32;
+      font-weight: 520;
+      max-width: 50ch;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .footer {
+      margin-top: 0;
+      padding-top: 12px;
+      padding-bottom: 2px;
+      border-top: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .footer-source {
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .download-panel {
+      display: flex;
+      justify-content: center;
+    }
+
+    .download-button {
+      padding: 12px 22px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .download-button:disabled {
+      opacity: 0.65;
+      cursor: progress;
+    }
+
+    .font-warning {
+      box-sizing: border-box;
+      max-width: 520px;
+      margin: 0 16px 8px;
+      padding: 12px 14px;
+      border: 1px solid rgba(135, 45, 46, 0.45);
+      background: rgba(237, 229, 213, 0.95);
+      color: var(--ink);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="canvas" id="export-root" aria-label="CBC News — draft federal AI strategy reporting">
+    <div class="hero" aria-hidden="false">
+      <img
+        class="hero-photo"
+        src="article-assets/cbc-federal-ai-strategy-hero.jpg"
+        width="1600"
+        height="1100"
+        alt=""
+        decoding="async"
+      />
+      <div class="hero-shade"></div>
+      <div class="publisher">
+        <img
+          src="article-assets/cbc-news-logo-cropped.png"
+          alt="CBC News"
+          width="844"
+          height="430"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <div class="body pad-x">
+      <p class="mono">CBC News Â· June 1, 2026</p>
+      <h1>
+        Draft federal AI strategy aims to scale up adoption, offer literacy training by 2031
+      </h1>
+      <p class="summary">
+        A draft &ldquo;AI for All&rdquo; strategy seeks to lift business AI adoption from 12% to above 50% by 2030, train one million post-secondary students, and create up to 250,000 AI-relevant jobs by 2031.
+      </p>
+      <div class="footer-block">
+        <hr class="footer-divider" aria-hidden="true" />
+        <footer class="footer">
+          <p class="footer-source">
+            Source: CBC News, Draft federal AI strategy aims to scale up adoption, offer literacy training by 2031, June 1, 2026. Hero: Evan Solomon, Graham Hughes / The Canadian Press.
+          </p>
+          <div class="bc-watermark" aria-hidden="true">
+            <img src="../Build Canada Logo.png" alt="" />
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <div class="download-panel">
+    <button class="download-button" type="button" id="download-png">Download PNG</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test SÃ¶hne", families: ["Test SÃ¶hne", "TestSÃ¶hne", "TESTSÃ–HNE"] },
+        { name: "Test SÃ¶hne Mono", families: ["Test SÃ¶hne Mono", "TestSÃ¶hne Mono"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        }
+      ];
+      const sample = "Build Canada sovereign wealth fund 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) {
+            return true;
+          }
+
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) =>
+            textWidth(`${quotedFont}, ${fallback}`)
+          );
+
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => {
+          warning.hidden = true;
+        });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts
+          .filter((font) => !fontIsAvailable(font.families))
+          .map((font) => font.name);
+
+        if (missingFonts.length > 0) {
+          showWarning(missingFonts);
+        }
+      });
+
+      const downloadButton = document.getElementById("download-png");
+      downloadButton.addEventListener("click", async () => {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
+          return;
+        }
+
+        downloadButton.disabled = true;
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+          }
+
+          const canvasElement = document.getElementById("export-root");
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            canvasWidth: 1080,
+            canvasHeight: 1080,
+            pixelRatio: 1,
+            width: 1080,
+            height: 1080,
+            style: {
+              margin: "0",
+              transform: "none"
+            }
+          });
+
+          const link = document.createElement("a");
+          link.download = "cbc-federal-ai-strategy-square-2026.png";
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          downloadButton.disabled = false;
+          downloadButton.textContent = originalText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

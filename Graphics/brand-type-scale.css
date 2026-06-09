@@ -1,0 +1,241 @@
+/* Build Canada — semantic type scale for HTML graphics.
+   Link after brand-fonts.css. Add type-scale + aspect modifier on the canvas element. */
+
+/* 1080×1350 portrait (feed / chart graphics) */
+.type-scale--portrait {
+  --type-mono: 17px;
+  --type-h1: 52px;
+  --type-h2: 16px;
+  --type-h3: 14px;
+  --type-deck: 26px;
+  --type-body: 17px;
+  --type-body-lg: 22px;
+  --type-stat: 44px;
+  --type-chart-label: 11px;
+  --type-legend: 13px;
+  --type-caption: 12px;
+  --type-footer: 12px;
+  --type-micro: 11px;
+}
+
+/* 1080×1080 square (carousel content slides) */
+.type-scale--square {
+  --type-mono: 24px;
+  --type-h1: 56px;
+  --type-h2: 20px;
+  --type-h3: 18px;
+  --type-body: 26px;
+  --type-body-lg: 32px;
+  --type-pullquote: 42px;
+  --type-lead: 24px;
+  --type-caption: 22px;
+  --type-stat: 30px;
+  --type-stat-badge: 34px;
+  --type-chart-label: 16px;
+  --type-attribution: 18px;
+  --type-footer: 14px;
+  --type-badge: 14px;
+}
+
+.type-scale .mono {
+  font-size: var(--type-mono);
+}
+
+.type-scale h1 {
+  margin: 0;
+  font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+  font-size: var(--type-h1);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  font-weight: 760;
+  font-synthesis: none;
+  color: var(--ink, #1a1a1a);
+}
+
+.type-scale h2 {
+  margin: 0 0 6px;
+  font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+  font-size: var(--type-h2);
+  line-height: 1.15;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted, #6b6055);
+}
+
+.type-scale h3 {
+  margin: 0 0 4px;
+  font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+  font-size: var(--type-h3);
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted, #6b6055);
+}
+
+.type-scale h3.type-chart-label {
+  font-size: var(--type-chart-label);
+  letter-spacing: 0.06em;
+}
+
+.type-scale p {
+  margin: 0;
+  font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+  font-size: var(--type-body);
+  line-height: 1.28;
+  font-weight: 520;
+  font-synthesis: none;
+  color: var(--ink, #1a1a1a);
+}
+
+.type-scale--portrait .deck,
+.type-scale .type-deck {
+  font-size: var(--type-deck);
+  line-height: 1.3;
+}
+
+.type-scale--square .type-body-lg {
+  font-size: var(--type-body-lg);
+  line-height: 1.24;
+}
+
+.type-scale--portrait .type-body-lg,
+.type-scale--portrait .entity-name {
+  font-size: var(--type-body-lg);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.type-scale--square .type-pullquote {
+  font-size: var(--type-pullquote);
+  line-height: 1.22;
+}
+
+.type-scale--square .type-lead {
+  font-size: var(--type-lead);
+  line-height: 1.28;
+}
+
+.type-scale--square .type-lead strong {
+  font-weight: 760;
+  color: var(--red, #872d2e);
+}
+
+.type-scale .type-caption,
+.type-scale--portrait .axis-note {
+  font-size: var(--type-caption);
+  line-height: 1.28;
+}
+
+.type-scale .type-stat,
+.type-scale--portrait .callout-value {
+  font-size: var(--type-stat);
+  line-height: 1;
+  font-weight: 760;
+  letter-spacing: 0.02em;
+}
+
+.type-scale--portrait .callout-value {
+  color: var(--red, #872d2e);
+}
+
+.type-scale .type-caption .type-stat {
+  color: var(--red, #872d2e);
+}
+
+.type-scale--square .need-num.type-stat {
+  font-size: var(--type-stat-badge);
+}
+
+.type-scale--square .type-attribution {
+  font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+  font-size: var(--type-attribution);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--red, #872d2e);
+}
+
+.type-scale .footer,
+.type-scale--portrait .footer {
+  font-size: var(--type-footer);
+}
+
+.type-scale--square .slide-badge {
+  font-size: var(--type-badge);
+}
+
+.type-scale--portrait .mono {
+  margin: 0 0 6px;
+  font-family: "Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO", "Roboto Mono", monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted, #6b6055);
+  line-height: 1.2;
+}
+
+.type-scale--square .mono {
+  margin: 0 0 6px;
+  font-family: "Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO", "Roboto Mono", monospace;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted, #6b6055);
+  line-height: 1.2;
+}
+
+.type-scale--portrait .section-title,
+.type-scale--portrait h2.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--type-h2);
+  letter-spacing: 0.12em;
+}
+
+.type-scale--portrait .callout-label,
+.type-scale--portrait h3.callout-label {
+  margin: 0 0 6px;
+  font-size: var(--type-h3);
+  letter-spacing: 0.12em;
+}
+
+.type-scale--portrait .callout-note {
+  font-size: var(--type-body);
+  line-height: 1.3;
+  color: var(--muted, #6b6055);
+}
+
+.type-scale--portrait .source-legend-item {
+  font-size: var(--type-legend);
+}
+
+.type-scale--portrait .col-label,
+.type-scale--portrait h3.col-label {
+  font-size: var(--type-chart-label);
+  letter-spacing: 0.14em;
+}
+
+.type-scale--portrait .entity-sub {
+  font-size: var(--type-caption);
+  letter-spacing: 0.08em;
+}
+
+.type-scale--portrait .seg-label {
+  font-size: var(--type-micro);
+}
+
+.type-scale--portrait .footer {
+  font-family: "Test Founders Grotesk", "TestFoundersGrotesk", "Test Founders Grotesk Text", "TestFoundersGroteskText", Arial, sans-serif;
+  font-weight: 520;
+  color: var(--muted, #6b6055);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+.type-scale--square .adoption-row h3 {
+  margin: 0;
+}
