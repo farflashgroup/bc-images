@@ -61,6 +61,41 @@
       z-index: 10;
     }
 
+    .slide::after {
+      content: "";
+      position: absolute;
+      top: var(--frame);
+      left: var(--frame);
+      width: 580px;
+      height: 480px;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        radial-gradient(circle, rgba(200, 191, 176, 0.55) 1.25px, transparent 1.3px),
+        radial-gradient(circle, rgba(200, 191, 176, 0.55) 1.25px, transparent 1.3px);
+      background-size: 17px 17px;
+      background-position: 0 0, 8.5px 8.5px;
+      -webkit-mask-image: radial-gradient(
+        ellipse 105% 95% at 0% 0%,
+        #000 0%,
+        rgba(0, 0, 0, 0.55) 38%,
+        rgba(0, 0, 0, 0.2) 58%,
+        transparent 78%
+      );
+      mask-image: radial-gradient(
+        ellipse 105% 95% at 0% 0%,
+        #000 0%,
+        rgba(0, 0, 0, 0.55) 38%,
+        rgba(0, 0, 0, 0.2) 58%,
+        transparent 78%
+      );
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 2;
+    }
+
     .slide__header {
       display: flex;
       align-items: flex-start;
@@ -73,15 +108,13 @@
 
     .slide__headlines { flex: 1; min-width: 0; }
 
-    .slide__kicker {
-      margin: 0 0 4px;
-      font-family: var(--mono);
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      line-height: 1.2;
+    .slide__chevron {
+      display: block;
+      width: 56px;
+      height: 6px;
+      background: var(--red);
+      margin: 0 0 14px;
+      flex-shrink: 0;
     }
 
     .slide__title-row {
@@ -217,7 +250,7 @@
     .chart-caption {
       margin: 0;
       font-family: var(--founders);
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -228,7 +261,7 @@
 
     .chart-note {
       margin: 0;
-      font-size: 22px;
+      font-size: 25px;
       line-height: 1.32;
       font-weight: 520;
       color: var(--muted);
@@ -274,7 +307,7 @@
       align-items: center;
       gap: 8px;
       font-family: var(--founders);
-      font-size: 20px;
+      font-size: 23px;
       font-weight: 600;
       letter-spacing: 0.02em;
       color: var(--muted);
@@ -287,8 +320,8 @@
     }
 
     .swatch {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 1px;
       flex-shrink: 0;
     }
@@ -508,39 +541,15 @@
     .spend-track {
       display: flex;
       width: 100%;
-      height: 120px;
+      height: 28px;
       border-radius: 3px;
       overflow: hidden;
       flex-shrink: 0;
     }
 
     .spend-seg {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 2px;
-      font-family: var(--founders);
-      color: var(--paper);
-      text-align: center;
-      padding: 0 6px;
-    }
-
-    .spend-seg__pct {
-      font-family: var(--sohne);
-      font-size: 48px;
-      font-weight: 760;
-      letter-spacing: 0.02em;
-      line-height: 1;
-    }
-
-    .spend-seg__name {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.1;
-      opacity: 0.92;
+      height: 100%;
+      flex-shrink: 0;
     }
 
     .spend-seg--cloud { background: var(--blue); flex: 54; }
@@ -623,12 +632,99 @@
       object-fit: contain;
     }
 
-    .slide--purpose .chart-panel {
-      gap: 16px;
+    .slide--purpose .insight-logo--openai {
+      filter: brightness(0);
     }
 
-    .slide--purpose .spend-track {
+    .slide--purpose .chart-panel {
+      flex: 0 0 auto;
+    }
+
+    .slide--purpose .reality-zone {
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .slide--purpose .insight-row {
+      grid-template-columns: 14px 124px minmax(0, 1fr) auto;
+    }
+
+    .slide--purpose .insight-tag {
+      width: 100%;
+    }
+
+    .canada-panel {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px 18px 16px 20px;
+      background: var(--tan);
+      border-radius: 2px;
+      border-left: 4px solid var(--red);
+    }
+
+    .canada-panel__label {
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.2;
       flex-shrink: 0;
+    }
+
+    .canada-ai-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .canada-ai-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 0;
+      min-height: 100%;
+      padding: 14px 12px 12px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-top: 4px solid var(--red);
+      border-radius: 3px;
+    }
+
+    .canada-ai-item__tag {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .canada-ai-item__name {
+      margin: 0;
+      font-family: var(--founders);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .canada-ai-item__copy {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.34;
+      font-weight: 520;
+      color: var(--ink);
     }
 
     .slide__footer {
@@ -722,7 +818,7 @@
   <main class="slide" id="export-root-1" aria-label="AI data centre myth vs reality - Power">
     <header class="slide__header">
       <div class="slide__headlines">
-        <p class="slide__kicker">AI data centres</p>
+        <span class="slide__chevron" aria-hidden="true"></span>
         <div class="slide__title-row">
           <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/lightning-bolt.png" alt="" width="52" height="52" decoding="async" />
           <h1 class="slide__h1">Power</h1>
@@ -743,7 +839,7 @@
         <div class="reality-head">
           <p class="reality-label">Reality</p>
           <p class="hero-stat">3% by 2030</p>
-          <p class="finding-copy">All data centres combined, even under aggressive forecasts. Rising fast, but from a small base.</p>
+          <p class="finding-copy">Power consumption of all data centres (AI and non-AI) combined, even under aggressive forecasts. Rising fast, but from a small base.</p>
         </div>
         <div class="chart-panel">
           <p class="chart-caption">Global electricity by sector, 2030 (IEA base case), approximate</p>
@@ -751,9 +847,9 @@
             <div class="slice slice--industrial" style="width: 41%"></div>
             <div class="slice slice--residential" style="width: 27%"></div>
             <div class="slice slice--commercial" style="width: 21%"></div>
+            <div class="slice slice--grid" style="width: 4%"></div>
             <div class="slice slice--transport" style="width: 2%"></div>
             <div class="slice slice--ag" style="width: 2%"></div>
-            <div class="slice slice--grid" style="width: 4%"></div>
             <div class="slice slice--dc" style="width: 1.8%"></div>
             <div class="slice slice--ai" style="width: 1.2%"></div>
           </div>
@@ -761,9 +857,9 @@
             <span class="legend-item"><span class="swatch" style="background: #7A6B5E"></span>Industrial 41%</span>
             <span class="legend-item"><span class="swatch" style="background: #A89485"></span>Residential 27%</span>
             <span class="legend-item"><span class="swatch" style="background: #C8BFB0"></span>Commercial 21%</span>
+            <span class="legend-item"><span class="swatch" style="background: #D9D0C7"></span>Grid 4%</span>
             <span class="legend-item"><span class="swatch" style="background: #958678"></span>Transport 2%</span>
             <span class="legend-item"><span class="swatch" style="background: #C4B5A5"></span>Agriculture 2%</span>
-            <span class="legend-item"><span class="swatch" style="background: #D9D0C7"></span>Grid 4%</span>
             <span class="legend-item legend-item--highlight"><span class="swatch" style="background: var(--blue)"></span>Non-AI DC 1.8%</span>
             <span class="legend-item legend-item--highlight"><span class="swatch" style="background: var(--red)"></span>AI 1.2%</span>
           </div>
@@ -790,7 +886,7 @@
   <main class="slide slide--bars" id="export-root-2" aria-label="AI data centre myth vs reality - Carbon">
     <header class="slide__header">
       <div class="slide__headlines">
-        <p class="slide__kicker">AI data centres</p>
+        <span class="slide__chevron" aria-hidden="true"></span>
         <div class="slide__title-row">
           <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/clouds.png" alt="" width="52" height="52" decoding="async" />
           <h1 class="slide__h1">Carbon</h1>
@@ -804,7 +900,7 @@
     <div class="slide__body">
       <div class="myth-band">
         <p class="myth-label">Myth</p>
-        <p class="myth-text">AI emissions will blow past cement, aviation, and everything else.</p>
+        <p class="myth-text">Emissions from AI usage will blow past cement, aviation, and everything else.</p>
       </div>
 
       <div class="reality-zone">
@@ -870,7 +966,7 @@
   <main class="slide slide--water" id="export-root-3" aria-label="AI data centre myth vs reality - Water">
     <header class="slide__header">
       <div class="slide__headlines">
-        <p class="slide__kicker">AI data centres</p>
+        <span class="slide__chevron" aria-hidden="true"></span>
         <div class="slide__title-row">
           <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/water.png" alt="" width="52" height="52" decoding="async" />
           <h1 class="slide__h1">Water</h1>
@@ -953,7 +1049,7 @@
   <main class="slide slide--purpose" id="export-root-4" aria-label="AI data centre myth vs reality - Purpose">
     <header class="slide__header">
       <div class="slide__headlines">
-        <p class="slide__kicker">AI data centres</p>
+        <span class="slide__chevron" aria-hidden="true"></span>
         <div class="slide__title-row">
           <img class="slide__icon" src="https://img.icons8.com/ios/100/1A1A1A/database.png" alt="" width="52" height="52" decoding="async" />
           <h1 class="slide__h1">Purpose</h1>
@@ -979,23 +1075,14 @@
         <div class="chart-panel">
           <p class="chart-caption">Typical hyperscale campus, power by workload, 2024, approximate</p>
           <div class="spend-track" aria-hidden="true">
-            <div class="spend-seg spend-seg--cloud">
-              <span class="spend-seg__pct">54%</span>
-              <span class="spend-seg__name">Cloud</span>
-            </div>
-            <div class="spend-seg spend-seg--trad">
-              <span class="spend-seg__pct">32%</span>
-              <span class="spend-seg__name">IT</span>
-            </div>
-            <div class="spend-seg spend-seg--ai">
-              <span class="spend-seg__pct">14%</span>
-              <span class="spend-seg__name">AI</span>
-            </div>
+            <div class="spend-seg spend-seg--cloud"></div>
+            <div class="spend-seg spend-seg--trad"></div>
+            <div class="spend-seg spend-seg--ai"></div>
           </div>
           <ul class="insight-list" aria-hidden="true">
             <li class="insight-row">
               <span class="insight-swatch insight-swatch--cloud"></span>
-              <p class="insight-tag insight-tag--cloud">Cloud</p>
+              <p class="insight-tag insight-tag--cloud">Cloud · 54%</p>
               <p class="insight-text">Streaming, SaaS, and web apps people already rely on every day.</p>
               <div class="insight-logos">
                 <img src="article-assets/workload-logos/netflix.svg" alt="" width="34" height="34" decoding="async" />
@@ -1005,7 +1092,7 @@
             </li>
             <li class="insight-row">
               <span class="insight-swatch insight-swatch--it"></span>
-              <p class="insight-tag insight-tag--it">IT</p>
+              <p class="insight-tag insight-tag--it">IT · 32%</p>
               <p class="insight-text">Email, databases, backups, and back-office enterprise software.</p>
               <div class="insight-logos">
                 <img src="article-assets/workload-logos/microsoft.svg" alt="" width="34" height="34" decoding="async" />
@@ -1015,13 +1102,38 @@
             </li>
             <li class="insight-row">
               <span class="insight-swatch insight-swatch--ai"></span>
-              <p class="insight-tag insight-tag--ai">AI</p>
+              <p class="insight-tag insight-tag--ai">AI · 14%</p>
               <p class="insight-text">Coding tools, search, and research workloads. Fastest-growing slice.</p>
               <div class="insight-logos">
-                <img src="article-assets/workload-logos/openai.svg" alt="" width="34" height="34" decoding="async" />
+                <img class="insight-logo insight-logo--openai" src="article-assets/workload-logos/openai.svg" alt="" width="34" height="34" decoding="async" />
                 <img src="article-assets/workload-logos/github.svg" alt="" width="34" height="34" decoding="async" />
                 <img src="article-assets/workload-logos/claude.svg" alt="" width="34" height="34" decoding="async" />
               </div>
+            </li>
+          </ul>
+        </div>
+        <div class="canada-panel">
+          <p class="canada-panel__label">What AI is powering in Canada</p>
+          <ul class="canada-ai-grid">
+            <li class="canada-ai-item">
+              <span class="canada-ai-item__tag canada-ai-item__tag--medicine">Oncology</span>
+              <p class="canada-ai-item__name">UHN, Toronto</p>
+              <p class="canada-ai-item__copy">Cancer diagnosis and precision oncology at Princess Margaret.</p>
+            </li>
+            <li class="canada-ai-item">
+              <span class="canada-ai-item__tag canada-ai-item__tag--pediatrics">Pediatrics</span>
+              <p class="canada-ai-item__name">SickKids, Toronto</p>
+              <p class="canada-ai-item__copy">Imaging models for rare pediatric conditions.</p>
+            </li>
+            <li class="canada-ai-item">
+              <span class="canada-ai-item__tag canada-ai-item__tag--radiology">Radiology</span>
+              <p class="canada-ai-item__name">BC Cancer, Vancouver</p>
+              <p class="canada-ai-item__copy">Radiology AI for tumour detection and treatment.</p>
+            </li>
+            <li class="canada-ai-item canada-ai-item--research">
+              <span class="canada-ai-item__tag canada-ai-item__tag--research">Research</span>
+              <p class="canada-ai-item__name">Mila &amp; Vector Institute</p>
+              <p class="canada-ai-item__copy">Drug discovery, genomics, and clinical AI research.</p>
             </li>
           </ul>
         </div>

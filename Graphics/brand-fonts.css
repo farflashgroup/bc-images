@@ -25,6 +25,30 @@
 }
 
 @font-face {
+  font-family: "Test Söhne";
+  font-style: italic;
+  font-weight: 600 760;
+  font-display: swap;
+  src: url("../fonts/TestSöhne-DreiviertelfettKursiv.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Söhne";
+  font-style: normal;
+  font-weight: 770 900;
+  font-display: swap;
+  src: url("../fonts/TestSöhne-Fett.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Test Söhne";
+  font-style: italic;
+  font-weight: 770 900;
+  font-display: swap;
+  src: url("../fonts/TestSöhne-FettKursiv.otf") format("opentype");
+}
+
+@font-face {
   font-family: "Test Söhne Mono";
   font-style: normal;
   font-weight: 400 520;

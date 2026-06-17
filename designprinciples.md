@@ -109,13 +109,14 @@ A reference guide for AI systems generating infographics, reports, and data visu
 
 ## Iconography
 
-- **Style:** Simple, single-weight line icons. Approximately 20–24px at standard resolution.
-- **Source:** Use clipart/icons sourced from online libraries (for example Icons8, Noun Project, or equivalent) when building row and section icons. Prefer direct image assets over hand-drawn inline SVG unless the brief explicitly requests custom icon drawing.
-- **Colour:** Match charcoal body text colour — `#2A2A2A`.
-- **Placement:** Left-aligned in the icon/label column when using a table, or beside a section heading or list title when using another layout. Keep icons aligned consistently within the piece.
+- **Style:** Simple line icons from a single library family per graphic (Icons8 iOS line style is the default). Approximately 20–24px at standard resolution; scale up proportionally on card or carousel layouts.
+- **Source (required):** **Always** use icon image assets from an online library (Icons8, Noun Project, or equivalent). **Never** hand-draw custom inline SVG icons for row labels, section headings, cards, or list items. Inline SVG is reserved for structural diagram elements (connectors, charts, maps) — not pictorial icons.
+- **Icons8 URL pattern:** `https://img.icons8.com/ios/{size}/{hex}/{icon-name}.png` — e.g. `https://img.icons8.com/ios/100/872D2E/shield.png` for Build Canada red at 100px source size. Verify each URL returns a valid image before shipping.
+- **Colour:** Default charcoal `#2A2A2A` for table and section icons. Build Canada red `#872D2E` is acceptable for accent icons on cards, carousels, or emphasis rows when the layout calls for brand colour.
+- **Placement:** Left-aligned in the icon/label column when using a table, or beside a section heading or list title when using another layout. On card rows, icons may sit on the right. Keep icons aligned consistently within the piece.
 - **Topics mapped to icons:** Use intuitive government/finance/civic metaphors — coins/database for funding, globe for international, scales for governance, people for citizens, shield/check for safeguards.
-- **Consistency:** Use one icon family per graphic, keep stroke/visual weight consistent, and size all icons uniformly (typically 20–24px in standard layouts).
-- **Do not use:** Filled solid icons, coloured icons, emoji, or decorative illustrations.
+- **Consistency:** Use one icon family per graphic, keep stroke/visual weight consistent, and size all icons uniformly within a given layout zone.
+- **Do not use:** Hand-drawn inline SVG pictorial icons, mixed icon families, emoji-as-icons, or decorative illustrations.
 
 ---
 
@@ -154,7 +155,8 @@ A reference guide for AI systems generating infographics, reports, and data visu
 |---|---|
 | Use the warm cream background | Use pure white or cool grey backgrounds |
 | Use brick red and teal as the two accent colours | Introduce additional accent colours |
-| Keep icons monochrome and line-weight consistent | Use filled, coloured, or emoji-style icons |
+| Use online icon library assets (Icons8, etc.) | Hand-draw inline SVG pictorial icons |
+| Keep icons monochrome or brand red per brief | Mix icon families or use emoji as icons |
 | Set data figures in oversized bold type with slight positive letter-spacing | Bury key numbers in body copy or clamp them with heavy negative tracking |
 | State a clear editorial headline | Write a vague or neutral headline |
 | Pick layout (table, list, chart, map, stack) by what the story needs | Default every graphic to a comparison table out of habit |
