@@ -14,7 +14,7 @@
       --red: #872D2E;
       --blue: #305E7E;
       --tan: #EDE5D5;
-      --scale-max: 42;
+      --scale-max: 44;
     }
 
     * {
@@ -285,7 +285,6 @@
     .footer {
       margin-top: auto;
       padding-top: 12px;
-      border-top: 1px solid var(--rule);
       flex-shrink: 0;
       font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
       color: var(--muted);
@@ -371,7 +370,7 @@
       <div class="headlines">
         <p class="mono">The AI Literacy Dividend</p>
         <h1>Where are businesses adopting AI the most?</h1>
-        <p class="deck">Rate of AI adoption by businesses in select countries. (2025)</p>
+        <p class="deck">Rate of AI adoption by businesses in select countries. (2025–26)</p>
       </div>
       <div class="brand" aria-label="Build Canada logo">
         <img src="../Build Canada Logo.png" alt="Build Canada" />
@@ -394,7 +393,7 @@
     </section>
 
     <footer class="footer">
-      Sources: Eurostat, The use of artificial intelligence (AI) technologies in the European Union, Key results 2026 edition (ICT enterprise survey 2025, isoc_eb_ai). OECD/Korea Labor Institute, Artificial Intelligence and the Labour Market in Korea (2025, OECD SME Survey on Generative AI). U.S. Census Bureau, Business Trends and Outlook Survey (BTOS), AI supplement 2025. UK DSIT, AI Adoption Research (fieldwork February-May 2025). Statistics Canada, Analysis in Brief 11-621-M2025008, CSBC Q2 2025 (June 16, 2025). Department of Industry, Science and Resources, AI Adoption Tracker (Q1 2025). JIPDEC, Enterprise IT Utilization Survey 2026 (March 2026).
+      Sources: Eurostat, The use of artificial intelligence (AI) technologies in the European Union, Key results 2026 edition (ICT enterprise survey 2025, isoc_eb_ai). OECD/Korea Labor Institute, Artificial Intelligence and the Labour Market in Korea (2025, OECD SME Survey on Generative AI). U.S. Census Bureau, Business Trends and Outlook Survey (BTOS), AI use story (May 26, 2026; period ending May 3, 2026). UK DSIT, AI Adoption Research (fieldwork February–May 2025). Statistics Canada, Analysis in Brief 11-621-M2026010, CSBC Q2 2026. National AI Centre, AI Adoption Tracker (December 2025–February 2026 quarter). JIPDEC, Enterprise IT Utilization Survey 2026 (January 2026).
     </footer>
   </main>
 
@@ -403,22 +402,22 @@
   </div>
 
   <script>
-    const SCALE_MAX = 42;
+    const SCALE_MAX = 44;
 
-    /* Eurostat 2025 (isoc_eb_ai), 10+ employees. Non-EU 2025-26: CBS, DISR, OECD SME survey, JIPDEC. */
+    /* Eurostat 2025 (isoc_eb_ai), 10+ employees. Non-EU 2025-26: DISR, OECD SME survey, JIPDEC, BTOS, StatCan. */
     const rows = [
+      { name: "Australia", pct: 43.0, flag: "AU", source: "disr" },
       { name: "Denmark", pct: 42.0, flag: "DK", source: "eurostat" },
       { name: "Finland", pct: 37.8, flag: "FI", source: "eurostat" },
       { name: "Sweden", pct: 35.0, flag: "SE", source: "eurostat" },
-      { name: "Australia", pct: 41.0, flag: "AU", source: "disr" },
-      { name: "Japan", pct: 33.9, flag: "JP", source: "jipdec" },
+      { name: "Japan", pct: 36.0, flag: "JP", source: "jipdec" },
       { name: "South Korea", pct: 31.0, flag: "KR", source: "oecd_sme" },
       { name: "Germany", pct: 26.0, flag: "DE", source: "eurostat" },
       { name: "Ireland", pct: 19.6, flag: "IE", source: "eurostat" },
+      { name: "Canada", pct: 19.2, flag: "CA", source: "statcan", canada: true },
       { name: "France", pct: 18.2, flag: "FR", source: "eurostat" },
-      { name: "United States", pct: 17.3, flag: "US", source: "btos" },
+      { name: "United States", pct: 19.8, flag: "US", source: "btos" },
       { name: "United Kingdom", pct: 16.0, flag: "GB", source: "dsit" },
-      { name: "Canada", pct: 12.2, flag: "CA", source: "statcan", canada: true },
       { name: "Portugal", pct: 11.5, flag: "PT", source: "eurostat" },
       { name: "Poland", pct: 8.4, flag: "PL", source: "eurostat" }
     ].sort((a, b) => b.pct - a.pct || a.name.localeCompare(b.name));

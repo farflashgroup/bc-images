@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canada historic World Cup win — Build Canada (1080×1080)</title>
+  <link rel="stylesheet" href="brand-fonts.css" />
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --red: #872D2E;
+      --canvas: 1080px;
+      --frame-inset: 10px;
+      --frame-border: 1px;
+      --mat: 13px;
+      --corner-len: 96px;
+      --corner-thick: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 28px 0 40px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-synthesis: none;
+    }
+
+    .canvas {
+      position: relative;
+      width: var(--canvas);
+      height: var(--canvas);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .bezel-frame {
+      position: absolute;
+      inset: var(--frame-inset);
+      border: var(--frame-border) solid var(--ink);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .corner {
+      position: absolute;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    .corner--tl {
+      top: var(--frame-inset);
+      left: var(--frame-inset);
+      width: var(--corner-len);
+      height: var(--corner-len);
+    }
+
+    .corner--tl::before,
+    .corner--tl::after,
+    .corner--br::before,
+    .corner--br::after {
+      content: "";
+      position: absolute;
+      background: var(--red);
+    }
+
+    .corner--tl::before {
+      top: 0;
+      left: 0;
+      width: var(--corner-len);
+      height: var(--corner-thick);
+    }
+
+    .corner--tl::after {
+      top: 0;
+      left: 0;
+      width: var(--corner-thick);
+      height: var(--corner-len);
+    }
+
+    .corner--br {
+      right: calc(var(--frame-inset) + var(--frame-border));
+      bottom: calc(var(--frame-inset) + var(--frame-border));
+      width: var(--corner-len);
+      height: var(--corner-len);
+    }
+
+    .corner--br::before {
+      right: 0;
+      bottom: 0;
+      width: var(--corner-len);
+      height: var(--corner-thick);
+    }
+
+    .corner--br::after {
+      right: 0;
+      bottom: 0;
+      width: var(--corner-thick);
+      height: var(--corner-len);
+    }
+
+    .bezel-mat {
+      position: absolute;
+      inset: calc(var(--frame-inset) + var(--frame-border) + var(--mat));
+      background: var(--paper);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 56% 40%;
+    }
+
+    .photo-shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(26, 26, 26, 0.42) 0%,
+        rgba(26, 26, 26, 0.08) 28%,
+        transparent 48%,
+        rgba(26, 26, 26, 0.18) 68%,
+        rgba(26, 26, 26, 0.82) 100%
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .brand {
+      position: absolute;
+      top: calc(var(--frame-inset) + var(--frame-border) + var(--mat) + 18px);
+      right: calc(var(--frame-inset) + var(--frame-border) + var(--mat) + 18px);
+      z-index: 4;
+      width: 72px;
+      height: 72px;
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .copy {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 0 8px 28px;
+      text-align: center;
+    }
+
+    .headline {
+      margin: 0;
+      width: 100%;
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-size: 199px;
+      font-weight: 760;
+      line-height: 0.88;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #ffffff;
+      text-shadow:
+        0 2px 18px rgba(0, 0, 0, 0.55),
+        0 1px 4px rgba(0, 0, 0, 0.45);
+    }
+
+    .deck {
+      margin: 14px 0 0;
+      font-family: "Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO", "Roboto Mono", monospace;
+      font-size: 23px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #ffffff;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .download-panel {
+      display: flex;
+      justify-content: center;
+    }
+
+    .download-button {
+      padding: 12px 22px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .download-button:disabled {
+      opacity: 0.65;
+      cursor: progress;
+    }
+
+    .font-warning {
+      box-sizing: border-box;
+      max-width: 520px;
+      margin: 0 16px 8px;
+      padding: 12px 14px;
+      border: 1px solid rgba(135, 45, 46, 0.45);
+      background: rgba(237, 229, 213, 0.95);
+      color: var(--ink);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="canvas" id="export-root" aria-label="Canada defeats Qatar 6-0 in historic World Cup win">
+    <div class="bezel-mat">
+      <img
+        class="photo"
+        src="article-assets/canada-soccer-players-celebrate-qatar.jpg"
+        width="2400"
+        height="1600"
+        alt=""
+        decoding="async"
+      />
+      <div class="photo-shade" aria-hidden="true"></div>
+      <div class="copy">
+        <h1 class="headline">HISTORIC</h1>
+        <p class="deck">Canada defeats Qatar 6-0 to win their first World Cup match ever</p>
+      </div>
+    </div>
+
+    <div class="bezel-frame" aria-hidden="true"></div>
+    <div class="corner corner--tl" aria-hidden="true"></div>
+    <div class="corner corner--br" aria-hidden="true"></div>
+
+    <div class="brand" aria-label="Build Canada logo">
+      <img src="../Build Canada Logo.png" alt="Build Canada" decoding="async" />
+    </div>
+  </main>
+
+  <div class="download-panel">
+    <button class="download-button" type="button" id="download-png">Download PNG</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test Söhne", families: ["Test Söhne", "TestSöhne", "TESTSÖHNE"] },
+        { name: "Test Söhne Mono", families: ["Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        }
+      ];
+      const sample = "Build Canada World Cup historic 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) {
+            return true;
+          }
+
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) =>
+            textWidth(`${quotedFont}, ${fallback}`)
+          );
+
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => {
+          warning.hidden = true;
+        });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts
+          .filter((font) => !fontIsAvailable(font.families))
+          .map((font) => font.name);
+
+        if (missingFonts.length > 0) {
+          showWarning(missingFonts);
+        }
+      });
+
+      const downloadButton = document.getElementById("download-png");
+      downloadButton.addEventListener("click", async () => {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not be loaded. Check your internet connection and try again.");
+          return;
+        }
+
+        downloadButton.disabled = true;
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+          }
+
+          const canvasElement = document.getElementById("export-root");
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            canvasWidth: 1080,
+            canvasHeight: 1080,
+            pixelRatio: 1,
+            width: 1080,
+            height: 1080,
+            style: {
+              margin: "0",
+              transform: "none"
+            }
+          });
+
+          const link = document.createElement("a");
+          link.download = "canada-world-cup-historic-win-2026.png";
+          link.href = dataUrl;
+          link.click();
+        } finally {
+          downloadButton.disabled = false;
+          downloadButton.textContent = originalText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

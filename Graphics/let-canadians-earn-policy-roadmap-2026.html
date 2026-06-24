@@ -16,6 +16,7 @@
       --red-mid: #A03E3F;
       --red-light: #D07A7B;
       --red-pale: #E8B8B9;
+      --green: #2E7935;
       --tan: #EDE5D5;
       --size: 1080px;
       --frame: 10px;
@@ -271,7 +272,7 @@
       line-height: 0.92;
       font-weight: 760;
       letter-spacing: 0.025em;
-      color: var(--red);
+      color: var(--green);
     }
 
     .fund-bar {
@@ -319,7 +320,7 @@
       font-size: 28px;
       line-height: 1;
       font-weight: 760;
-      color: var(--red);
+      color: var(--green);
       white-space: nowrap;
     }
 
@@ -364,7 +365,7 @@
       line-height: 0.95;
       font-weight: 760;
       letter-spacing: 0.02em;
-      color: var(--red);
+      color: var(--green);
     }
 
     .footer {
@@ -464,20 +465,20 @@
           <p class="stat-note">~27.5M under full scenario</p>
         </div>
         <div class="stat-card">
-          <p class="stat-label">Modeled full cost</p>
-          <p class="stat-value is-ink">$130-140B</p>
-          <p class="stat-note">~60% of net federal PIT</p>
+          <p class="stat-label">Kept in earners' pockets</p>
+          <p class="stat-value">$130-140B</p>
+          <p class="stat-note">Annual relief at full $100K rollout</p>
         </div>
       </div>
 
       <div class="chart-zone">
-        <p class="zone-label">Modeled phase-in cost</p>
-        <div class="chart-host" id="phase-chart" aria-label="Phase-in annual cost"></div>
+        <p class="zone-label">Money working Canadians keep — by phase</p>
+        <div class="chart-host" id="phase-chart" aria-label="Annual tax relief phased in over time"></div>
       </div>
     </div>
 
     <footer class="footer">
-      Sources: Build Canada draft memo. Phase costs as modeled. 88% filer share: CRA Individual Tax Statistics by Tax Bracket, 2025 Edition (2023 tax year). BPA $16,129: CRA 2025.
+      Sources: Build Canada draft memo. Phase relief as modeled. 88% filer share: CRA Individual Tax Statistics by Tax Bracket, 2025 Edition (2023 tax year). BPA $16,129: CRA 2025.
     </footer>
   </section>
 
@@ -486,8 +487,8 @@
     <header class="header">
       <div class="headlines">
         <span class="chevron" aria-hidden="true"></span>
-        <h1>How we <em>could</em> pay for it</h1>
-        <p class="deck">Each threshold step tied to realized offsets. Later phases assume deeper review and growth.</p>
+        <h1>What working-class Canadians <em>could</em> keep</h1>
+        <p class="deck">Illustrative household savings at full rollout — money back in pockets, not sent to Ottawa.</p>
       </div>
       <div class="brand" aria-label="Build Canada logo">
         <img src="../Build Canada Logo.png" alt="Build Canada" />
@@ -520,7 +521,7 @@
         <div class="fund-legend" id="fund-legend"></div>
       </div>
 
-      <p class="callout">Offsets in the memo match the <strong>Year 3 unlock to $50K</strong> (~$67B annual cost). The full $100K scenario still leaves ~$60B to close via growth and further review.</p>
+      <p class="callout">Offsets in the memo match the <strong>Year 3 unlock to $50K</strong> (~$67B back to earners). The full $100K scenario still leaves ~$60B to close via growth and further review.</p>
     </div>
 
     <footer class="footer">
@@ -542,11 +543,11 @@
     ];
 
     const FUNDING = [
-      { name: "Government efficiency", amount: 35.1, color: "#872D2E" },
-      { name: "OAS reform", amount: 13, color: "#A03E3F" },
-      { name: "Program consolidation", amount: 10, color: "#B85556" },
-      { name: "Tax simplification", amount: 6, color: "#D07A7B" },
-      { name: "Recaptured revenue", amount: 5, color: "#E8B8B9" }
+      { name: "Government efficiency", amount: 35.1, color: "#2E7935" },
+      { name: "OAS reform", amount: 13, color: "#3A8F42" },
+      { name: "Program consolidation", amount: 10, color: "#4BA554" },
+      { name: "Tax simplification", amount: 6, color: "#5BA862" },
+      { name: "Recaptured revenue", amount: 5, color: "#7BC282" }
     ];
 
     const SAVINGS = 69;
@@ -567,7 +568,7 @@
       const lastBarRight = pad.left + gap * (PHASES.length - 1) + gap / 2 + barW / 2;
       const offsetsLabelX = lastBarRight + 16;
 
-      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Phase-in annual cost">`;
+      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Annual tax relief phased in over time">`;
 
       [0, 50, 100, 150].forEach((tick) => {
         const y = yScale(tick);
@@ -583,12 +584,12 @@
         const x = cx - barW / 2;
         const y = yScale(phase.cost);
         const barH = pad.top + plotH - y;
-        const fill = phase.final ? "#5C2223" : "#872D2E";
+        const fill = phase.final ? "#245F2A" : "#2E7935";
 
         svg += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${barH.toFixed(1)}" fill="${fill}" rx="2"/>`;
 
         if (phase.matched) {
-          svg += `<text x="${cx.toFixed(1)}" y="${(y - 14).toFixed(1)}" text-anchor="middle" font-family="Test Founders Grotesk, Arial, sans-serif" font-size="14" font-weight="700" fill="#872D2E" letter-spacing="0.08">MATCHED</text>`;
+          svg += `<text x="${cx.toFixed(1)}" y="${(y - 14).toFixed(1)}" text-anchor="middle" font-family="Test Founders Grotesk, Arial, sans-serif" font-size="14" font-weight="700" fill="#2E7935" letter-spacing="0.08">MATCHED</text>`;
         }
 
         svg += `<text x="${cx.toFixed(1)}" y="${(y - (phase.matched ? 36 : 14)).toFixed(1)}" text-anchor="middle" font-family="Test Söhne, Arial, sans-serif" font-size="28" font-weight="700" fill="${fill}">${phase.label}</text>`;
