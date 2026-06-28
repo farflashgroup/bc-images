@@ -1,0 +1,317 @@
+{
+  "cohere": {
+    "domain": "cohere.com",
+    "source": "https://www.google.com/s2/favicons?domain=cohere.com&sz=256",
+    "file": "cohere.png"
+  },
+  "nesto": {
+    "domain": "nesto.ca",
+    "source": "https://www.google.com/s2/favicons?domain=nesto.ca&sz=256",
+    "file": "nesto.png"
+  },
+  "beacon": {
+    "domain": "beaconsoftware.com",
+    "source": "https://beacon.inc/uploads/beacon-logo.png",
+    "file": "beacon.png"
+  },
+  "koho": {
+    "domain": "koho.ca",
+    "source": "https://www.google.com/s2/favicons?domain=koho.ca&sz=256",
+    "file": "koho.jpg"
+  },
+  "float": {
+    "domain": "floatfinancial.com",
+    "source": "https://www.google.com/s2/favicons?domain=floatfinancial.com&sz=256",
+    "file": "float.png"
+  },
+  "photonic": {
+    "domain": "photonic.com",
+    "source": "https://www.google.com/s2/favicons?domain=photonic.com&sz=256",
+    "file": "photonic.png"
+  },
+  "relay": {
+    "domain": "relayfi.com",
+    "source": "https://www.google.com/s2/favicons?domain=relayfi.com&sz=256",
+    "file": "relay.png"
+  },
+  "gaiia": {
+    "domain": "gaiia.com",
+    "source": "https://www.google.com/s2/favicons?domain=gaiia.com&sz=256",
+    "file": "gaiia.png"
+  },
+  "moment-energy": {
+    "domain": "momentenergy.com",
+    "source": "https://www.google.com/s2/favicons?domain=momentenergy.com&sz=256",
+    "file": "moment-energy.png"
+  },
+  "mecka-ai": {
+    "domain": "mecka.ai",
+    "source": "https://www.google.com/s2/favicons?domain=mecka.ai&sz=256",
+    "file": "mecka-ai.png"
+  },
+  "nord-quantique": {
+    "domain": "nordquantique.com",
+    "source": "https://www.google.com/s2/favicons?domain=nordquantique.com&sz=256",
+    "file": "nord-quantique.png"
+  },
+  "saris": {
+    "domain": "saris.ai",
+    "source": "https://www.google.com/s2/favicons?domain=saris.ai&sz=256",
+    "file": "saris.png"
+  },
+  "mappedin": {
+    "domain": "mappedin.com",
+    "source": "https://www.google.com/s2/favicons?domain=mappedin.com&sz=256",
+    "file": "mappedin.png"
+  },
+  "cleandesign": {
+    "domain": "cleandesign.ca",
+    "source": "https://www.google.com/s2/favicons?domain=cleandesign.ca&sz=256",
+    "file": "cleandesign.png"
+  },
+  "tetrix": {
+    "domain": "tetrix.io",
+    "source": "https://www.google.com/s2/favicons?domain=tetrix.io&sz=256",
+    "file": "tetrix.png"
+  },
+  "celystra-pharma": {
+    "domain": "celystrapharma.com",
+    "source": "https://www.google.com/s2/favicons?domain=celystrapharma.com&sz=256",
+    "file": "celystra-pharma.png"
+  },
+  "juno-industries": {
+    "domain": "junoindustries.com",
+    "source": "https://icons.duckduckgo.com/ip3/junoindustries.com.ico",
+    "file": "juno-industries.ico"
+  },
+  "common-wealth": {
+    "domain": "commonwealthretirement.com",
+    "source": "https://www.commonwealthretirement.com/wp-content/uploads/2021/03/cropped-favicon-192x192.png",
+    "file": "common-wealth.png"
+  },
+  "lungpacer-medical": {
+    "domain": "lungpacer.com",
+    "source": "https://www.google.com/s2/favicons?domain=lungpacer.com&sz=256",
+    "file": "lungpacer-medical.png"
+  },
+  "ns-tx-industries": {
+    "domain": "nstx.industries",
+    "source": "https://www.google.com/s2/favicons?domain=nstx.industries&sz=256",
+    "file": "ns-tx-industries.png"
+  },
+  "scispot": {
+    "domain": "scispot.com",
+    "source": "https://www.google.com/s2/favicons?domain=scispot.com&sz=256",
+    "file": "scispot.png"
+  },
+  "ak-robotics": {
+    "domain": "aandkrobotics.com",
+    "source": "https://images.squarespace-cdn.com/content/v1/6633dd53eeaf2f7ce1833a74/f9f3dc2f-c677-427d-9005-3673e55c44c5/%2BAK%2BRobotics%2BLogo%2B-%2BWhite.png?format=300w",
+    "file": "ak-robotics.png"
+  },
+  "pricepoint": {
+    "domain": "pricepoint.co",
+    "source": "https://cdn.prod.website-files.com/68bff7d01af0d73fc257b761/68dabb0d0f65d7ee78cf8637_Group%2015.svg",
+    "file": "pricepoint.png"
+  },
+  "gridbank": {
+    "domain": "gridbank.io",
+    "source": "https://d375awjr36fy6n.cloudfront.net/static/marketplace/images/GridBank.io.png",
+    "file": "gridbank.png"
+  },
+  "flora": {
+    "domain": "heyflora.co",
+    "source": "https://www.google.com/s2/favicons?domain=heyflora.co&sz=256",
+    "file": "flora.png"
+  },
+  "viewsml": {
+    "domain": "viewsml.com",
+    "source": "https://www.google.com/s2/favicons?domain=viewsml.com&sz=256",
+    "file": "viewsml.png"
+  },
+  "sellit9": {
+    "domain": "sellit9.com",
+    "source": "https://www.google.com/s2/favicons?domain=sellit9.com&sz=256",
+    "file": "sellit9.png"
+  },
+  "sb-quantum": {
+    "domain": "sbquantum.com",
+    "source": "https://www.google.com/s2/favicons?domain=sbquantum.com&sz=256",
+    "file": "sb-quantum.png"
+  },
+  "boostsecurity": {
+    "domain": "boostsecurity.io",
+    "source": "https://www.google.com/s2/favicons?domain=boostsecurity.io&sz=256",
+    "file": "boostsecurity.png"
+  },
+  "aux-labs": {
+    "domain": "auxlabs.ca",
+    "source": "https://www.google.com/s2/favicons?domain=auxlabs.ca&sz=256",
+    "file": "aux-labs.png"
+  },
+  "aplantex": {
+    "domain": "aplantex.ca",
+    "source": "https://www.google.com/s2/favicons?domain=aplantex.ca&sz=256",
+    "file": "aplantex.png"
+  },
+  "arcanus-aerial": {
+    "domain": "arcanus.ca",
+    "source": "https://www.google.com/s2/favicons?domain=arcanus.ca&sz=256",
+    "file": "arcanus-aerial.png"
+  },
+  "coral": {
+    "domain": "coral.ca",
+    "source": "https://www.google.com/s2/favicons?domain=coral.ca&sz=256",
+    "file": "coral.png"
+  },
+  "qubic": {
+    "domain": "qubictech.co",
+    "source": "https://www.google.com/s2/favicons?domain=qubictech.co&sz=256",
+    "file": "qubic.png"
+  },
+  "june-health": {
+    "domain": "junehealth.co",
+    "source": "http://junehealth.co/cdn/shop/files/3_d016e19d-a21f-4785-990b-f34d21c78177.png?v=1780247831",
+    "file": "june-health.png"
+  },
+  "blossom-social": {
+    "domain": "blossomsocial.com",
+    "source": "https://www.google.com/s2/favicons?domain=blossomsocial.com&sz=256",
+    "file": "blossom-social.png"
+  },
+  "databraid": {
+    "domain": "databraid.io",
+    "source": "https://www.google.com/s2/favicons?domain=databraid.io&sz=256",
+    "file": "databraid.jpg"
+  },
+  "zetane-systems": {
+    "domain": "zetane.com",
+    "source": "https://www.google.com/s2/favicons?domain=zetane.com&sz=256",
+    "file": "zetane-systems.png"
+  },
+  "wygo": {
+    "domain": "wygo.com",
+    "source": "https://www.google.com/s2/favicons?domain=wygo.com&sz=256",
+    "file": "wygo.png"
+  },
+  "mystoria": {
+    "domain": "mystoria.com",
+    "source": "https://www.google.com/s2/favicons?domain=mystoria.com&sz=256",
+    "file": "mystoria.png"
+  },
+  "varvara-dev": {
+    "domain": "vardev.eu",
+    "source": "https://www.google.com/s2/favicons?domain=vardev.eu&sz=256",
+    "file": "varvara-dev.jpg"
+  },
+  "nomad": {
+    "domain": "nomad.io",
+    "source": "https://www.google.com/s2/favicons?domain=nomad.io&sz=256",
+    "file": "nomad.png"
+  },
+  "jetty": {
+    "domain": "jetty.io",
+    "source": "https://icons.duckduckgo.com/ip3/jetty.io.ico",
+    "file": "jetty.ico"
+  },
+  "anchorbase": {
+    "domain": "anchorbase.com",
+    "source": "https://www.google.com/s2/favicons?domain=anchorbase.com&sz=256",
+    "file": "anchorbase.png"
+  },
+  "tydra-labs": {
+    "domain": "tydralabs.com",
+    "source": "https://www.google.com/s2/favicons?domain=tydralabs.com&sz=256",
+    "file": "tydra-labs.png"
+  },
+  "carbonyx": {
+    "domain": "carbonyx.ca",
+    "source": "https://icons.duckduckgo.com/ip3/carbonyx.ca.ico",
+    "file": "carbonyx.ico"
+  },
+  "modern-mining-tech": {
+    "domain": "modernmining.com",
+    "source": "https://www.google.com/s2/favicons?domain=modernmining.com&sz=256",
+    "file": "modern-mining-tech.png"
+  },
+  "serenity-power": {
+    "domain": "serenitypower.ca",
+    "source": "https://www.google.com/s2/favicons?domain=serenitypower.ca&sz=256",
+    "file": "serenity-power.jpg"
+  },
+  "savage-exploration": {
+    "domain": "savageexploration.ca",
+    "source": "https://www.google.com/s2/favicons?domain=savageexploration.ca&sz=256",
+    "file": "savage-exploration.png"
+  },
+  "tartan-app": {
+    "domain": "tartan.app",
+    "source": "https://www.google.com/s2/favicons?domain=tartan.app&sz=256",
+    "file": "tartan-app.png"
+  },
+  "sielo-robotics": {
+    "domain": "sielorobotics.com",
+    "source": "https://www.google.com/s2/favicons?domain=sielorobotics.com&sz=256",
+    "file": "sielo-robotics.png"
+  },
+  "nightmare-games": {
+    "domain": "nightmare-games.com",
+    "source": "https://www.google.com/s2/favicons?domain=nightmare-games.com&sz=256",
+    "file": "nightmare-games.png"
+  },
+  "vitaliti-tech": {
+    "domain": "vitalititech.com",
+    "source": "https://www.google.com/s2/favicons?domain=vitalititech.com&sz=256",
+    "file": "vitaliti-tech.png"
+  },
+  "courtstairs": {
+    "domain": "courtstairs.com",
+    "source": "https://www.google.com/s2/favicons?domain=courtstairs.com&sz=256",
+    "file": "courtstairs.png"
+  },
+  "fairly-staffing": {
+    "domain": "fairlystaffing.com",
+    "source": "https://www.google.com/s2/favicons?domain=fairlystaffing.com&sz=256",
+    "file": "fairly-staffing.png"
+  },
+  "timesmart-ai": {
+    "domain": "timesmart.ai",
+    "source": "https://www.google.com/s2/favicons?domain=timesmart.ai&sz=256",
+    "file": "timesmart-ai.png"
+  },
+  "foresight-spatial": {
+    "domain": "fslabs.ca",
+    "source": "https://www.google.com/s2/favicons?domain=fslabs.ca&sz=256",
+    "file": "foresight-spatial.png"
+  },
+  "sharkforce": {
+    "domain": "shark-force.com",
+    "source": "https://www.google.com/s2/favicons?domain=shark-force.com&sz=256",
+    "file": "sharkforce.png"
+  },
+  "chemshift": {
+    "domain": "chemshift.com",
+    "source": "https://icons.duckduckgo.com/ip3/chemshift.com.ico",
+    "file": "chemshift.ico"
+  },
+  "quadshift": {
+    "domain": "quadshift.io",
+    "source": "https://www.google.com/s2/favicons?domain=quadshift.io&sz=256",
+    "file": "quadshift.png"
+  },
+  "landing-zones": {
+    "domain": "landingzones.ca",
+    "source": "https://www.google.com/s2/favicons?domain=landingzones.ca&sz=256",
+    "file": "landing-zones.png"
+  },
+  "apera-ai": {
+    "domain": "apera.ai",
+    "source": "https://www.google.com/s2/favicons?domain=apera.ai&sz=256",
+    "file": "apera-ai.png"
+  },
+  "ecocero": {
+    "domain": "ecocero.com",
+    "source": "https://www.google.com/s2/favicons?domain=ecocero.com&sz=256",
+    "file": "ecocero.png"
+  }
+}

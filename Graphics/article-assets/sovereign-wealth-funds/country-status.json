@@ -1,0 +1,158 @@
+{
+  "countries": {
+    "Algeria": { "funding": "surplus", "funds": ["Fonds de Regulation des Recettes"] },
+    "Angola": { "funding": "surplus", "funds": ["Fundo Soberano de Angola"] },
+    "Australia": { "funding": "surplus", "funds": ["Future Fund", "Western Australian Future Fund"] },
+    "Austria": { "funding": "hybrid", "funds": ["Oesterreichische Beteiligungs AG"] },
+    "Azerbaijan": { "funding": "surplus", "funds": ["State Oil Fund (SOFAZ)"] },
+    "Bahrain": { "funding": "surplus", "funds": ["Mumtalakat Holding Company"] },
+    "Belgium": { "funding": "surplus", "funds": ["SFPI-FPIM"] },
+    "Bolivia": { "funding": "hybrid", "funds": ["FINPRO"] },
+    "Botswana": { "funding": "surplus", "funds": ["Pula Fund"] },
+    "Brunei": { "funding": "surplus", "funds": ["Brunei Investment Agency"] },
+    "Canada": { "funding": "debt", "funds": ["Canada Strong Fund (proposed)"] },
+    "Chile": { "funding": "surplus", "funds": ["Economic and Social Stabilization Fund", "Pension Reserve Fund"] },
+    "China": { "funding": "surplus", "funds": ["China Investment Corporation", "SAFE Investment Company", "NSSF"] },
+    "Colombia": { "funding": "surplus", "funds": ["FAEP"] },
+    "Egypt": { "funding": "hybrid", "funds": ["Egyptian Investment Holdings"] },
+    "Equatorial Guinea": { "funding": "surplus", "funds": ["Fonds de Reserves pour Generations Futures"] },
+    "Ethiopia": { "funding": "hybrid", "funds": ["Ethiopian Investment Holdings"] },
+    "Finland": { "funding": "surplus", "funds": ["Solidium Oy"] },
+    "France": { "funding": "hybrid", "funds": ["Bpifrance"] },
+    "Gabon": { "funding": "surplus", "funds": ["FGIS"] },
+    "Germany": { "funding": "surplus", "funds": ["KfW Capital / state investment vehicles"] },
+    "Ghana": { "funding": "surplus", "funds": ["Ghana Petroleum Funds"] },
+    "Greece": { "funding": "surplus", "funds": ["Hellenic Corporation of Assets and Participations"] },
+    "Guyana": { "funding": "surplus", "funds": ["Natural Resource Fund"] },
+    "India": { "funding": "hybrid", "funds": ["National Investment and Infrastructure Fund"] },
+    "Indonesia": { "funding": "hybrid", "funds": ["Danantara", "Indonesia Investment Authority"] },
+    "Iran": { "funding": "surplus", "funds": ["National Development Fund"] },
+    "Ireland": { "funding": "surplus", "funds": ["Ireland Strategic Investment Fund", "Future Ireland Fund"] },
+    "Israel": { "funding": "surplus", "funds": ["Israeli Citizens' Fund"] },
+    "Italy": { "funding": "hybrid", "funds": ["Cassa Depositi e Prestiti"] },
+    "Japan": { "funding": "surplus", "funds": ["Japan Investment Corporation"] },
+    "Kazakhstan": { "funding": "surplus", "funds": ["Samruk-Kazyna", "National Fund"] },
+    "Kiribati": { "funding": "surplus", "funds": ["Revenue Equalization Reserve Fund"] },
+    "Kuwait": { "funding": "surplus", "funds": ["Kuwait Investment Authority"] },
+    "Libya": { "funding": "surplus", "funds": ["Libyan Investment Authority"] },
+    "Malaysia": { "funding": "hybrid", "funds": ["Khazanah Nasional"] },
+    "Mauritania": { "funding": "surplus", "funds": ["National Fund for Hydrocarbon Reserves"] },
+    "Mexico": { "funding": "surplus", "funds": ["Fondo Mexicano del Petroleo"] },
+    "Mongolia": { "funding": "surplus", "funds": ["Future Heritage Fund"] },
+    "Morocco": { "funding": "hybrid", "funds": ["Ithmar Capital"] },
+    "Mozambique": { "funding": "surplus", "funds": ["Fundo Soberano de Mocambique"] },
+    "Namibia": { "funding": "surplus", "funds": ["Welwitschia Fund"] },
+    "Netherlands": { "funding": "surplus", "funds": ["BNG Bank / state investment holdings"] },
+    "New Zealand": { "funding": "surplus", "funds": ["New Zealand Superannuation Fund"] },
+    "Nigeria": { "funding": "surplus", "funds": ["Nigeria Sovereign Investment Authority"] },
+    "Norway": { "funding": "surplus", "funds": ["Government Pension Fund Global"] },
+    "Oman": { "funding": "surplus", "funds": ["Oman Investment Authority"] },
+    "Pakistan": { "funding": "hybrid", "funds": ["Pakistan Sovereign Wealth Fund"] },
+    "Panama": { "funding": "surplus", "funds": ["Fondo de Ahorro de Panama"] },
+    "Papua New Guinea": { "funding": "surplus", "funds": ["Papua New Guinea Sovereign Wealth Fund"] },
+    "Peru": { "funding": "surplus", "funds": ["Fiscal Stabilization Fund"] },
+    "Philippines": { "funding": "debt", "funds": ["Maharlika Investment Fund"] },
+    "Poland": { "funding": "debt", "funds": ["Polish Development Fund / state vehicles"] },
+    "Qatar": { "funding": "surplus", "funds": ["Qatar Investment Authority"] },
+    "Russia": { "funding": "surplus", "funds": ["National Wealth Fund"] },
+    "Rwanda": { "funding": "surplus", "funds": ["Agaciro Development Fund"] },
+    "Saudi Arabia": { "funding": "hybrid", "funds": ["Public Investment Fund"] },
+    "Senegal": { "funding": "surplus", "funds": ["FONSIS"] },
+    "Singapore": { "funding": "surplus", "funds": ["GIC", "Temasek Holdings"] },
+    "Slovenia": { "funding": "surplus", "funds": ["Slovenska odskodninska druzba holdings"] },
+    "South Korea": { "funding": "surplus", "funds": ["Korea Investment Corporation"] },
+    "Spain": { "funding": "hybrid", "funds": ["COFIDES / state investment vehicles"] },
+    "Syria": { "funding": "hybrid", "funds": ["Syrian Investment Authority"] },
+    "Timor-Leste": { "funding": "surplus", "funds": ["Petroleum Fund"] },
+    "Trinidad and Tobago": { "funding": "surplus", "funds": ["Heritage and Stabilization Fund"] },
+    "Turkey": { "funding": "debt", "funds": ["Turkey Wealth Fund"] },
+    "Turkmenistan": { "funding": "surplus", "funds": ["Stabilization Fund"] },
+    "Uganda": { "funding": "surplus", "funds": ["Petroleum Fund"] },
+    "United Arab Emirates": { "funding": "surplus", "funds": ["ADIA", "Mubadala", "ICD", "ADQ"] },
+    "United Kingdom": { "funding": "debt", "funds": ["National Wealth Fund"] },
+    "Uzbekistan": { "funding": "surplus", "funds": ["Uzbekistan Sovereign Wealth Fund"] },
+    "Vietnam": { "funding": "surplus", "funds": ["State Capital Investment Corporation"] },
+    "West Bank": { "funding": "surplus", "funds": ["Palestine Investment Fund"] },
+    "Zimbabwe": { "funding": "hybrid", "funds": ["Mutapa Investment Fund"] }
+  },
+  "sub_jurisdictions": {
+    "Alberta": {
+      "parent": "Canada",
+      "funding": "surplus",
+      "admin": "Canada",
+      "funds": ["Heritage Savings Trust Fund"]
+    },
+    "Alaska": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Alaska Permanent Fund"]
+    },
+    "Texas": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Permanent School Fund", "Permanent University Fund"]
+    },
+    "New Mexico": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Land Grant Permanent Fund", "Severance Tax Permanent Fund"]
+    },
+    "Wyoming": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Permanent Wyoming Mineral Trust Fund"]
+    },
+    "North Dakota": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Legacy Fund"]
+    },
+    "Louisiana": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Education Quality Trust Fund"]
+    },
+    "Oregon": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Common School Fund"]
+    },
+    "Colorado": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Public School Fund Endowment"]
+    },
+    "Alabama": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Alabama Trust Fund"]
+    },
+    "Idaho": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Endowment Fund Investment Board"]
+    },
+    "Utah": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["School and Institutional Trust Funds"]
+    },
+    "Wisconsin": {
+      "parent": "United States",
+      "funding": "surplus",
+      "admin": "United States of America",
+      "funds": ["Board of Commissioners of Public Lands"]
+    }
+  }
+}
