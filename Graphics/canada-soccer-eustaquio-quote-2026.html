@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stephen Eustaquio quote - Build Canada (1280x1280)</title>
+  <link rel="stylesheet" href="brand-fonts.css" />
+  <style>
+    :root {
+      --paper: #F4EBE3;
+      --ink: #1A1A1A;
+      --red: #872D2E;
+      --blue: #305E7E;
+      --warm-line: #C8BFB0;
+      --canvas: 1280px;
+      --frame-inset: 10px;
+      --frame-border: 2px;
+      --mat: 13px;
+      --corner-len: 96px;
+      --corner-thick: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 28px 0 40px;
+      background: #d9d0c7;
+      color: var(--ink);
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-synthesis: none;
+    }
+
+    .canvas {
+      position: relative;
+      width: var(--canvas);
+      height: var(--canvas);
+      background:
+        linear-gradient(90deg, rgba(200, 191, 176, 0.48) 0 1px, transparent 1px 100%) 0 0 / 86px 100%,
+        var(--paper);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .bezel-frame {
+      position: absolute;
+      inset: var(--frame-inset);
+      border: var(--frame-border) solid var(--ink);
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .corner {
+      position: absolute;
+      z-index: 21;
+      pointer-events: none;
+    }
+
+    .corner--tl {
+      top: var(--frame-inset);
+      left: var(--frame-inset);
+      width: var(--corner-len);
+      height: var(--corner-len);
+    }
+
+    .corner--tl::before,
+    .corner--tl::after,
+    .corner--br::before,
+    .corner--br::after {
+      content: "";
+      position: absolute;
+      background: var(--red);
+    }
+
+    .corner--tl::before {
+      top: 0;
+      left: 0;
+      width: var(--corner-len);
+      height: var(--corner-thick);
+    }
+
+    .corner--tl::after {
+      top: 0;
+      left: 0;
+      width: var(--corner-thick);
+      height: var(--corner-len);
+    }
+
+    .corner--br {
+      right: calc(var(--frame-inset) + var(--frame-border));
+      bottom: calc(var(--frame-inset) + var(--frame-border));
+      width: var(--corner-len);
+      height: var(--corner-len);
+    }
+
+    .corner--br::before {
+      right: 0;
+      bottom: 0;
+      width: var(--corner-len);
+      height: var(--corner-thick);
+    }
+
+    .corner--br::after {
+      right: 0;
+      bottom: 0;
+      width: var(--corner-thick);
+      height: var(--corner-len);
+    }
+
+    .bezel-mat {
+      position: absolute;
+      inset: calc(var(--frame-inset) + var(--frame-border) + var(--mat));
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .brand {
+      position: absolute;
+      top: 48px;
+      right: 50px;
+      z-index: 12;
+      width: 72px;
+      height: 72px;
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .photo-panel {
+      position: absolute;
+      top: 192px;
+      right: -36px;
+      width: 628px;
+      height: 815px;
+      z-index: 3;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(135, 45, 46, 0.92), rgba(135, 45, 46, 0.72)),
+        var(--red);
+      border: 2px solid var(--ink);
+    }
+
+    .photo-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(180deg, rgba(244, 235, 227, 0.08), transparent 34%, rgba(26, 26, 26, 0.28)),
+        linear-gradient(90deg, rgba(26, 26, 26, 0.2), transparent 48%);
+      pointer-events: none;
+    }
+
+    .photo-panel::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      z-index: 3;
+      border: 1px solid rgba(244, 235, 227, 0.76);
+      pointer-events: none;
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 20% 46%;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .red-slab {
+      position: absolute;
+      right: 385px;
+      top: 0;
+      bottom: 0;
+      width: 118px;
+      z-index: 2;
+      background: var(--red);
+      opacity: 0.94;
+    }
+
+    .blue-slab {
+      position: absolute;
+      right: 518px;
+      bottom: 88px;
+      z-index: 2;
+      width: 132px;
+      height: 18px;
+      background: var(--blue);
+    }
+
+    .quote-block {
+      position: absolute;
+      left: 72px;
+      top: 108px;
+      z-index: 5;
+      width: 730px;
+      min-height: 980px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kicker {
+      margin: -16px 0 42px;
+      width: fit-content;
+      padding: 9px 12px 8px;
+      background: var(--red);
+      color: var(--paper);
+      font-family: "Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO", "Roboto Mono", monospace;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.09em;
+    }
+
+    .quote-mark {
+      margin: 0 0 -26px -8px;
+      color: var(--red);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 154px;
+      font-weight: 700;
+      line-height: 0.55;
+    }
+
+    .quote {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-size: 95px;
+      font-weight: 760;
+      line-height: 0.98;
+      letter-spacing: -0.025em;
+    }
+
+    .quote-line {
+      display: block;
+    }
+
+    .quote-line + .quote-line {
+      margin-top: 0.06em;
+    }
+
+    .quote-line--red {
+      color: var(--red);
+    }
+
+    .quote-tail {
+      max-width: 520px;
+      margin: 26px 0 0;
+      padding-left: 24px;
+      border-left: 5px solid var(--red);
+      color: rgba(26, 26, 26, 0.78);
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-size: 35px;
+      font-weight: 520;
+      line-height: 1.17;
+      letter-spacing: -0.002em;
+    }
+
+    .attribution {
+      margin-top: auto;
+      padding-top: 28px;
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+    }
+
+    .number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 74px;
+      height: 74px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-size: 42px;
+      font-weight: 760;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .speaker {
+      margin: 0;
+      color: var(--red);
+      font-family: "Test Söhne", "TestSöhne", "TESTSÖHNE", Arial, sans-serif;
+      font-size: 42px;
+      font-weight: 760;
+      line-height: 0.98;
+      letter-spacing: 0.018em;
+      text-transform: uppercase;
+    }
+
+    .role {
+      margin: 8px 0 0;
+      color: rgba(26, 26, 26, 0.66);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .source {
+      position: absolute;
+      right: 62px;
+      bottom: 54px;
+      z-index: 6;
+      margin: 0;
+      color: rgba(26, 26, 26, 0.58);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 520;
+      line-height: 1.35;
+      letter-spacing: 0.08em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      opacity: 0.11;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 24% 18%, var(--ink) 0 1px, transparent 1px),
+        radial-gradient(circle at 76% 58%, var(--red) 0 1px, transparent 1px);
+      background-size: 17px 19px, 23px 29px;
+      mix-blend-mode: multiply;
+    }
+
+    .download-panel {
+      display: flex;
+      justify-content: center;
+    }
+
+    .download-button {
+      padding: 12px 22px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .download-button:disabled {
+      opacity: 0.65;
+      cursor: progress;
+    }
+
+    .font-warning {
+      box-sizing: border-box;
+      max-width: 520px;
+      margin: 0 16px 8px;
+      padding: 12px 14px;
+      border: 1px solid rgba(135, 45, 46, 0.45);
+      background: rgba(237, 229, 213, 0.95);
+      color: var(--ink);
+      font-family: "Test Founders Grotesk", "TestFoundersGrotesk", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+    }
+
+    .font-warning[hidden] {
+      display: none;
+    }
+
+    .font-warning strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 16px;
+    }
+
+    .font-warning button {
+      margin-top: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="font-warning" id="font-warning" role="alert" hidden>
+    <strong>Fallback fonts detected</strong>
+    <span id="font-warning-message"></span>
+    <button type="button" id="font-warning-dismiss">Dismiss</button>
+  </aside>
+
+  <main class="canvas" id="export-root" aria-label="Stephen Eustaquio post-match quote">
+    <div class="bezel-mat">
+      <div class="red-slab" aria-hidden="true"></div>
+      <div class="blue-slab" aria-hidden="true"></div>
+
+      <figure class="photo-panel" aria-hidden="true">
+        <img
+          class="photo"
+          src="article-assets/stephen-eustaquio-world-cup-face-sky-2026.jpg"
+          width="2048"
+          height="1152"
+          alt=""
+          decoding="async"
+        />
+      </figure>
+
+      <section class="quote-block" aria-label="Stephen Eustaquio quote">
+        <p class="kicker">#FIFAWORLDCUP</p>
+        <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+        <p class="quote">
+          <span class="quote-line">When I</span>
+          <span class="quote-line">took the</span>
+          <span class="quote-line">shot, I felt</span>
+          <span class="quote-line quote-line--red">everyone</span>
+          <span class="quote-line quote-line--red">in Canada</span>
+          <span class="quote-line">shoot</span>
+          <span class="quote-line">with me.</span>
+        </p>
+        <p class="quote-tail">Everybody put a little bit of power on it. I'm so happy.</p>
+
+        <div class="attribution">
+          <span class="number" aria-hidden="true">7</span>
+          <div>
+            <p class="speaker">Stephen Eustáquio</p>
+            <p class="role">Team Canada midfielder</p>
+          </div>
+        </div>
+      </section>
+
+      <p class="source">Image: AP / Sky Sports</p>
+      <div class="grain" aria-hidden="true"></div>
+    </div>
+
+    <div class="bezel-frame" aria-hidden="true"></div>
+    <div class="corner corner--tl" aria-hidden="true"></div>
+    <div class="corner corner--br" aria-hidden="true"></div>
+
+    <div class="brand" aria-label="Build Canada logo">
+      <img src="../Build Canada Logo.png" alt="Build Canada" decoding="async" />
+    </div>
+  </main>
+
+  <div class="download-panel">
+    <button class="download-button" type="button" id="download-png">Download PNG</button>
+  </div>
+
+  <script src="vendor/html-to-image-1.11.11.js"></script>
+  <script>
+    if (!window.htmlToImage) {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"><\/script>');
+    }
+  </script>
+  <script>
+    (() => {
+      const requiredFonts = [
+        { name: "Test Söhne", families: ["Test Söhne", "TestSöhne", "TESTSÖHNE"] },
+        { name: "Test Söhne Mono", families: ["Test Söhne Mono", "TestSöhneMono", "TESTSÖHNEMONO"] },
+        {
+          name: "Test Founders Grotesk",
+          families: [
+            "Test Founders Grotesk",
+            "TestFoundersGrotesk",
+            "Test Founders Grotesk Text",
+            "TestFoundersGroteskText"
+          ]
+        }
+      ];
+      const sample = "Build Canada Stephen Eustaquio quote 0123456789";
+
+      function textWidth(fontFamily) {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = `48px ${fontFamily}`;
+        return context.measureText(sample).width;
+      }
+
+      function fontIsAvailable(fontFamilies) {
+        const fallbackFonts = ["Arial", "Times New Roman", "Courier New"];
+        const fallbackWidths = fallbackFonts.map((fallback) => textWidth(fallback));
+
+        return fontFamilies.some((fontFamily) => {
+          if (document.fonts && document.fonts.check(`16px "${fontFamily}"`)) {
+            return true;
+          }
+
+          const quotedFont = `"${fontFamily}"`;
+          const targetWidths = fallbackFonts.map((fallback) =>
+            textWidth(`${quotedFont}, ${fallback}`)
+          );
+
+          return targetWidths.some((width, index) => width !== fallbackWidths[index]);
+        });
+      }
+
+      function showWarning(missingFonts) {
+        const warning = document.getElementById("font-warning");
+        const message = document.getElementById("font-warning-message");
+        const dismiss = document.getElementById("font-warning-dismiss");
+
+        message.textContent = `The required brand font${missingFonts.length > 1 ? "s are" : " is"} not in use: ${missingFonts.join(", ")}. The browser is rendering with fallback fonts.`;
+        warning.hidden = false;
+        dismiss.addEventListener("click", () => {
+          warning.hidden = true;
+        });
+      }
+
+      window.addEventListener("load", () => {
+        const missingFonts = requiredFonts
+          .filter((font) => !fontIsAvailable(font.families))
+          .map((font) => font.name);
+
+        if (missingFonts.length > 0) {
+          showWarning(missingFonts);
+        }
+      });
+
+      async function waitForImages(root) {
+        const images = Array.from(root.querySelectorAll("img"));
+
+        await Promise.all(images.map((image) => {
+          if (image.complete && image.naturalWidth > 0) {
+            return image.decode ? image.decode().catch(() => {}) : Promise.resolve();
+          }
+
+          return new Promise((resolve, reject) => {
+            image.addEventListener("load", resolve, { once: true });
+            image.addEventListener("error", () => {
+              reject(new Error(`Image failed to load: ${image.currentSrc || image.src}`));
+            }, { once: true });
+          });
+        }));
+      }
+
+      const downloadButton = document.getElementById("download-png");
+      downloadButton.addEventListener("click", async () => {
+        if (!window.htmlToImage) {
+          window.alert("PNG export library could not be loaded. Refresh the page and try again.");
+          return;
+        }
+
+        downloadButton.disabled = true;
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = "Rendering...";
+
+        try {
+          if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+          }
+
+          const canvasElement = document.getElementById("export-root");
+          await waitForImages(canvasElement);
+
+          const dataUrl = await window.htmlToImage.toPng(canvasElement, {
+            backgroundColor: "#F4EBE3",
+            cacheBust: true,
+            canvasWidth: 1280,
+            canvasHeight: 1280,
+            pixelRatio: 2,
+            width: 1280,
+            height: 1280,
+            style: {
+              margin: "0",
+              transform: "none"
+            }
+          });
+
+          const link = document.createElement("a");
+          link.download = "canada-soccer-eustaquio-quote-2026.png";
+          link.href = dataUrl;
+          link.click();
+        } catch (error) {
+          console.error("PNG export failed", error);
+          const message = error && error.message ? error.message : String(error);
+          window.alert(`PNG export failed: ${message}`);
+        } finally {
+          downloadButton.disabled = false;
+          downloadButton.textContent = originalText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
