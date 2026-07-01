@@ -67,7 +67,7 @@ A reference guide for AI systems generating infographics, reports, and data visu
 
 ## Layout & Grid
 
-- **Canvas:** Portrait orientation. Default size is **1080×1350px**. Always use this unless a different size is explicitly requested.
+- **Canvas:** Portrait orientation for **Build Canada**. Default size is **1080×1350px**. **Canada Spends** defaults to landscape **1350×1080px** (see **Canada Spends**). Always use the publisher-appropriate default unless a different size is explicitly requested.
 - **Output format:** Always produce graphics as **HTML files** unless another format is explicitly requested.
 - **Authoring approach:** Prefer directly editable, hand-authored HTML/CSS/JS for individual graphics. Avoid using Python or other generator scripts unless they are genuinely necessary for large data transformations, complex map geometry, repeated batch output, or reproducibility that would be impractical by hand.
 - **No raster-only deliverables:** Do not stop at PNG/JPG output for a graphic. If a bitmap preview or export is created, the editable HTML file remains the primary deliverable and must be created first.
@@ -111,6 +111,7 @@ A reference guide for AI systems generating infographics, reports, and data visu
 
 - **Style:** Simple line icons from a single library family per graphic (Icons8 iOS line style is the default). Approximately 20–24px at standard resolution; scale up proportionally on card or carousel layouts.
 - **Source (required):** **Always** use icon image assets from an online library (Icons8, Noun Project, or equivalent). **Never** hand-draw custom inline SVG icons for row labels, section headings, cards, or list items. Inline SVG is reserved for structural diagram elements (connectors, charts, maps) — not pictorial icons.
+- **No hand-drawn pictorial assets:** Do **not** create representational images, pictorial marks, decorative symbols, leaves, badges, flags, crests, buildings, objects, or scene elements with inline SVG paths, CSS drawing, canvas drawing, emoji, or ad hoc vector shapes. Source pictorial assets from online libraries or from clearly sourced image files, then reference those assets. Use inline SVG/CSS only for abstract structure such as rules, chart geometry, map paths, connectors, masks, and layout scaffolding.
 - **Icons8 URL pattern:** `https://img.icons8.com/ios/{size}/{hex}/{icon-name}.png` — e.g. `https://img.icons8.com/ios/100/872D2E/shield.png` for Build Canada red at 100px source size. Verify each URL returns a valid image before shipping.
 - **Colour:** Default charcoal `#2A2A2A` for table and section icons. Build Canada red `#872D2E` is acceptable for accent icons on cards, carousels, or emphasis rows when the layout calls for brand colour.
 - **Placement:** Left-aligned in the icon/label column when using a table, or beside a section heading or list title when using another layout. On card rows, icons may sit on the right. Keep icons aligned consistently within the piece.
@@ -138,6 +139,20 @@ A reference guide for AI systems generating infographics, reports, and data visu
 
 ---
 
+## Canada Spends
+
+Canada Spends pieces share the Build Canada colour palette, typography, frame rules, and source conventions unless a brief says otherwise. They differ in **publisher mark**, **default canvas orientation**, and **layout priority**.
+
+- **Publisher mark:** Use `Graphics/article-assets/canada-spends-logo.png` (horizontal icon + stacked wordmark). Do **not** use the Build Canada square PNG on Canada Spends graphics.
+- **Logo placement:** Top right of the canvas, same parchment-backed wrapper rules as **Brand Mark** (no halo, no border, `object-fit: contain`).
+- **Logo size:** Approximately **168–180px wide × 44–56px tall** on the standard Canada Spends canvas. Scale with the headline so the header block stays balanced.
+- **Default canvas:** **Landscape 1350×1080px** unless the brief explicitly requests another size or aspect. Portrait **1080×1350** is for Build Canada by default, not Canada Spends.
+- **Chart-first layout:** The data visualization must be the dominant element. After a compact header (kicker, H1, optional one-line deck), allocate **≥55%** of the canvas height below the header divider to the chart area (bars, lines, area, treemap, or comparable plot). Keep supporting copy to a short chart caption or footnote-sized callout, not multi-row lists or dense narrative blocks.
+- **Header discipline:** Slim header zone on landscape pieces. Do not stack hero stat panels, comparison tables, or long prose above the chart when a chart carries the story.
+- **When to use:** Any graphic explicitly for Canada Spends, or when the brief asks for the Canada Spends logo instead of Build Canada.
+
+---
+
 ## Brand Mark
 
 - **File:** The official Build Canada logo is available as a PNG in the directory. Always use this file rather than recreating the mark.
@@ -156,6 +171,7 @@ A reference guide for AI systems generating infographics, reports, and data visu
 | Use the warm cream background | Use pure white or cool grey backgrounds |
 | Use brick red and teal as the two accent colours | Introduce additional accent colours |
 | Use online icon library assets (Icons8, etc.) | Hand-draw inline SVG pictorial icons |
+| Source pictorial marks and decorative symbols from online/library assets | Draw leaves, badges, flags, crests, objects, or scene elements with CSS, canvas, emoji, or ad hoc SVG paths |
 | Keep icons monochrome or brand red per brief | Mix icon families or use emoji as icons |
 | Set data figures in oversized bold type with slight positive letter-spacing | Bury key numbers in body copy or clamp them with heavy negative tracking |
 | State a clear editorial headline | Write a vague or neutral headline |
@@ -178,7 +194,10 @@ A reference guide for AI systems generating infographics, reports, and data visu
 | Pin hero-and-body teaser sources to the bottom of the body column (see Layout — Hero-and-body teaser) | Let attribution float directly under short copy mid-canvas |
 | Pixel-scan crop publisher logos and use equal CSS padding on hero badges (see Layout — Publisher badge) | Compensate for logo whitespace with scale transforms or overflow clip boxes |
 | Put PNG download controls below and outside the canvas | Include export controls inside the exported graphic |
+| Use landscape **1350×1080** chart-first layouts for Canada Spends | Default Canada Spends pieces to portrait or text-heavy stacks |
+| Put the Canada Spends horizontal logo on Canada Spends pieces | Use the Build Canada square mark on Canada Spends graphics |
+| Let the chart occupy ≥55% of canvas height below the header on Canada Spends | Bury the graph under hero panels, tables, or long copy on Canada Spends |
 
 ---
 
-*This guide is intended as a prompt-ready reference for AI image generation, design systems, and layout tools working within the Build Canada visual identity.*
+*This guide is intended as a prompt-ready reference for AI image generation, design systems, and layout tools working within the Build Canada visual identity and the Canada Spends publisher variant.*
